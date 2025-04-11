@@ -7,4 +7,4 @@ export async function POST( req:NextRequest, res:NextResponse ){
 
     return NextResponse.json({ message: "User registered successfully"}, { status: 201 })
 
-}
+};

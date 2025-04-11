@@ -1,4 +1,5 @@
 import React from 'react'
+import GetBtn from '../buttons/GetBtn'
 
 const Features = () => {
     return (
@@ -39,10 +40,11 @@ const Features = () => {
             </div>
 
             <div className="text-center text-base space-y-3">
-                <button className='bg-fit-red px-6 py-3 rounded-lg font-semibold text-white'>Get Offer</button>
+                {/* <button className='bg-fit-red px-6 py-3 rounded-lg font-semibold text-white'>Get Offer</button> */}
+                <GetBtn />
+
                 <h4 className=''>Skip or cancel any time</h4>
             </div>
-
         </div>
     )
 }

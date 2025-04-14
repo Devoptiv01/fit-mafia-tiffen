@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Outfit } from 'next/font/google'
 import Header from "@/components/header/Header";
+import AuthProvider from "@/context/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +17,7 @@ const geistMono = Geist_Mono({
 
 const outfit = Outfit({
   subsets: ['latin'],
-  weight: ['100','200','300','400', '500', '600', '700','800','900'], // Add weights you need
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'], // Add weights you need
   variable: '--font-outfit' // Optional: for CSS variable usage
 });
 
@@ -35,8 +36,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased ${outfit.className}`}
       >
-        <Header />
-        {children}
+        <AuthProvider>
+          <Header />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

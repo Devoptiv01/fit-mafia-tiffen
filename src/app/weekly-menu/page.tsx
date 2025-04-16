@@ -1,3 +1,5 @@
+import GetBtn from '@/components/buttons/GetBtn'
+import MealCard from '@/components/main/MealCard'
 import Image from 'next/image'
 import React from 'react'
 
@@ -23,46 +25,72 @@ const Page = () => {
 
       </div>
 
-      <div className="w-full h-screen bg-[#F1F1EA] ">
+      <div className="w-full h-full pb-10 bg-[#F1F1EA] flex flex-col gap-4">
 
-        <div className="w-full flex flex-col justify-center items-center gap-1 h-[138px]">
-          <h2 className='text-4xl font-semibold text-[#4b4d4c] '>Explore our Flexible Weekly Menu</h2>
-          <h4 className='text-base text-[#4b4d4c]'>Browse the 30+ gourmet meals featured on this week's menu</h4>
-        </div>
-
-        {/* // Ready Meals  */}
-        <div className="w-full px-4 ">
-          <h2 className='text-2xl font-semibold '>Ready-made meals</h2>
-          <h4>Fresh meals that arrive ready to heat, eat and enjoy in minutes.</h4>
-
-          <div className="w-full">
-            {/* // Cards  */}
-            <div className="w-[364px] h-full bg-white rounded-lg shadow-md flex flex-col justify-center items-center gap-2">
-              <div className="relative w-full h-[240px] rounded-t-lg overflow-hidden">
-                <Image
-                  src={'/temp/temp.webp'}
-                  alt='meals'
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
-
-              <div className="w-full p-3 pt-0">
-                <h3 className='font-bold text-lg '>🍕Shredded Jerk Chicken & Rice</h3>
-                <h4 className='text-base '>with Sweet Potatoes & Mango Jam</h4>
-              </div>
-
-              <div className="w-full p-3 pt-0">
-                <h5 className='w-fit px-2 py-[1px] bg-[#3D454B] text-white rounded-sm'>Calorie Smart</h5>
-                <h5 className='w-fit px-2 py-[1px] bg-[#3D454B] text-white rounded-sm'>Protein Plus</h5>
-              </div>
-
-            </div>
+        <div className="w-full flex flex-col gap-4">
+          <div className="w-full flex flex-col justify-center items-center gap-3 h-[138px] px-4 text-center">
+            <h2 className='sm:text-4xl text-3xl font-medium sm:font-semibold text-[#4b4d4c] '>Explore our Flexible Weekly Menu</h2>
+            <h4 className='sm:text-base text-sm text-[#4b4d4c]'>Browse the 30+ gourmet meals featured on this week's menu</h4>
           </div>
 
+          {/* // Ready Meals  */}
+          <div className="w-full px-4 flex flex-col gap-4 ">
+
+            <div className="w-fit flex flex-col gap-4 mx-3 md:mx-10">
+              <h2 className='text-2xl font-semibold '>Ready-made meals</h2>
+              <h4>Fresh meals that arrive ready to heat, eat and enjoy in minutes.</h4>
+            </div>
+
+            <div className="w-full h-full flex gap-3 sm:gap-5 xl:gap-8 flex-wrap justify-center items-center">
+              {/* // Cards  */}
+              {Array(6).fill(0).map((e, i) => {
+                return (
+                  <MealCard image='/temp/temp.webp' title='🍕Shredded Jerk Chicken & Rice' desc='with Sweet Potatoes & Mango Jam' />
+                )
+              })}
+            </div>
+
+            <button className='px-4 py-2 border border-fit-red w-fit  rounded-lg mx-auto font-semibold text-base text-fit-red hover:bg-fit-red hover:text-white'>Load more meals</button>
+
+          </div>
         </div>
 
+        <div className="w-full flex flex-col gap-4">
+          <div className="w-fit flex flex-col gap-2 px-4 h-[70px] mx-3 md:mx-10 ">
+            <h2 className='sm:text-xl text-lg font-semibold '>
+            Add-ons
+              </h2>
+            <h4 className='sm:text-base text-sm '>
+            You’re not limited to just the meals, you can add other goodies to your meals!
+              </h4>
+          </div>
+
+          {/* // Ready Meals  */}
+          <div className="w-full px-4 flex flex-col gap-4 ">
+
+            <div className="w-full h-full flex gap-3 sm:gap-5 xl:gap-8 flex-wrap justify-center items-center">
+              {/* // Cards  */}
+              {Array(6).fill(0).map((e, i) => {
+                return (
+                  <MealCard image='/temp/temp.webp' title='🍕Shredded Jerk Chicken & Rice' desc='with Sweet Potatoes & Mango Jam' />
+                )
+              })}
+            </div>
+
+            <button className='px-4 py-2 border border-fit-red w-fit  rounded-lg mx-auto font-semibold text-base text-fit-red hover:bg-fit-red hover:text-white'>Load more meals</button>
+
+          </div>
+        </div>
+
+        <div className="w-full h-full flex justify-center py-4 pt-5 sticky bottom-0 bg-[#F1F1EA]">
+          <GetBtn  link='/our-plans' content='Get started'/>
+        </div>
+
+        <h4 className='text-center px-4 text-base '>Enjoy flavourful meals with no fuss. Pick your dishes, skip weeks, cancel anytime.</h4>
       </div>
+
+
+
     </div>
   )
 }

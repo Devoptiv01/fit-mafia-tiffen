@@ -6,17 +6,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --fit-red: #E50914;
-  --fit-grey: #1C1C1C;
-  --fit-brown: #F2E7DC;
+  
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-fit-red: var(--fit-red);
-  --color-fit-grey: var(--fit-grey);
-  --color-fit-brown: var(--fit-brown);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Outfit } from 'next/font/google'
 import Header from "@/components/header/Header";
 import AuthProvider from "@/context/AuthProvider";
+import Footer from "@/components/main/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,7 @@ export default function RootLayout({
         <AuthProvider>
           <Header />
           {children}
+          <Footer/>
         </AuthProvider>
       </body>
     </html>

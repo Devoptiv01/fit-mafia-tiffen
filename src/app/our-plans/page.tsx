@@ -1,7 +1,49 @@
-import GetBtn from "@/components/buttons/GetBtn";
+"use client";
 import Carousel from "@/components/main/Carousel";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import axios from "axios";
+
+type Inputs = {
+  preference: string[];
+  mealsPerWeek: string;
+  promoCode?: string;
+  totalPrice: number;
+};
 
 const page = () => {
+  const router=useRouter();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<Inputs>({
+    defaultValues: { preference: ["Chef's Choice"], mealsPerWeek: "10" },
+  });
+
+  const selectedMeals = watch("mealsPerWeek");
+  const selectedPreference = watch("preference");
+
+  useEffect(() => {
+    const selected = selectedMeals ?? "10";
+    const price = pricingData[selected] || pricingData["10"];
+    setValue("totalPrice", price.total);
+  }, [selectedMeals, setValue]);
+
+  const onSubmit = async(data: Inputs) => {
+    console.log(data);
+    try {
+      const res = await axios.post('/api/v1/subscribe-plan',data);
+      console.log(res);
+      router.push('/register');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const menuData = [
     {
       title: "Chef's Choice",
@@ -25,10 +67,25 @@ const page = () => {
     },
   ];
 
+  const pricingData: Record<
+    string,
+    { boxPrice: number; perServing: number; total: number }
+  > = {
+    "6": { boxPrice: 89.94, perServing: 14.99, total: 99.93 },
+    "8": { boxPrice: 111.92, perServing: 13.99, total: 121.91 },
+    "10": { boxPrice: 134.9, perServing: 13.49, total: 144.89 },
+    "12": { boxPrice: 155.88, perServing: 12.99, total: 165.87 },
+    "14": { boxPrice: 174.86, perServing: 12.49, total: 184.85 },
+    "18": { boxPrice: 215.82, perServing: 11.99, total: 225.81 },
+  };
+
+  const price =
+    pricingData[selectedMeals as keyof typeof pricingData] || pricingData["10"];
+
   return (
     <div className="flex flex-col w-full h-full bg-[#f1f1ea]">
       {/* create your first box */}
-      <div className="flex flex-col w-full min-h-[868px] h-auto bg-[#f1f1ea] p-12 gap-6 items-center ">
+      <div className="flex flex-col w-full min-h-[868px] h-auto bg-[#f1f1ea] px-6 py-12 gap-6 items-center ">
         <h2 className="text-[#4b4d4c] font-Arial text-4xl font-bold text-center flex justify-center">
           Create Your First Box
         </h2>
@@ -37,7 +94,10 @@ const page = () => {
           your plan at any time.
         </h3>
         {/* select plan container */}
-        <div className="max-w-[1054px] bg-white shadow-lg flex flex-col w-full gap-12 p-8 items-center rounded-lg">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="max-w-[1054px] bg-white shadow-lg flex flex-col w-full gap-12 p-8 items-center rounded-lg"
+        >
           <div className="flex flex-col w-full lg:flex-row">
             {/* left section */}
             <div className="flex flex-[0.5] flex-col gap-6 items-center border-r border-dotted border-gray-300 p-6">
@@ -50,53 +110,137 @@ const page = () => {
               </span>
               {/* select buttons */}
               <div className="grid w-full grid-cols-1 grid-rows-3 gap-3 sm:grid-cols-2">
-                <div className="max-w-[225px] w-full h-[104px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3">
-                  <img
-                    src="/icons/main/weight-machine.png"
-                    alt="weight"
-                    className="w-8 h-8"
+                {/* chef's choice */}
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    id="chef-choice"
+                    {...register("preference")}
+                    value="Chef's Choice"
+                    className="peer hidden"
                   />
-                  <span className="text-black">Chef's Choice</span>
+                  <label
+                    htmlFor="chef-choice"
+                    className="max-w-[225px] w-full h-[104px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+               peer-checked:border-green-600 peer-checked:bg-green-100"
+                  >
+                    <img
+                      src="/icons/main/weight-machine.png"
+                      alt="weight"
+                      className="w-8 h-8"
+                    />
+                    <span className="text-black">Chef's Choice</span>
+                  </label>
                 </div>
-                <div className="max-w-[225px] w-full h-[104px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3">
-                  <img
-                    src="/icons/main/weight-machine.png"
-                    alt="weight"
-                    className="w-8 h-8"
+                {/* protein plus */}
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    id="protein-plus"
+                    {...register("preference")}
+                    value="Protein Plus"
+                    className="peer hidden"
                   />
-                  <span className="text-black">Protein Plus</span>
+                  <label
+                    htmlFor="protein-plus"
+                    className="max-w-[225px] w-full h-[104px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+               peer-checked:border-green-600 peer-checked:bg-green-100"
+                  >
+                    <img
+                      src="/icons/main/weight-machine.png"
+                      alt="weight"
+                      className="w-8 h-8"
+                    />
+                    <span className="text-black">Protein Plus</span>
+                  </label>
                 </div>
-                <div className="max-w-[225px] w-full h-[104px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3">
-                  <img
-                    src="/icons/main/weight-machine.png"
-                    alt="weight"
-                    className="w-8 h-8"
+                {/* Poultry, Fish, & Veggie */}
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    id="Poultry-Fish-&-Veggie"
+                    {...register("preference")}
+                    value="Poultry, Fish, & Veggie"
+                    className="peer hidden"
                   />
-                  <span className="text-black">Poultry, Fish, & Veggie</span>
+                  <label
+                    htmlFor="Poultry-Fish-&-Veggie"
+                    className="max-w-[225px] w-full h-[104px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+               peer-checked:border-green-600 peer-checked:bg-green-100"
+                  >
+                    <img
+                      src="/icons/main/weight-machine.png"
+                      alt="weight"
+                      className="w-8 h-8"
+                    />
+                    <span className="text-black">Poultry, Fish, & Veggie</span>
+                  </label>
                 </div>
-                <div className="max-w-[225px] w-full h-[104px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3">
-                  <img
-                    src="/icons/main/weight-machine.png"
-                    alt="weight"
-                    className="w-8 h-8"
+                {/* Calorie smart */}
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    id="calorie-smart"
+                    {...register("preference")}
+                    value="Calorie Smart"
+                    className="peer hidden"
                   />
-                  <span className="text-black">Calorie Smart</span>
+                  <label
+                    htmlFor="calorie-smart"
+                    className="max-w-[225px] w-full h-[104px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+               peer-checked:border-green-600 peer-checked:bg-green-100"
+                  >
+                    <img
+                      src="/icons/main/weight-machine.png"
+                      alt="weight"
+                      className="w-8 h-8"
+                    />
+                    <span className="text-black">Calorie Smart</span>
+                  </label>
                 </div>
-                <div className="max-w-[225px] w-full h-[104px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3">
-                  <img
-                    src="/icons/main/weight-machine.png"
-                    alt="weight"
-                    className="w-8 h-8"
+                {/* Keto */}
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    id="keto"
+                    {...register("preference")}
+                    value="Keto"
+                    className="peer hidden"
                   />
-                  <span className="text-black">Keto</span>
+                  <label
+                    htmlFor="keto"
+                    className="max-w-[225px] w-full h-[104px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+               peer-checked:border-green-600 peer-checked:bg-green-100"
+                  >
+                    <img
+                      src="/icons/main/weight-machine.png"
+                      alt="weight"
+                      className="w-8 h-8"
+                    />
+                    <span className="text-black">Keto</span>
+                  </label>
                 </div>
-                <div className="max-w-[225px] w-full h-[104px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3">
-                  <img
-                    src="/icons/main/weight-machine.png"
-                    alt="weight"
-                    className="w-8 h-8"
+                {/* GLP-1 Balance */}
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    id="GLP-1-Balance"
+                    {...register("preference")}
+                    value="GLP-1 Balance"
+                    className="peer hidden"
                   />
-                  <span className="text-black">GLP-1 Balance</span>
+                  <label
+                    htmlFor="GLP-1-Balance"
+                    className="max-w-[225px] w-full h-[104px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+               peer-checked:border-green-600 peer-checked:bg-green-100"
+                  >
+                    <img
+                      src="/icons/main/weight-machine.png"
+                      alt="weight"
+                      className="w-8 h-8"
+                    />
+                    <span className="text-black">GLP-1 Balance</span>
+                  </label>
                 </div>
               </div>
               <span className="text-center text-[#656565]">
@@ -115,23 +259,95 @@ const page = () => {
                 <span className="text-black">Meals per week</span>
                 {/* option buttons */}
                 <div className="grid w-full grid-cols-1 grid-rows-2 gap-3 p-6 sm:grid-cols-2 md:grid-cols-3">
-                  <div className="max-w-[128px] w-full border border-[#206b19] text-[#206b19] text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md">
-                    6
+                  <div className="relative">
+                    <input
+                      type="radio"
+                      {...register("mealsPerWeek")}
+                      id="option-1"
+                      value="6"
+                      className="peer hidden"
+                    />
+                    <label
+                      htmlFor="option-1"
+                      className="max-w-[128px] w-full border border-[#206b19] text-[#206b19] text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:bg-[#206b19] peer-checked:text-white"
+                    >
+                      6
+                    </label>
                   </div>
-                  <div className="max-w-[128px] w-full border border-[#206b19] text-[#206b19] text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md">
-                    8
+                  <div className="relative">
+                    <input
+                      type="radio"
+                      {...register("mealsPerWeek")}
+                      id="option-2"
+                      value="8"
+                      className="peer hidden"
+                    />
+                    <label
+                      htmlFor="option-2"
+                      className="max-w-[128px] w-full border border-[#206b19] text-[#206b19] text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:bg-[#206b19] peer-checked:text-white"
+                    >
+                      8
+                    </label>
                   </div>
-                  <div className="max-w-[128px] w-full border border-[#206b19] text-[#206b19] text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md">
-                    10
+                  <div className="relative">
+                    <input
+                      type="radio"
+                      {...register("mealsPerWeek")}
+                      id="option-3"
+                      value="10"
+                      className="peer hidden"
+                    />
+                    <label
+                      htmlFor="option-3"
+                      className="max-w-[128px] w-full border border-[#206b19] text-[#206b19] text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:bg-[#206b19] peer-checked:text-white"
+                    >
+                      10
+                    </label>
                   </div>
-                  <div className="max-w-[128px] w-full border border-[#206b19] text-[#206b19] text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md">
-                    12
+                  <div className="relative">
+                    <input
+                      type="radio"
+                      {...register("mealsPerWeek")}
+                      id="option-4"
+                      value="12"
+                      className="peer hidden"
+                    />
+                    <label
+                      htmlFor="option-4"
+                      className="max-w-[128px] w-full border border-[#206b19] text-[#206b19] text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:bg-[#206b19] peer-checked:text-white"
+                    >
+                      12
+                    </label>
                   </div>
-                  <div className="max-w-[128px] w-full border border-[#206b19] text-[#206b19] text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md">
-                    14
+                  <div className="relative">
+                    <input
+                      type="radio"
+                      {...register("mealsPerWeek")}
+                      id="option-5"
+                      value="14"
+                      className="peer hidden"
+                    />
+                    <label
+                      htmlFor="option-5"
+                      className="max-w-[128px] w-full border border-[#206b19] text-[#206b19] text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:bg-[#206b19] peer-checked:text-white"
+                    >
+                      14
+                    </label>
                   </div>
-                  <div className="max-w-[128px] w-full border border-[#206b19] text-[#206b19] text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md">
-                    18
+                  <div className="relative">
+                    <input
+                      type="radio"
+                      {...register("mealsPerWeek")}
+                      id="option-6"
+                      value="18"
+                      className="peer hidden"
+                    />
+                    <label
+                      htmlFor="option-6"
+                      className="max-w-[128px] w-full border border-[#206b19] text-[#206b19] text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:bg-[#206b19] peer-checked:text-white"
+                    >
+                      18
+                    </label>
                   </div>
                 </div>
               </div>
@@ -141,16 +357,18 @@ const page = () => {
                 <div className="flex justify-between w-full px-3 py-6">
                   <div className="flex flex-col gap-3">
                     <h4 className="font-semibold text-black">Chef's Choice</h4>
-                    <span className="text-black">10 meals per week</span>
+                    <span className="text-black">{selectedMeals}</span>
                   </div>
-                  <div className="flex items-center h-6 gap-2 p-3 bg-red-200 rounded-full">
-                    <img
-                      src="https://cdn-icons-png.flaticon.com/128/9484/9484251.png"
-                      alt="heart"
-                      className="w-4 h-4"
-                    />
-                    <span className="text-red-800">Most Popular</span>
-                  </div>
+                  {selectedMeals === "10" && (
+                    <div className="flex items-center h-6 gap-2 p-3 bg-red-200 rounded-full">
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/128/9484/9484251.png"
+                        alt="heart"
+                        className="w-4 h-4"
+                      />
+                      <span className="text-red-800">Most Popular</span>
+                    </div>
+                  )}
                 </div>
                 {/* border */}
                 <div className="px-3 border border-gray-300"></div>
@@ -158,13 +376,17 @@ const page = () => {
                 <div className="flex flex-col items-center w-full ">
                   <div className="flex justify-between w-full px-3">
                     <span className="text-lg text-black">Box price</span>
-                    <span className="text-black text-md">$134.90</span>
+                    <span className="text-black text-md">
+                      ${price.boxPrice}
+                    </span>
                   </div>
                   <div className="flex justify-between w-full px-3">
                     <span className="text-lg text-black">
                       Price per serving
                     </span>
-                    <span className="text-black text-md">$13.49</span>
+                    <span className="text-black text-md">
+                      ${price.perServing}
+                    </span>
                   </div>
                   <div className="flex justify-between w-full px-3">
                     <span className="text-lg text-black">Shipping</span>
@@ -175,15 +397,26 @@ const page = () => {
                       First box total
                     </span>
                     <span className="font-bold text-black text-md">
-                      $144.89
+                      ${price.total}
                     </span>
+                    <input
+                      type="hidden"
+                      {...register("totalPrice")}
+                      value={price.total}
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <GetBtn content="Select this plan" />
-        </div>
+          <button
+            type="submit"
+            className={`bg-[#1A5614] font-bold text-[16px] leading-[24px] w-full max-w-[307px] p-3 text-white rounded-md ${!selectedPreference||selectedPreference.length===0&&"bg-gray-400"}`}
+            disabled={!selectedPreference || selectedPreference.length===0}
+          >
+            Select this plan
+          </button>
+        </form>
       </div>
 
       {/* flexible menu */}
@@ -208,14 +441,20 @@ const page = () => {
         <Carousel items={menuData} />
 
         {/* promo code */}
-        <div className="flex gap-3 max-w-[582px] w-full bg-white py-6 px-10 items-center justify-center rounded-md">
+        <form className="flex gap-3 max-w-[582px] w-full bg-white py-6 px-10 items-center justify-center rounded-md">
           <input
             type="text"
             className="w-full max-w-[337px] border border-gray-300 p-3"
             placeholder="Enter Promo Code"
+            required
           />
-          <GetBtn content="Apply" />
-        </div>
+          <button
+            type="submit"
+            className="bg-[#1A5614] font-bold text-[16px] leading-[24px] w-full max-w-[150px] p-3 text-white rounded-md"
+          >
+            Apply
+          </button>
+        </form>
       </div>
 
       {/* common questions */}

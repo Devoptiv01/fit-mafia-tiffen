@@ -1,6 +1,32 @@
-import GetBtn from "@/components/buttons/GetBtn";
+"use client";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+
+type Inputs = {
+  email: string;
+};
 
 const page = () => {
+  const redirect = useRouter();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const onSubmit = async (data: Inputs) => {
+    console.log(data);
+    try {
+      const res = await axios.post("api/v1/register", data);
+      console.log(res);
+      redirect.push("/address");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="w-full h-full bg-[#f1f1ea] p-12">
       {/* main component */}
@@ -16,13 +42,23 @@ const page = () => {
               alt="temp"
               className="h-[161px] w-[161px] lg:h-[218px] lg:w-[218px] rounded-full"
             />
-            <div className="flex flex-col items-center gap-6">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col items-center gap-6"
+            >
               <input
                 type="text"
-                className="w-full max-w-[376px] border border-gray-300 p-3"
+                className="w-full max-w-[376px] border border-gray-300 p-3 text-black"
                 placeholder="Email"
+                {...register("email")}
+                required
               />
-              <GetBtn content="Continue" />
+              <button
+                type="submit"
+                className="bg-[#1A5614] font-bold text-[16px] leading-[24px] w-full max-w-[307px] p-3 text-white rounded-md"
+              >
+                Continue
+              </button>
               <span className="text-black max-w-[380px] text-center">
                 By continuing, you agree to receive marketing emails and our
                 Terms and Privacy Policy. Unsubscribe at any time.
@@ -33,7 +69,7 @@ const page = () => {
                   Log in
                 </a>
               </span>
-            </div>
+            </form>
           </div>
         </div>
 
@@ -83,14 +119,14 @@ const page = () => {
                   className="w-5 h-5"
                 />
                 <h2 className="flex justify-center text-xl font-bold text-center text-black font-Arial">
-                Manage your deliveries
+                  Manage your deliveries
                 </h2>
               </div>
               <p className="pl-8 text-left text-black">
-              You can skip a week, change future delivery days, and cancel any time
+                You can skip a week, change future delivery days, and cancel any
+                time
               </p>
             </div>
-            
           </div>
         </div>
       </div>

@@ -32,7 +32,7 @@ const page = () => {
   return (
     <div className="flex flex-col gap-6 w-full h-full max-h-screen overflow-auto scrollbar-hide bg-[#F4F3EF]">
       {/* heading */}
-      <h1 className="text-black font-Arial Black text-5xl font-bold text-gray-900 text-center pt-8">
+      <h1 className="text-black font-Arial Black text-5xl font-bold  text-center pt-8">
         Frequently Asked Questions
       </h1>
       {/* searchbar */}
@@ -73,8 +73,8 @@ const page = () => {
       </div>
       {/* bg-img section */}
       <div className="w-full relative my-12  min-h-[600px] bg-[url('/temp/temp.webp')] bg-cover bg-center flex justify-center mt-40">
-        <div className="flex flex-col items-center mx-12 px-12 absolute top-[-80px] bg-white flex flex-col gap-6 py-10 border-gray-200 rounded-sm">
-          <h1 className="text-[#000] font-Arial Black text-4xl font-bold text-gray-900 text-center pt-8">
+        <div className="flex flex-col items-center mx-12 px-12 absolute top-[-80px] bg-white gap-6 py-10 border-gray-200 rounded-sm">
+          <h1 className="text-[#000] font-Arial Black text-4xl font-bold  text-center pt-8">
             Get Up to $75 Off Our Ready-Made Meals
           </h1>
           <span className="text-[#4b4d4c] text-center">

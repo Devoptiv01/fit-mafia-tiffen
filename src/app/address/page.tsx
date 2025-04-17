@@ -1,51 +1,109 @@
+"use client";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+
+type Inputs = {
+  firstName: string;
+  lastName: string;
+  street: string;
+  addressLine2: string;
+  city: string;
+  province: string;
+  postalCode: string;
+  phoneNumber: number;
+  deliveryInstructions: string;
+};
+
 const page = () => {
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const onSubmit = async (data: Inputs) => {
+    try {
+      const res = await axios.post("", data);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="w-full h-full bg-[#f1f1ea] p-12">
       <div className="flex md:flex-row flex-col max-w-[1140px] w-full gap-6 h-full mx-auto">
         {/* form section */}
-        <div className="w-full max-w-[682px] p-6 mb-6 min-h-[630px]  h-auto bg-white rounded-lg shadow-md lg:w-2/3 lg:mb-0">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full max-w-[682px] p-6 mb-6 min-h-[630px]  h-auto bg-white rounded-lg shadow-md lg:w-2/3 lg:mb-0"
+        >
           <h2 className="mb-4 text-2xl font-bold text-black">
             Delivery Address
           </h2>
-          <form className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6">
             {/* name section */}
             <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
               <div>
                 <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm"
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
                   id="first-name"
-                  required
                   type="text"
                   placeholder=" First name *"
+                  {...register("firstName", {
+                    required: "First Name is required",
+                  })}
                 />
+                {errors.firstName && (
+                  <p className="text-red-500 text-sm mb-2">
+                    {errors.firstName.message}
+                  </p>
+                )}
               </div>
               <div>
                 <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm"
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
                   id="last-name"
-                  required
                   type="text"
                   placeholder="Last name *"
+                  {...register("lastName", {
+                    required: "Last Name is required",
+                  })}
                 />
+                {errors.lastName && (
+                  <p className="text-red-500 text-sm mb-2">
+                    {errors.lastName.message}
+                  </p>
+                )}
               </div>
             </div>
             {/* address section 1 */}
             <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
               <div>
                 <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm"
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
                   id="street"
-                  required
                   type="text"
                   placeholder=" Street *"
+                  {...register("street", {
+                    required: "Street is required",
+                  })}
                 />
+                {errors.street && (
+                  <p className="text-red-500 text-sm mb-2">
+                    {errors.street.message}
+                  </p>
+                )}
               </div>
               <div>
                 <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm"
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
                   id="address-line-2"
                   type="text"
                   placeholder=" Address line 2"
+                  {...register("addressLine2")}
                 />
               </div>
             </div>
@@ -53,40 +111,69 @@ const page = () => {
             <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-3">
               <div>
                 <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm"
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
                   id="city"
-                  required
                   type="text"
                   placeholder=" City *"
+                  {...register("city", {
+                    required: "City is required",
+                  })}
                 />
+                {errors.city && (
+                  <p className="text-red-500 text-sm mb-2">
+                    {errors.city.message}
+                  </p>
+                )}
               </div>
               <div>
                 <select
-                  className="block w-full p-2 mt-1 text-gray-400 border border-gray-300 rounded-md shadow-sm"
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
                   id="province"
-                  required
+                  {...register("province", {
+                    required: "Province is required",
+                  })}
                 >
-                  <option value="">Province *</option>
+                  <option value="province">Province *</option>
                 </select>
+                {errors.province && (
+                  <p className="text-red-500 text-sm mb-2">
+                    {errors.province.message}
+                  </p>
+                )}
               </div>
               <div>
                 <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm"
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
                   id="postal-code"
-                  required
                   type="text"
                   placeholder="Postal Code *"
+                  {...register("postalCode", {
+                    required: "Postal code is required",
+                  })}
                 />
+                {errors.postalCode && (
+                  <p className="text-red-500 text-sm mb-2">
+                    {errors.postalCode.message}
+                  </p>
+                )}
               </div>
             </div>
             {/* phone number */}
             <div className="mb-4">
               <input
-                className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm"
+                className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black "
                 id="phone-number"
                 type="text"
                 placeholder="Phone Number *"
+                {...register("phoneNumber", {
+                  required: "Phone Number is required",
+                })}
               />
+              {errors.phoneNumber && (
+                <p className="text-red-500 text-sm mb-2">
+                  {errors.phoneNumber.message}
+                </p>
+              )}
             </div>
             {/* delivery instructions */}
             <div className="mb-4">
@@ -94,14 +181,21 @@ const page = () => {
                 Enter Delivery Instruction
               </label>
               <select
-                className="w-full p-3 mt-1 text-gray-400 border border-gray-300 rounded-md shadow-sm "
+                className="w-full p-3 mt-1  border border-gray-300 rounded-md shadow-sm text-black"
                 id="province"
-                required
+                {...register("deliveryInstructions", {
+                  required: "Delivery Instructions are required",
+                })}
               >
-                <option value="">Leave at front door</option>
-                <option value="">Leave at back door</option>
-                <option value="">Others</option>
+                <option value="Leave at front door">Leave at front door</option>
+                <option value="Leave at back door">Leave at back door</option>
+                <option value="Others">Others</option>
               </select>
+              {errors.deliveryInstructions && (
+                <p className="text-red-500 text-sm mb-2">
+                  {errors.deliveryInstructions.message}
+                </p>
+              )}
             </div>
             <button
               className="w-full px-4 py-2 font-bold text-white rounded-md bg-[#206b1966]"
@@ -109,8 +203,8 @@ const page = () => {
             >
               Next
             </button>
-          </form>
-        </div>
+          </div>
+        </form>
         {/* order summery section */}
         <div className="flex flex-col w-full gap-3 lg:w-1/3">
           <div className="flex flex-col gap-3 p-6 bg-white rounded-lg shadow-md">

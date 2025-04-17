@@ -1,5 +1,5 @@
 import { MealsPlanEnum } from "@/lib/types";
-import { model, Schema } from "mongoose";
+import { model, models, Schema } from "mongoose";
 
 
 const MealsPlanSchema = new Schema({
@@ -8,7 +8,7 @@ const MealsPlanSchema = new Schema({
         enum: [6, 8, 10, 12, 14, 18],
         required: true
     },
-    preference: [{
+    preferences: [{
         type: String,
         enum: Object.values(MealsPlanEnum),
         required: true
@@ -19,6 +19,6 @@ const MealsPlanSchema = new Schema({
     }
 );
 
-const MealsPlan = model("MealsPlan", MealsPlanSchema)
+const MealsPlan = models.MealsPlan || model("MealsPlan", MealsPlanSchema)
 
 export default MealsPlan

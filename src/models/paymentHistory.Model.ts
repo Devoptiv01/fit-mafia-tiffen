@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { model, models, Schema } from "mongoose";
 
 
 const PaymentHistorySchema = new Schema({
@@ -14,10 +14,6 @@ const PaymentHistorySchema = new Schema({
     subscribePlans: {
         type: Schema.Types.ObjectId,
         ref: "MealsPlan"
-    },
-    promoCodeApplied: {
-        type: String,
-        default: null
     },
     paymentMethod: {
         type: String,
@@ -39,6 +35,6 @@ const PaymentHistorySchema = new Schema({
 }
 );
 
-const PaymentHistory = model("PaymentHistory", PaymentHistorySchema)
+const PaymentHistory = models.PaymentHistory || model("PaymentHistory", PaymentHistorySchema)
 
 export default PaymentHistory

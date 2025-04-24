@@ -1,4 +1,5 @@
-import { model, Schema } from "mongoose";
+import { EnterDeliveryInstructionEnum } from "@/lib/types";
+import mongoose, { model, models, Schema } from "mongoose";
 
 
 const UserSchema = new Schema({
@@ -12,6 +13,19 @@ const UserSchema = new Schema({
         required: true,
         select: false
     },
+    OTP: {
+        type: String,
+        default: null
+    },
+    otpExpire: {
+        type: Date,
+        default: null
+    },
+    isOtpVerified: {
+        type: Boolean,
+        default: false,
+    },
+    otpVerifiedAt: Date,
     isSubscribed: {
         type: Boolean,
         default: false
@@ -20,16 +34,18 @@ const UserSchema = new Schema({
         type: Date,
         default: null
     },
-    paymentHistory: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "PaymentHistory"
-        }
-    ],
-    deliveryAddress:{
+    paymentHistory: [{
+        type: Schema.Types.ObjectId,
+        ref: "PaymentHistory"
+    }],
+    isPaymentVerified: {
+        type: Boolean,
+        default: false
+    },
+    deliveryAddress: {
         firstName: String,
         lastName: String,
-        street: String, 
+        street: String,
         addressLine2: String,
         city: String,
         province: String,
@@ -37,24 +53,28 @@ const UserSchema = new Schema({
         phoneNumber: String,
         enterDeliveryInstruction: {
             type: String,
-            enum: ['Leave at front door', 'Leave at back door', 'Other']
+            enum: Object.values(EnterDeliveryInstructionEnum)
         },
         customDeliveryInstruction: String
     },
-    isBanned:{
+    isBanned: {
         type: Boolean,
         default: false
+    },
+    currentSubscribedPlan: {
+        mealsPerWeek: String,
+        preferences: [String],
     },
     subscribePlans: [{
         type: Schema.Types.ObjectId,
         ref: "MealsPlan"
-    }]
+    }],
 },
-{
-    timestamps: true
-}
+    {
+        timestamps: true
+    }
 );
 
-const User = model("User", UserSchema)
+const User = models.User || model("User", UserSchema)
 
-export default User
+export default User;

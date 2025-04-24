@@ -1,11 +1,11 @@
 import { db } from "@/config/db";
 import { ApiResponse } from "@/lib/ApiResponse";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 
-export async function GET( req:NextRequest){
+export async function GET(){
    try {
-    await db()
+    await db();
      const token = 'hhjhjhjhjkhjhjh'
  
      return NextResponse.json( new ApiResponse(201, "hello", '',token ), { status: 201 })

@@ -1,6 +1,6 @@
 import GetBtn from '@/components/buttons/GetBtn'
 import MealCard from '@/components/main/MealCard'
-import Image from 'next/image'
+// import Image from 'next/image'
 import React from 'react'
 
 const Page = () => {
@@ -30,7 +30,7 @@ const Page = () => {
         <div className="w-full flex flex-col gap-4">
           <div className="w-full flex flex-col justify-center items-center gap-3 h-[138px] px-4 text-center">
             <h2 className='sm:text-4xl text-3xl font-medium sm:font-semibold text-[#4b4d4c] '>Explore our Flexible Weekly Menu</h2>
-            <h4 className='sm:text-base text-sm text-[#4b4d4c]'>Browse the 30+ gourmet meals featured on this week's menu</h4>
+            <h4 className='sm:text-base text-sm text-[#4b4d4c]'>Browse the 30+ gourmet meals featured on this week&apos;s menu</h4>
           </div>
 
           {/* // Ready Meals  */}
@@ -44,8 +44,9 @@ const Page = () => {
             <div className="w-full h-full flex gap-3 sm:gap-5 xl:gap-8 flex-wrap justify-center items-center">
               {/* // Cards  */}
               {Array(6).fill(0).map((e, i) => {
+                console.log(e)
                 return (
-                  <MealCard image='/temp/temp.webp' title='🍕Shredded Jerk Chicken & Rice' desc='with Sweet Potatoes & Mango Jam' />
+                  <MealCard key={i} image='/temp/temp.webp' title='🍕Shredded Jerk Chicken & Rice' desc='with Sweet Potatoes & Mango Jam' />
                 )
               })}
             </div>
@@ -71,8 +72,9 @@ const Page = () => {
             <div className="w-full h-full flex gap-3 sm:gap-5 xl:gap-8 flex-wrap justify-center items-center">
               {/* // Cards  */}
               {Array(6).fill(0).map((e, i) => {
+                console.log(e)
                 return (
-                  <MealCard image='/temp/temp.webp' title='🍕Shredded Jerk Chicken & Rice' desc='with Sweet Potatoes & Mango Jam' />
+                  <MealCard key={i} image='/temp/temp.webp' title='🍕Shredded Jerk Chicken & Rice' desc='with Sweet Potatoes & Mango Jam' />
                 )
               })}
             </div>

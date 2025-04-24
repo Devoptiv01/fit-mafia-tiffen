@@ -37,7 +37,7 @@ const Page = () => {
             Forgot your password?
           </h2>
           <span className="text-[#4b4d4c]">
-            No problem! Enter your email address and we'll send password reset
+            No problem! Enter your email address and we&apos;ll send password reset
             instructions to your inbox.
           </span>
 

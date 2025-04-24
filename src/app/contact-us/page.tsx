@@ -23,7 +23,7 @@ const Page = () => {
           </h2>
           <span className="font-Arial font-normal text-[16px] leading-[24px] text-[#4b4d4c]">
             Head to our FAQs page for answers to our most commonly asked
-            questions. If you can't find your answer, connect directly with our
+            questions. If you can&apos;t find your answer, connect directly with our
             Customer Care Team!
           </span>
           <span className="font-Arial font-normal text-[16px] leading-[24px] text-[#4b4d4c]">

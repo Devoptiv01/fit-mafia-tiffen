@@ -1,14 +1,14 @@
 
-export class ApiResponse {
+export class ApiResponse<T = unknown> {
     statusCode: number;   
     message: string;
-    data?: any;
+    data?: T;
     token?: string;
 
     constructor(
         statusCode: number,
         message: string,
-        data?: any,
+        data?: T,
         token?: string,
     )
     {

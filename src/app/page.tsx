@@ -2,7 +2,7 @@ import Features from "@/components/main/Features";
 import HeroSection from "@/components/main/HeroSection";
 import PreparedSection from "@/components/main/PreparedSection";
 import Slider from "@/components/main/Slider";
-import Image from "next/image";
+// import Image from "next/image";
 
 export default function Home() {
   return (

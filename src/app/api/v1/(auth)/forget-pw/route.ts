@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     existUser.otpExpire = otpExpire
     await existUser.save();
     const html = `<p>Your OTP is <strong>${otp}</strong>. It is valid for 5 minutes.</p>`;
-    // await sendEmail(email, 'Your OTP Code', html);
+    await sendEmail(email, 'Your OTP Code', html);
 
     return NextResponse.json(new ApiResponse(200, "successfully send otp on email", {otpExpire, otp, existUser}), { status: 200 })
   } catch (error) {

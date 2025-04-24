@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 type Inputs = {
@@ -15,8 +15,8 @@ type Inputs = {
   deliveryInstructions: string;
 };
 
-const page = () => {
-  const router = useRouter();
+const Page = () => {
+  // const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -267,4 +267,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

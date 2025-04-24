@@ -7,13 +7,13 @@ type Inputs = {
   email: string;
 };
 
-const page = () => {
+const Page = () => {
   const redirect = useRouter();
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    // watch,
+    // formState: { errors },
   } = useForm<Inputs>();
 
   const onSubmit = async (data: Inputs) => {
@@ -134,4 +134,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -62,7 +62,7 @@ const page = () => {
       {/* contact us */}
       <div className="w-full flex flex-col p-6 h-full items-center gap-4">
         <h2 className="text-black text-3xl font-bold font-arial">
-          Can't find your answer?
+          Can&apos;t find your answer?
         </h2>
         <button
           type="submit"

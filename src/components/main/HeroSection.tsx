@@ -1,6 +1,6 @@
 import { MapPin, MoveRight, Star } from 'lucide-react'
 import React from 'react'
-import Slider from './Slider'
+// import Slider from './Slider'
 
 const HeroSection = () => {
     return (

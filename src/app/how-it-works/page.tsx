@@ -97,7 +97,7 @@ const page = () => {
                 </span>
                 <span className="font-normal text-black text-[20px] leading-[32px]">
                   Choose from 4 delicious meal plans tailored to your needs,
-                  ensuring there's something for every taste and dietary
+                  ensuring there&apos;s something for every taste and dietary
                   lifestyle.
                 </span>
               </div>
@@ -285,7 +285,7 @@ const page = () => {
           <span className="text-black text-center max-w-[817px] w-auto">
             Choose from a new menu of 30+ chef-prepared, dietitian-approved
             meals every week that include keto, Calorie-Smart, vegan + veggie,
-            high protein, and more. And don't forget to treat yourself to our
+            high protein, and more. And don&apos;t forget to treat yourself to our
             wide variety of add-ons such as cold pressed juices and high protein
             snacks!
           </span>
@@ -344,7 +344,7 @@ const page = () => {
                 How do I choose my weekly meals?
               </h4>
               <span className="font-normal text-black">
-                Select the meals and add-ons you want from our menu. We'll
+                Select the meals and add-ons you want from our menu. We&apos;ll
                 deliver everything directly to your door, hassle-free.
               </span>
             </div>

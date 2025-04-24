@@ -12,14 +12,14 @@ type Inputs = {
   totalPrice: number;
 };
 
-const page = () => {
+const Page = () => {
   const router=useRouter();
   const {
     register,
     handleSubmit,
     watch,
     setValue,
-    formState: { errors },
+    // formState: { errors },
   } = useForm<Inputs>({
     defaultValues: { preference: ["Chef's Choice"], mealsPerWeek: "10" },
   });
@@ -106,7 +106,7 @@ const page = () => {
               </h3>
               <span className="text-[#656565] text-center">
                 Your preferences help us show you the most relevant recipes
-                first. You'll still have access to all recipes each week!
+                first. You&apos;ll still have access to all recipes each week!
               </span>
               {/* select buttons */}
               <div className="grid w-full grid-cols-1 grid-rows-3 gap-3 sm:grid-cols-2">
@@ -129,7 +129,7 @@ const page = () => {
                       alt="weight"
                       className="w-8 h-8"
                     />
-                    <span className="text-black">Chef's Choice</span>
+                    <span className="text-black">Chef&apos;s Choice</span>
                   </label>
                 </div>
                 {/* protein plus */}
@@ -356,7 +356,7 @@ const page = () => {
                 {/* upper section */}
                 <div className="flex justify-between w-full px-3 py-6">
                   <div className="flex flex-col gap-3">
-                    <h4 className="font-semibold text-black">Chef's Choice</h4>
+                    <h4 className="font-semibold text-black">Chef&apos;s Choice</h4>
                     <span className="text-black">{selectedMeals}</span>
                   </div>
                   {selectedMeals === "10" && (
@@ -509,4 +509,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

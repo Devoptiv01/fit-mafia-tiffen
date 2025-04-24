@@ -4,6 +4,8 @@ import bcrypt from "bcryptjs";
 import { DefaultSession, NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import 'next-auth'
+import { AuthorizedUserProps } from "@/lib/types";
+import User from "@/models/user.Model";
 
 declare module "next-auth" {
     interface User {
@@ -36,10 +38,10 @@ export const authOptions: NextAuthOptions = {
                 password: { label: "Password", type: "password" }
             },
 
-            async authorize(credentials: any): Promise<any> {
+            async authorize(credentials: Record<"username" | "password", string> | undefined): Promise<AuthorizedUserProps | null> {
+                if (!credentials) return null;
                 await db()
                 try {
-                    //@ts-ignore
                     const user = await User.findOne({
                         username: credentials?.username,
                     })
@@ -55,7 +57,8 @@ export const authOptions: NextAuthOptions = {
                     if (IsPasswordCorrect) {
                         return user
                     } else {
-                        return 'Invalid credentials'
+                        return null
+                        // return 'Invalid credentials'
                     };
                 } catch (error) {
                     console.log("Error in authorize function", error)

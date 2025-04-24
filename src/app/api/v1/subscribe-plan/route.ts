@@ -23,9 +23,9 @@ export async function POST(req: NextRequest) {
             return NextResponse.json(new ApiResponse(400, "Delivery Address is required"), { status: 400 });
         };
 
-        // if (!promoCode && promoCode.length < 5) {
-        //     return NextResponse.json(new ApiResponse(400, "Promo code is invalid"), { status: 400 });
-        // };
+        if (!promoCode && promoCode.length < 5) {
+            return NextResponse.json(new ApiResponse(400, "Promo code is invalid"), { status: 400 });
+        };
 
         const existUser = await User.findOne({email})
         if (!existUser) return NextResponse.json(new ApiResponse(404, "User not found"), { status: 404 });

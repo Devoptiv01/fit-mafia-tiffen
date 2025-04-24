@@ -39,7 +39,7 @@ const Page = () => {
           className="p-6 bg-white rounded-lg shadow-lg h-auto min-h-[250px] max-w-[424px] w-full gap-3 flex-[0.5] flex flex-col items-center"
         >
           <h2 className="text-2xl font-bold mb-4 text-black">
-            We've sent you an Email
+            We&apos;ve sent you an Email
           </h2>
           <span className="text-[#4b4d4c]">
             Please enter the Otp sent on the Email to reset Your Password

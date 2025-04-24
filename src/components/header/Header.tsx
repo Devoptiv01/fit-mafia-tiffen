@@ -1,4 +1,4 @@
-import { AlignJustify, ChevronDown, HammerIcon, Search, ShoppingCart, User } from 'lucide-react'
+import { AlignJustify, ChevronDown, Search, ShoppingCart, User } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'

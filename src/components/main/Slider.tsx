@@ -15,7 +15,8 @@ const Slider = () => {
                     return <div key={index} className="w-[300px] h-fit bg-[#F4F4F4] rounded-lg overflow-hidden">
                         <div className="relative h-[190px] w-full rounded-lg overflow-hidden group cursor-pointer">
                             <Image
-                                src={'/temp/temp.webp'}
+                                // src={'/temp/temp.webp'}
+                                src={'https://img.freepik.com/free-photo/front-view-tasty-meat-soup-with-potatoes-greens-dark-desk-meal-meat-dish-sauce_140725-79118.jpg?t=st=1745607509~exp=1745611109~hmac=8918ff8a34b4d93eca4e9937b80814e00e210033b1820f24da741f71a247b7ca&w=1380'}
                                 alt='slider-img'
                                 fill
                                 style={{ objectFit: 'cover' }}

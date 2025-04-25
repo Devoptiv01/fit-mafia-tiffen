@@ -3,63 +3,66 @@ import Image from "next/image";
 import Carousel from "@/components/main/Carousel";
 
 const page = () => {
-
   const mealsData = [
     {
-      title: "Calorie Smart",
-      description: "Perfectly portioned meals with 550 calories or less per serving",
-      imageUrl: "/temp/Calorie-Smart.avif",
+      title: "Indian Thali",
+      description:
+        "A wholesome platter featuring a variety of traditional Indian dishes, offering a balanced and flavorful meal.",
+      imageUrl: "images/indian-thali.avif",
     },
     {
-      title: "Keto",
-      description: "Keto-friendly meals with 15 grams of net carbs or less",
-      imageUrl: "/temp/Calorie-Smart.avif",
+      title: "Chicken Skewers",
+      description:
+        "Succulent pieces of chicken marinated in spices and grilled to perfection, served on skewers.",
+      imageUrl: "/images/chicken-skewers.avif",
     },
     {
-      title: "Vegan + Veggie",
-      description: "Wholesome, meat-free meals that make veggies the hero",
-      imageUrl: "/temp/Calorie-Smart.avif",
+      title: "Light Indian Bites",
+      description:
+        "Balanced and wholesome Indian meals under 550 calories — guilt-free yet satisfying.",
+      imageUrl: "/images/pani-puri.avif",
     },
     {
-      title: "Protein Plus",
-      description: "Meals with 30 grams of protein or more for active lifestyles",
-      imageUrl: "/temp/Calorie-Smart.avif",
+      title: "Veggie Delights",
+      description:
+        "Pure veg Indian meals featuring seasonal veggies, lentils, and rich flavors.",
+      imageUrl: "/images/salad.avif",
     },
   ];
 
   const addonItems = [
     {
-      title: "Juices",
-      description: "Cold-pressed and refreshing.",
-      imageUrl: "/temp/addons.avif",
+      title: "Aam Panna",
+      description: "A refreshing summer drink made from raw mangoes and spices to cool you down.",
+      imageUrl: "/images/fresh-mango-mango-juice-glass.avif"
     },
     {
-      title: "Bite Sized Treats",
-      description: "Tasty, anytime snacks.",
-      imageUrl: "/temp/addons.avif",
+      title: "Masala Chaas",
+      description: "Traditional buttermilk spiced with cumin, ginger, and coriander for digestion.",
+      imageUrl: "/images/lassi.avif"
     },
     {
-      title: "Sweet Treats",
-      description: "Decadent chocolate bars.",
-      imageUrl: "/temp/addons.avif",
+      title: "Thandai",
+      description: "A festive North Indian drink made with milk, saffron, almonds, and spices.",
+      imageUrl: "/images/glass-vanilla-milkshake.avif"
     },
     {
-      title: "Wellness Shots",
-      description: "Ready-to-drink wellness shots.",
-      imageUrl: "/temp/addons.avif",
-    },
+      title: "Kesar Badam Milk",
+      description: "Sweet, creamy milk infused with saffron and almonds, served warm or cold.",
+      imageUrl: "/images/turmeric-golden-milk.avif"
+    }
   ];
-  
+
   return (
     <div className="flex flex-col w-full h-full gap-6 bg-white">
       {/* how factor works */}
       <div className="w-full flex flex-col gap-8 h-auto min-h-[450px] bg-[url('/temp/Homepage_footerTablet.avif')] bg-cover bg-center justify-center items-center px-12">
         <h1 className="text-5xl font-bold text-center text-black font-Arial">
-          How Factor Works
+          How Our Tiffin Service Works
         </h1>
         <span className="font-normal text-black text-[20px] leading-[32px] font-Helvetica lg:w-[40%] text-center">
-          Skip the prep and cooking with dietitian-approved meals made by our
-          chefs, delivered right to your door.
+          Say goodbye to daily cooking stress! Enjoy freshly prepared, homely
+          Indian meals delivered right to your doorstep—no prep needed.
         </span>
         <div className="flex flex-col items-center gap-6">
           <GetBtn content="Get $75 Off Your Next 4 Boxes" />
@@ -72,7 +75,7 @@ const page = () => {
       {/* factor meals in 3 steps */}
       <div className="flex flex-col min-h-[632px] h-auto items-center gap-12">
         <h2 className="text-black font-Arial text-4xl font-bold text-center h-[100px] flex justify-center">
-          Factor Meals in 3 Steps
+          Our Service in 3 Steps
         </h2>
         <div className="flex md:flex-row flex-col max-w-[1140px] w-full gap-6">
           <div className="flex flex-[0.5] justify-center h-auto items-center">
@@ -93,12 +96,11 @@ const page = () => {
               />
               <div className="flex flex-col gap-1">
                 <span className="font-bold text-black text-[20px] leading-[32px]">
-                  1.Select Your Preference
+                  1.Select Your Meal Plan
                 </span>
                 <span className="font-normal text-black text-[20px] leading-[32px]">
-                  Choose from 4 delicious meal plans tailored to your needs,
-                  ensuring there&apos;s something for every taste and dietary
-                  lifestyle.
+                  Choose from a range of meal types—Veg, Jain, High-Protein, or
+                  Balanced Thali—based on your daily needs.
                 </span>
               </div>
             </div>
@@ -111,11 +113,11 @@ const page = () => {
               />
               <div className="flex flex-col gap-1">
                 <span className="font-bold text-black text-[20px] leading-[32px]">
-                  2.Pick Your Ready-made Meals
+                  2.Pick Your Weekly Meals
                 </span>
                 <span className="font-normal text-black text-[20px] leading-[32px]">
-                  Choose from a weekly menu of 30+ dietitian-designed meals and
-                  add-on options like juices, wellness shots and snacks.
+                  Browse our weekly changing menu filled with regional Indian
+                  favourites and healthy twists.
                 </span>
               </div>
             </div>
@@ -128,12 +130,11 @@ const page = () => {
               />
               <div className="flex flex-col gap-1">
                 <span className="font-bold text-black text-[20px] leading-[32px]">
-                  3.Get Your Delivery
+                  3.We Deliver, You Enjoy
                 </span>
                 <span className="font-normal text-black text-[20px] leading-[32px]">
-                  No prep, no mess. Our expert chefs use premium ingredients to
-                  prepare every meal, and we deliver them fully cooked right to
-                  your doorstep—ready to heat and enjoy in just 2 minutes.
+                  Our chefs cook fresh each morning and your meals arrive hot
+                  and ready—just open and enjoy!
                 </span>
               </div>
             </div>
@@ -158,12 +159,11 @@ const page = () => {
             </div>
             <div className="flex flex-col items-center">
               <h4 className="font-bold text-center text-black font-Arial">
-                Meals That Fit Your Lifestyle
+                Customised to Your Needs
               </h4>
               <span className="text-center text-black">
-                We make eating well enjoyable with chef-crafted,
-                dietitian-approved meals. Meal options include choices like
-                Keto, Calorie Smart, Protein Plus, and Vegan + Veggie.
+                Whether you're a student, working professional, or on a fitness
+                journey, our meals suit your lifestyle.
               </span>
             </div>
           </div>
@@ -178,12 +178,11 @@ const page = () => {
             </div>
             <div className="flex flex-col items-center">
               <h4 className="font-bold text-center text-black font-Arial">
-                Heat & Eat in 2 Minutes
+                Heat & Eat in Minutes
               </h4>
               <span className="text-center text-black">
-                Forget the hassle of meal prep. We handle everything—from
-                shopping to cooking—so you can focus on eating better with no
-                extra work involved.
+                Our neatly packed meals are ready to eat—no cooking, cleaning,
+                or hassle involved.
               </span>
             </div>
           </div>
@@ -198,12 +197,11 @@ const page = () => {
             </div>
             <div className="flex flex-col items-center">
               <h4 className="font-bold text-center text-black font-Arial">
-                Chef-Prepared, Dietitian Approved
+                Authentic & Fresh
               </h4>
               <span className="text-center text-black">
-                Your meals are made using fresh, natural ingredients,
-                prioritising seasonal produce where possible to ensure maximum
-                nutrition, taste and flavour.
+                Handpicked seasonal ingredients, prepared fresh every morning by
+                expert chefs.
               </span>
             </div>
           </div>
@@ -218,12 +216,11 @@ const page = () => {
             </div>
             <div className="flex flex-col items-center">
               <h4 className="font-bold text-center text-black font-Arial">
-                Fresh, Never Frozen Meals
+                Never Frozen, Always Fresh
               </h4>
               <span className="text-center text-black">
-                All Factor meals are prepared fresh using the best ingredients
-                and delivered straight to you. Easiest way to eat healthy:
-                complete nutritionally approved meals delivered
+                Meals are prepared daily and never stored. You receive your
+                tiffin just like mom would make it.
               </span>
             </div>
           </div>
@@ -238,12 +235,11 @@ const page = () => {
             </div>
             <div className="flex flex-col items-center">
               <h4 className="font-bold text-center text-black font-Arial">
-                No Prep, No Mess
+                Zero Cooking Stress
               </h4>
               <span className="text-center text-black">
-                Fresh, Ready-Made meals delivered to your doorstep. No need to
-                shop, chop, cook or clean, our meals provide nutrition and
-                convenience
+                Skip grocery runs and messy kitchens. Just open your tiffin and
+                dig in.
               </span>
             </div>
           </div>
@@ -258,12 +254,11 @@ const page = () => {
             </div>
             <div className="flex flex-col items-center">
               <h4 className="font-bold text-center text-black font-Arial">
-                Add-ons and More
+                Healthy Extras Available
               </h4>
               <span className="text-center text-black">
-                Discover tasty extras beyond meals to supplement your diet with
-                add-ons like cold-pressed juices, wellness shots, snacks, and
-                more.
+                Add fresh juices, chaach, salads, or protein snacks to your meal
+                plans.
               </span>
             </div>
           </div>
@@ -280,38 +275,38 @@ const page = () => {
       <div className="flex flex-col min-h-[520px] h-auto gap-6 items-center px-12">
         <div className="flex flex-col items-center w-full">
           <h2 className="text-black font-Arial text-4xl font-bold text-center h-[100px] flex justify-center items-center">
-            Check Out Our Meals
+            Explore Our Tiffin Options
           </h2>
           <span className="text-black text-center max-w-[817px] w-auto">
-            Choose from a new menu of 30+ chef-prepared, dietitian-approved
-            meals every week that include keto, Calorie-Smart, vegan + veggie,
-            high protein, and more. And don&apos;t forget to treat yourself to our
-            wide variety of add-ons such as cold pressed juices and high protein
-            snacks!
+            Enjoy freshly cooked Indian meals prepared by expert home chefs.
+            Choose from over 30 rotating options every week – including North
+            Indian, South Indian, Jain, High-Protein, and Low-Calorie thalis.
+            Each meal is crafted to bring the taste of home to your plate.
           </span>
         </div>
-        <Carousel items={mealsData}/>
+        <Carousel items={mealsData} />
       </div>
 
       {/* add ones */}
       <div className="flex flex-col min-h-[580px] h-auto gap-6 items-center bg-[#f1f1ea] pt-6 pb-12 px-12">
         <div className="flex flex-col items-center w-full">
           <h2 className="text-black font-Arial text-4xl font-bold text-center h-[100px] flex justify-center items-center">
-            Add-ons For An Extra Boost
+            Add-ons To Complete Your Meal
           </h2>
           <span className="text-black text-center max-w-[817px] w-auto">
-            Stay fueled with add-on items like our refreshing cold-pressed
-            juices and protein-packed snacks. Explore all options in the Add-Ons
-            section of our menu.
+            Complement your tiffin with healthy extras – like fresh chaas,
+            seasonal fruit bowls, roasted makhanas, laddoos, and protein-rich
+            snacks. Find all these delicious add-ons in our Add-Ons section to
+            keep your meals balanced and fulfilling.
           </span>
         </div>
-        <Carousel items={addonItems}/>
+        <Carousel items={addonItems} />
       </div>
 
       {/* learn more */}
       <div className="flex flex-col min-h-[1475px] h-auto items-center px-12">
         <h2 className="text-black font-Arial text-4xl font-bold text-center h-[100px] flex justify-center items-center">
-          Learn More About Factor Meals
+          Learn More About us
         </h2>
         <div className="flex flex-col max-w-[960px] gap-12">
           <div className="flex gap-6">

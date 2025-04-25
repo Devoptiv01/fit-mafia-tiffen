@@ -44,7 +44,7 @@ const Carousel = ({ items }: CarouselProps) => {
                   {item.description}
                 </span>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 h-full bg-gradient-to-t from-black to-transparent"></div>
             </div>
           );
         })}

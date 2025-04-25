@@ -33,7 +33,7 @@ const WhyChooseUs = () => {
                 <h2 className="text-3xl font-bold mb-2">Meet The Mafia</h2>
                 <h3 className="">We’re more than just a tiffin service — we’re a passionate team of chefs, nutritionists, and food lovers dedicated to bringing you real, healthy meals with soul.</h3>
                 <p className="my-2 text-xl font-semibold mb-4">
-                "We believe healthy food shouldn't be boring. That's why we started Fit Mafia."
+                &quot;We believe healthy food shouldn&quot;t be boring. That&quot;s why we started Fit Mafia.&quot;
                 </p>
                 <Link href='/contact-us'>
                 <button className="font-semibold px-2 py-1 rounded-lg bg-white text-fit-red" >

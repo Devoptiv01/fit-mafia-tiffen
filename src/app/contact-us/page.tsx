@@ -35,7 +35,7 @@ const Page = () => {
         </div>
       </div>
       {/* section 3 */}
-      <div className="w-full relative min-h-[600px] bg-[url('/temp/ca-footer-banner-lg.jpg')] bg-cover bg-center flex justify-center mt-40 ">
+      <div className="w-full relative min-h-[600px] bg-[url('/images/food-main.avif')] bg-cover bg-center flex justify-center mt-40 ">
         <div className="flex flex-col items-center mx-12 px-12 absolute top-[-80px] bg-white gap-6 py-10 border-gray-200 rounded-sm">
           <h1 className="text-[#000] font-Arial Black text-4xl font-bold  text-center pt-8">
             Get Up to 25% Off Our Ready-Made Meals

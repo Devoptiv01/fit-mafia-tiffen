@@ -162,7 +162,7 @@ const page = () => {
                 Customised to Your Needs
               </h4>
               <span className="text-center text-black">
-                Whether you're a student, working professional, or on a fitness
+                Whether you&quot;re a student, working professional, or on a fitness
                 journey, our meals suit your lifestyle.
               </span>
             </div>

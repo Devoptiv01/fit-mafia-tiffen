@@ -3,7 +3,7 @@ import GetBtn from '../buttons/GetBtn'
 
 const Features = () => {
     return (
-        <div className='w-full max-w-[1600px] mx-auto h-full flex flex-col gap-16 justify-center bg-[#F1F1EA] py-16'>
+        <div className='w-full max-w-[1600px] mx-auto h-full flex flex-col gap-16 justify-center bg-[#F1F1EA] pt-10 pb-5 px-5 '>
             <h3 className='font-bold text-3xl w-fit mx-auto'>
                 Fresh. Healthy. And incredibly delicious.
             </h3>
@@ -39,7 +39,7 @@ const Features = () => {
 
             </div>
 
-            <div className="text-center text-base space-y-3">
+            <div className="sticky bottom-0 bg-[#F1F1EA] text-center text-base space-y-3 ">
                 {/* <button className='bg-fit-red px-6 py-3 rounded-lg font-semibold text-white'>Get Offer</button> */}
                 <GetBtn />
 

@@ -2,11 +2,13 @@
 import Carousel from "@/components/main/Carousel";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import Stepper from "@/components/main/Stepper";
 
 type Inputs = {
   preference: string[];
+  yourPreference: string[];
   mealsPerWeek: string;
   promoCode?: string;
   totalPrice: number;
@@ -14,6 +16,8 @@ type Inputs = {
 
 const Page = () => {
   const router = useRouter();
+  const [currentStep, setCurrentStep] = useState(1);
+
   const {
     register,
     handleSubmit,
@@ -35,13 +39,13 @@ const Page = () => {
 
   const onSubmit = async (data: Inputs) => {
     console.log(data);
-    try {
-      const res = await axios.post("/api/v1/subscribe-plan", data);
-      console.log(res);
-      router.push("/register");
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   const res = await axios.post("/api/v1/subscribe-plan", data);
+    //   console.log(res);
+    //   router.push("/register");
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   const menuData = [
@@ -82,6 +86,12 @@ const Page = () => {
   const price =
     pricingData[selectedMeals as keyof typeof pricingData] || pricingData["10"];
 
+    const steps = [
+      { title: 'Food Preference', description: 'Desc for step one' },
+      { title: 'Step Two', description: 'Desc for step two' },
+      { title: 'Step Three', description: 'Desc for step three' },
+    ];
+
   return (
     <div className="flex flex-col w-full h-full bg-[#f1f1ea]">
       {/* create your first box */}
@@ -93,21 +103,27 @@ const Page = () => {
           No commitments, except to yourself. You can pause, cancel or change
           your plan at any time.
         </h3>
+
+        <Stepper
+        // steps={steps}
+        currentStep={currentStep}
+        onStepChange={(step) => setCurrentStep(step)}
+      />
         {/* select plan container */}
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="max-w-[1054px] bg-white shadow-lg flex flex-col w-full gap-12 p-8 items-center rounded-lg"
+          className="max-w-[1054px] bg-white shadow-lg flex flex-col w-full gap-12 px-2 py-4 md:p-8 items-center rounded-lg"
         >
-          <div className="flex flex-col w-full lg:flex-row">
-            {/* left section */}
-            <div className="flex flex-[0.5] flex-col gap-6 items-center border-r border-dotted border-gray-300 p-6">
+          <div className="flex flex-col w-full lg:flex-row justify-center">
+            {/*  Step 1*/}
+            {currentStep === 1 && <div className="flex flex-col gap-6 items-center p-6">
               <h3 className="flex justify-center text-2xl font-bold text-center text-black font-Arial">
-                1. Choose your preferences
+                  Choose Food Preference 
               </h3>
-              <span className="text-[#656565] text-center">
+              {/* <span className="text-[#656565] text-center">
                 Your preferences help us show you the most relevant recipes
                 first. You&apos;ll still have access to all recipes each week!
-              </span>
+              </span> */}
 
               {/* Updated select buttons */}
               <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-3">
@@ -185,16 +201,191 @@ const Page = () => {
                 A variety of balanced, chef-prepared meals with clean
                 ingredients to fit any lifestyle.
               </span>
-            </div>
+            </div>}
 
-            {/* right section */}
-            <div className="flex flex-[0.5] flex-col gap-6 items-center p-6">
+            {/* // step 2 */}
+            {currentStep === 2 && <div className="flex flex-col gap-6 items-center p-6">
+              <h3 className="flex justify-center text-2xl font-bold text-center text-black font-Arial">
+                  Choose your preferences
+              </h3>
+              {/* <span className="text-[#656565] text-center">
+                Your preferences help us show you the most relevant recipes
+                first. You&apos;ll still have access to all recipes each week!
+              </span> */}
+
+              {/* Updated select buttons */}
+              <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-3">
+                {/* Veg */}
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    id="veg"
+                    {...register("yourPreference")}
+                    value="Chef’s Choice"
+                    className="hidden peer cursor-pointer"
+                  />
+                  <label
+                    htmlFor="veg"
+                    className="w-full h-[154px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+        peer-checked:border-[#BF1C15] peer-checked:border-2"
+                  >
+                    <div className="bg-[#EE9992] p-[6px] rounded-full">
+                      <img
+                        src="\icons\main\heart.svg"
+                        alt="veg"
+                        className="w-10 h-10"
+                      />
+                    </div>
+                    <span className="px-2 text-center text-black">Chef’s <br/> Choice</span>
+                  </label>
+                </div>
+
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    id="2"
+                    {...register("yourPreference")}
+                    value="Protein Plus"
+                    className="hidden peer cursor-pointer "
+                  />
+                  <label
+                    htmlFor="2"
+                    className="w-full h-[154px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+        peer-checked:border-[#BF1C15] peer-checked:border-2"
+                  >
+                    <div className="bg-[#C37A47] p-[6px] rounded-full">
+                      <img
+                        src="\icons\main\arm.svg"
+                        alt="veg"
+                        className="w-10 h-10"
+                      />
+                    </div>
+                    <span className="px-2 text-center text-black">
+                      Protein <br/> Plus
+                      </span>
+                  </label>
+                </div>
+
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    id="3"
+                    {...register("yourPreference")}
+                    value="Poultry,Fish & Veggie"
+                    className="hidden peer cursor-pointer"
+                  />
+                  <label
+                    htmlFor="3"
+                    className="w-full h-[154px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+        peer-checked:border-[#BF1C15] peer-checked:border-2"
+                  >
+                    <div className="bg-[#6EBC66] p-[6px] rounded-full">
+                      <img
+                        src="\icons\main\veggie.svg"
+                        alt="veg"
+                        className="w-10 h-10"
+                      />
+                    </div>
+                    <span className="px-2 text-center text-black">Poultry,Fish <br/>
+                    & Veggie</span>
+                  </label>
+                </div>
+
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    id="4"
+                    {...register("yourPreference")}
+                    value="Calorie Smart"
+                    className="hidden peer cursor-pointer"
+                  />
+                  <label
+                    htmlFor="4"
+                    className="w-full h-[154px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+        peer-checked:border-[#BF1C15] peer-checked:border-2"
+                  >
+                    <div className="bg-[#61E1FC] p-[6px] rounded-full">
+                      <img
+                        src="\icons\main\calorie.svg"
+                        alt="veg"
+                        className="w-10 h-10"
+                      />
+                    </div>
+                    <span className="px-2 text-center text-black">
+                    Calorie <br/> Smart
+                      </span>
+                  </label>
+                </div>
+
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    id="5"
+                    {...register("yourPreference")}
+                    value="Keto"
+                    className="hidden peer cursor-pointer"
+                  />
+                  <label
+                    htmlFor="5"
+                    className="w-full h-[154px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+        peer-checked:border-[#BF1C15] peer-checked:border-2"
+                  >
+                    <div className="bg-[#F5C90A] p-[6px] rounded-full">
+                      <img
+                        src="\icons\main\keto.svg"
+                        alt="veg"
+                        className="w-10 h-10"
+                      />
+                    </div>
+                    <span className="px-2 text-center text-black">
+                    Keto
+                    </span>
+                  </label>
+                </div>
+
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    id="6"
+                    {...register("yourPreference")}
+                    value="GPL-1 Balance"
+                    className="hidden peer cursor-pointer"
+                  />
+                  <label
+                    htmlFor="6"
+                    className="w-full h-[154px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+        peer-checked:border-[#BF1C15] peer-checked:border-2"
+                  >
+                    <div className="bg-[#BC6CBC] p-[6px] rounded-full">
+                      <img
+                        src="\icons\main\gpl.svg"
+                        alt="veg"
+                        className="w-10 h-10"
+                      />
+                    </div>
+                    <span className="px-2 text-center text-black">
+                    GPL-1 <br/> Balance
+                    </span>
+                  </label>
+                </div>
+
+                
+              </div>
+
+              <span className="text-center text-[#656565]">
+                A variety of balanced, chef-prepared meals with clean
+                ingredients to fit any lifestyle.
+              </span>
+            </div>}
+
+            {/* Step 3*/}
+            {currentStep === 3 && <div className="flex w-full flex-col gap-6 items-center p-6">
               {/* select meals */}
               <h3 className="flex justify-center text-2xl font-bold text-center text-black font-Arial">
-                2. Select meals per week
+                Select meals per week
               </h3>
               {/* select option container */}
-              <div className="flex flex-col items-center w-full">
+              <div className="flex flex-col items-center w-full max-w-xl">
                 <span className="text-black">Meals per week</span>
                 {/* option buttons */}
                 <div className="grid w-full grid-cols-1 grid-rows-2 gap-3 p-6 sm:grid-cols-2 md:grid-cols-3">
@@ -334,10 +525,10 @@ const Page = () => {
                     <span className="text-black text-md">+ $9.99</span>
                   </div>
                   <div className="flex justify-between bg-[#d7d7d2] py-3 -mx-3 w-[calc(100%+1.5rem)] px-6 ">
-                    <span className="text-lg font-bold text-black">
+                    <span className="text-lg font-semibold text-black">
                       First box total
                     </span>
-                    <span className="font-bold text-black text-md">
+                    <span className="font-semibold text-black text-md">
                     ₹{price.total}
                     </span>
                     <input
@@ -348,18 +539,27 @@ const Page = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div>}
           </div>
-          <button
+
+          {currentStep >= 3 && <button
             type="submit"
-            className={`bg-[#BF1C15] font-semibold text-[19px] leading-[24px] w-full max-w-[307px] p-3 text-white rounded-md ${
+            className={`bg-[#BF1C15] font-medium text-[19px] leading-[24px] w-full max-w-[307px] p-3 text-white rounded-md ${
               !selectedPreference ||
               (selectedPreference.length === 0 && "bg-gray-400")
             }`}
             disabled={!selectedPreference || selectedPreference.length === 0}
           >
             Place Order
-          </button>
+          </button>}
+          {currentStep < 3 && <button
+            type="button"
+            onClick={()=> setCurrentStep(()=> currentStep + 1)}
+            className={`bg-[#BF1C15] font-medium text-[19px] leading-[24px] w-full max-w-[307px] p-3 text-white rounded-md `}
+            // disabled={!selectedPreference || selectedPreference.length === 0}
+          >
+            Next Step
+          </button>}
         </form>
       </div>
 

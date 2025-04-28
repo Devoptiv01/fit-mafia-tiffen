@@ -25,7 +25,7 @@ const Page = () => {
     setValue,
     // formState: { errors },
   } = useForm<Inputs>({
-    defaultValues: { preference: ["Veg"], mealsPerWeek: "10" },
+    defaultValues: { preference: ["Veg"], yourPreference: ['Ch'] ,mealsPerWeek: "10" },
   });
 
   const selectedMeals = watch("mealsPerWeek");
@@ -95,7 +95,7 @@ const Page = () => {
   return (
     <div className="flex flex-col w-full h-full bg-[#f1f1ea]">
       {/* create your first box */}
-      <div className="flex flex-col w-full min-h-[868px] h-auto bg-[#f1f1ea] px-6 py-12 gap-6 items-center ">
+      <div className="flex flex-col w-full min-h- [868px] h-auto bg-[#f1f1ea] px-6 py-12 gap-6 items-center ">
         <h2 className="text-[#4b4d4c] font-Arial text-4xl font-bold text-center flex justify-center">
           Create Your First Box
         </h2>
@@ -112,7 +112,7 @@ const Page = () => {
         {/* select plan container */}
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="max-w-[1054px] bg-white shadow-lg flex flex-col w-full gap-12 px-2 py-4 md:p-8 items-center rounded-lg"
+          className="max-w-[1054px] bg-transparent flex flex-col w-full gap-12 px-2 py-4 md:p-8 items-center rounded-lg"
         >
           <div className="flex flex-col w-full lg:flex-row justify-center">
             {/*  Step 1*/}
@@ -138,7 +138,7 @@ const Page = () => {
                   />
                   <label
                     htmlFor="veg"
-                    className="w-full h-[104px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                    className="w-full h-[104px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
         peer-checked:border-[#BF1C15] peer-checked:border-2"
                   >
                     <img
@@ -161,7 +161,7 @@ const Page = () => {
                   />
                   <label
                     htmlFor="non-veg"
-                    className="w-full h-[104px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                    className="w-full h-[104px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
         peer-checked:border-[#BF1C15] peer-checked:border-2"
                   >
                     <img
@@ -184,7 +184,7 @@ const Page = () => {
                   />
                   <label
                     htmlFor="mix"
-                    className="w-full h-[104px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                    className="w-full h-[104px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
         peer-checked:border-[#BF1C15] peer-checked:border-2"
                   >
                     <img
@@ -226,7 +226,7 @@ const Page = () => {
                   />
                   <label
                     htmlFor="veg"
-                    className="w-full h-[154px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                    className="w-full h-[154px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
         peer-checked:border-[#BF1C15] peer-checked:border-2"
                   >
                     <div className="bg-[#EE9992] p-[6px] rounded-full">
@@ -250,7 +250,7 @@ const Page = () => {
                   />
                   <label
                     htmlFor="2"
-                    className="w-full h-[154px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                    className="w-full h-[154px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
         peer-checked:border-[#BF1C15] peer-checked:border-2"
                   >
                     <div className="bg-[#C37A47] p-[6px] rounded-full">
@@ -276,7 +276,7 @@ const Page = () => {
                   />
                   <label
                     htmlFor="3"
-                    className="w-full h-[154px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                    className="w-full h-[154px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
         peer-checked:border-[#BF1C15] peer-checked:border-2"
                   >
                     <div className="bg-[#6EBC66] p-[6px] rounded-full">
@@ -301,7 +301,7 @@ const Page = () => {
                   />
                   <label
                     htmlFor="4"
-                    className="w-full h-[154px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                    className="w-full h-[154px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
         peer-checked:border-[#BF1C15] peer-checked:border-2"
                   >
                     <div className="bg-[#61E1FC] p-[6px] rounded-full">
@@ -327,7 +327,7 @@ const Page = () => {
                   />
                   <label
                     htmlFor="5"
-                    className="w-full h-[154px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                    className="w-full h-[154px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
         peer-checked:border-[#BF1C15] peer-checked:border-2"
                   >
                     <div className="bg-[#F5C90A] p-[6px] rounded-full">
@@ -353,7 +353,7 @@ const Page = () => {
                   />
                   <label
                     htmlFor="6"
-                    className="w-full h-[154px] border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                    className="w-full h-[154px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
         peer-checked:border-[#BF1C15] peer-checked:border-2"
                   >
                     <div className="bg-[#BC6CBC] p-[6px] rounded-full">
@@ -399,7 +399,7 @@ const Page = () => {
                     />
                     <label
                       htmlFor="option-1"
-                      className="max-w-[128px] w-full border border-[#FF0000] text-black text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:border-[5px]"
+                      className="max-w-[128px] bg-white w-full border border-[#FF0000] text-black text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:border-[5px]"
                     >
                       6
                     </label>
@@ -414,7 +414,7 @@ const Page = () => {
                     />
                     <label
                       htmlFor="option-2"
-                      className="max-w-[128px] w-full border border-[#FF0000] text-black text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:border-[5px]"
+                      className="max-w-[128px] bg-white w-full border border-[#FF0000] text-black text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:border-[5px]"
                     >
                       8
                     </label>
@@ -429,7 +429,7 @@ const Page = () => {
                     />
                     <label
                       htmlFor="option-3"
-                      className="max-w-[128px] w-full border border-[#FF0000] text-black text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:border-[5px]"
+                      className="max-w-[128px] bg-white w-full border border-[#FF0000] text-black text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:border-[5px]"
                     >
                       10
                     </label>
@@ -444,7 +444,7 @@ const Page = () => {
                     />
                     <label
                       htmlFor="option-4"
-                      className="max-w-[128px] w-full border border-[#FF0000] text-black text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:border-[5px]"
+                      className="max-w-[128px] bg-white w-full border border-[#FF0000] text-black text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:border-[5px]"
                     >
                       12
                     </label>
@@ -459,7 +459,7 @@ const Page = () => {
                     />
                     <label
                       htmlFor="option-5"
-                      className="max-w-[128px] w-full border border-[#FF0000] text-black text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:border-[5px]"
+                      className="max-w-[128px] bg-white w-full border border-[#FF0000] text-black text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:border-[5px]"
                     >
                       14
                     </label>
@@ -474,7 +474,7 @@ const Page = () => {
                     />
                     <label
                       htmlFor="option-6"
-                      className="max-w-[128px] w-full border border-[#FF0000] text-black text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:border-[5px]"
+                      className="max-w-[128px] bg-white w-full border border-[#FF0000] text-black text-center min-h-12 flex items-center justify-center text-lg font-semibold rounded-md cursor-pointer transition-all peer-checked:border-[5px]"
                     >
                       18
                     </label>
@@ -482,7 +482,7 @@ const Page = () => {
                 </div>
               </div>
               {/* chef's choice container */}
-              <div className="flex flex-col w-full gap-4 px-3 border border-gray-300 rounded-md">
+              <div className="flex flex-col w-full gap-4 px-3 bg-white border border-gray-300 rounded-md">
                 
                 <div className="flex justify-between w-full px-3 py-6">
                   <div className="flex flex-col gap-3">

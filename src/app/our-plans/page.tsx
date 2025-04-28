@@ -1,9 +1,9 @@
 "use client";
 import Carousel from "@/components/main/Carousel";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import Stepper from "@/components/main/Stepper";
 
 type Inputs = {
@@ -15,7 +15,7 @@ type Inputs = {
 };
 
 const Page = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
 
   const {
@@ -25,7 +25,7 @@ const Page = () => {
     setValue,
     // formState: { errors },
   } = useForm<Inputs>({
-    defaultValues: { preference: ["Veg"], yourPreference: ['Ch'] ,mealsPerWeek: "10" },
+    defaultValues: { preference: ["Veg"], yourPreference: ['Chef’s Choice'] ,mealsPerWeek: "10" },
   });
 
   const selectedMeals = watch("mealsPerWeek");
@@ -86,11 +86,11 @@ const Page = () => {
   const price =
     pricingData[selectedMeals as keyof typeof pricingData] || pricingData["10"];
 
-    const steps = [
-      { title: 'Food Preference', description: 'Desc for step one' },
-      { title: 'Step Two', description: 'Desc for step two' },
-      { title: 'Step Three', description: 'Desc for step three' },
-    ];
+    // const steps = [
+    //   { title: 'Food Preference', description: 'Desc for step one' },
+    //   { title: 'Step Two', description: 'Desc for step two' },
+    //   { title: 'Step Three', description: 'Desc for step three' },
+    // ];
 
   return (
     <div className="flex flex-col w-full h-full bg-[#f1f1ea]">

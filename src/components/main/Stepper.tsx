@@ -2,18 +2,18 @@
 
 import React from 'react';
 
-type Step = {
-  title: string;
-  description?: string;
-};
+// type Step = {
+//   title: string;
+//   description?: string;
+// };
 
 type StepperProps = {
-  steps?: Step[];
+  // steps?: Step[];
   currentStep: number;
   onStepChange: (step: number) => void;
 };
 
-const Stepper: React.FC<StepperProps> = ({ steps, currentStep, onStepChange }) => {
+const Stepper: React.FC<StepperProps> = ({ currentStep, onStepChange }) => {
   return (
     <div className="flex flex-col items-center">
       <div className="flex justify-between w-full max-w-4xl relative">

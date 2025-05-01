@@ -1,4 +1,5 @@
 import Features from "@/components/main/Features";
+import Footer from "@/components/main/Footer";
 import HeroSection from "@/components/main/HeroSection";
 import MenuPreview from "@/components/main/MenuPreview";
 import PreparedSection from "@/components/main/PreparedSection";
@@ -21,6 +22,7 @@ export default function Home() {
     <Testimonials/>
     <Features/>
     <WhyChooseUs/>
+    <Footer/>
    </div>
   );
 }

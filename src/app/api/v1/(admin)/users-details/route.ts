@@ -9,8 +9,8 @@ import { NextResponse } from "next/server";
 export async function GET() {
     try {
         await db();
-        const allUsers = await User.find().select('-__v -password -OTP -otpExpire -isOtpVerified -otpVerifiedAt ')
-        .populate('paymentHistory').populate('subscribePlans').lean().exec()
+        const allUsers = await User.find().select('email userName address subscriptionPlan isSubscribed subscribedAt isPaymentVerified')
+        .populate('paymentHistory').populate('subscribePlans').exec()
         if (!allUsers) {
             return NextResponse.json(new ApiResponse(404,  "No users found", {allUsers}), { status: 404 });
         };
@@ -18,7 +18,7 @@ export async function GET() {
 
     } catch (error) {
         console.log("Error in all-users route", error)
-        return NextResponse.json(new ApiResponse(500, "Internal Server Error"), { status: 500 })        
+        return NextResponse.json(new ApiResponse(500, "Internal Server Error"), { status: 500 })
     }
     
 }

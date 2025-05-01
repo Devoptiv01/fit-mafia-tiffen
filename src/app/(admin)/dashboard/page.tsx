@@ -16,7 +16,7 @@ const data = {
 };
 
 const StatCard = ({Icon, title, value}: { Icon: React.ElementType, title:String, value: number | string }) => (
-  <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow border">
+  <div className="flex flex-col justify-center h-44 items-center gap-4 p-4 bg-white rounded-xl shadow border">
     <Icon className="text-blue-500 w-6 h-6" />
     <div>
       <div className="text-sm text-gray-500">{title}</div>

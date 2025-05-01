@@ -34,17 +34,19 @@ export const authOptions: NextAuthOptions = {
             name: "Credentials",
 
             credentials: {
-                username: { label: "Username", type: "text" },
+                // username: { label: "Username", type: "text" },
+                email: { label: "Email", type: "text" },
                 password: { label: "Password", type: "password" }
             },
 
-            async authorize(credentials: Record<"username" | "password", string> | undefined): Promise<AuthorizedUserProps | null> {
+            async authorize(credentials: Record<"email" | "password", string> | undefined): Promise<AuthorizedUserProps | null> {
                 if (!credentials) return null;
                 await db()
                 try {
+                    console.log('---------',credentials)
                     const user = await User.findOne({
-                        username: credentials?.username,
-                    })
+                        email: credentials?.email,
+                    }).select("+password")
                     if (!user) { 
                         throw new Error("User not found. Please create an account.") 
                     }

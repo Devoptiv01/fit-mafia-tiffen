@@ -3,6 +3,9 @@ import { model, models, Schema } from "mongoose";
 
 
 const UserSchema = new Schema({
+    userName: {
+        type: String
+    },
     email: {
         type: String,
         required: true,
@@ -26,14 +29,6 @@ const UserSchema = new Schema({
         default: false,
     },
     otpVerifiedAt: Date,
-    isSubscribed: {
-        type: Boolean,
-        default: false
-    },
-    subscribedAt: {
-        type: Date,
-        default: null
-    },
     paymentHistory: [{
         type: Schema.Types.ObjectId,
         ref: "PaymentHistory"
@@ -60,6 +55,14 @@ const UserSchema = new Schema({
     isBanned: {
         type: Boolean,
         default: false
+    },
+    isSubscribed: {
+        type: Boolean,
+        default: false
+    },
+    subscribedAt: {
+        type: Date,
+        default: null
     },
     currentSubscribedPlan: {
         mealsPerWeek: String,

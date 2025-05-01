@@ -26,7 +26,7 @@ const Page = () => {
           Still need help? Our friendly Customer Care Team is available 24/7 via chat or phone at +1 807 790 2770.
           </span>
           <div className="w-full p-4 min-h-[81px] bg-white flex items-center gap-3 shadow-md rounded-md">
-            <img src="/temp/chat-now.svg" alt="png" />
+            <img src="/images/ask-q.png" alt="ask" className="h-6 w-6" />
             <span className="font-Helvetica font-bold text-[16px] leading-[24px] text-black">Ask any question</span>
           </div>
         </div>

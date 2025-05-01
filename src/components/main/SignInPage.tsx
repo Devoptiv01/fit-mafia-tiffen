@@ -1,11 +1,14 @@
 "use client";
 
+import { LoaderIcon } from "lucide-react";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 type FormData = {
-  username: string;
+  email: string;
   password: string;
 };
 
@@ -13,6 +16,7 @@ const SignInPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -21,18 +25,20 @@ const SignInPage = () => {
   } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
+    setLoading(true)
     console.log(data);
     const res = await signIn("credentials", {
       redirect: false,
-      username: data.username,
+      email: data.email,
       password: data.password,
     });
-
+    
     if (res?.ok) {
-      router.push("/dashboard");
+      router.push("/");
     } else {
       console.error("Login error:", res?.error);
     }
+    setLoading(false)
   };
 
   return (
@@ -48,17 +54,17 @@ const SignInPage = () => {
 
           <div className="flex flex-col w-full">
             <label htmlFor="" className="text-black">
-              User Name
+              Email
             </label>
             <input
               type="text"
-              placeholder="Username"
-              className="w-full p-2 border border-gray-300 rounded mt-1 text-black"
-              {...register("username", { required: "Username is required" })}
+              placeholder="email"
+              className="w-full p-2 border border-gray-300 rounded mt-1 text-black outline-none"
+              {...register("email", { required: "Email is required" })}
             />
-            {errors.username && (
+            {errors.email && (
               <p className="text-red-500 text-sm mb-2">
-                {errors.username.message}
+                {errors.email.message}
               </p>
             )}
           </div>
@@ -70,7 +76,7 @@ const SignInPage = () => {
             <input
               type="password"
               placeholder="Password"
-              className="w-full p-2 border border-gray-300 rounded mt-1 text-black"
+              className="w-full p-2 border border-gray-300 rounded mt-1 text-black outline-none"
               {...register("password", { required: "Password is required" })}
             />
             {errors.password && (
@@ -78,8 +84,8 @@ const SignInPage = () => {
                 {errors.password.message}
               </p>
             )}
-            <div className="m-3 text-right underline">
-              <a className="text-[#206b19]" href="/forget-password">
+            <div className="m-3 text-right ">
+              <a className="" href="/forget-password">
                 Forgot your password?
               </a>
             </div>
@@ -87,25 +93,33 @@ const SignInPage = () => {
 
           <button
             type="submit"
-            className="btn w-full bg-[#206b19] p-2 rounded-md text-lg text-white"
+            className="btn w-full bg-fit-red/90 p-2 rounded-md text-lg text-white flex gap-2 justify-center items-center text-center"
+            disabled={loading}
           >
-            Login
+            {!loading ? (
+              "Login"
+            ) : (
+              <>
+                <LoaderIcon className="animate-[spin_2s_linear_infinite]" />
+                Loading
+              </>
+            )}
           </button>
           <p className="mt-4 text-center text-black">
-            New to Factor_?
-            <a className="text-[#206b19]" href="#">
+            New to Fit Mafia?
+            <Link className="text-fit-red/80" href="/sign-up">
               Sign Up Here
-            </a>
+            </Link>
           </p>
         </form>
         {/* image section */}
-        <div className="flex-[0.5]  flex gap-3 h-auto min-h-[360px] w-full">
+        <div className="hidden flex-[0.5]  fl ex gap-3 h-auto min-h-[360px] w-full">
           {/* image */}
           <div className="flex-[0.3] w-full border border-black"></div>
           {/* content */}
           <div className="flex-[0.6] w-full flex flex-col gap-3 py-3">
             <span className="font-normal text-[18px] leading-[24px] text-[#13400f] font-Helvetica">
-              The Factor App
+              The Fit Mafia App
             </span>
             <h1 className="font-semibold text-[40px] text-[#333] w-full">
               Meals at Your Fingertips

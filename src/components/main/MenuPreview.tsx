@@ -74,7 +74,7 @@ const MenuPreview = () => {
                 {/* {index + 1}. {item.serviceName} */}
                 This Week’s Menu
               </h2>
-              <p data-aos="fade-up" data-aos-delay="200" className="text-2xl">
+              <p data-aos="fade-up" data-aos-delay="200" className="text-base md:text-2xl ">
                 {/* {item.serviceDescription} */}
                 Explore our rotating selection of nutritious, homemade meals — curated by chefs and approved by nutritionists. Every box is designed to balance taste, health, and freshness for your busy lifestyle.
               </p>
@@ -143,7 +143,7 @@ const MenuPreview = () => {
                         style={{objectFit: 'cover'}}
                       />
                     </div>
-                      <p className="text-3xl text-center font-semibold w-fit max-w-[320px] mx-auto">{slide.title}</p>
+                      <p className="text-xl md:text-3xl text-center font-semibold w-fit max-w-[320px] mx-auto">{slide.title}</p>
                     </div>
                   {/* </Link> */}
                 </SwiperSlide>

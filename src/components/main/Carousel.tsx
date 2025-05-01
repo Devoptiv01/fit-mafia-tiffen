@@ -1,28 +1,65 @@
 "use client";
 import { useRef } from "react";
 import { CarouselProps } from "@/lib/types";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Carousel = ({ items }: CarouselProps) => {
   const carouselRef = useRef<HTMLDivElement | null>(null);
 
+  // const scroll = (direction: "left" | "right") => {
+  //   if (carouselRef.current) {
+  //     const scrollAmount = 268; // 262px card + 6px gap
+  //     carouselRef.current.scrollBy({
+  //       left: direction === "left" ? -scrollAmount : scrollAmount,
+  //       behavior: "smooth",
+  //     });
+  //   }
+  // };
+
   const scroll = (direction: "left" | "right") => {
     if (carouselRef.current) {
       const scrollAmount = 268; // 262px card + 6px gap
-      carouselRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
+      const container = carouselRef.current;
+  
+      if (direction === "left") {
+        if (container.scrollLeft === 0) {
+          // Scroll to end if at start
+          container.scrollTo({
+            left: container.scrollWidth,
+            behavior: "smooth",
+          });
+        } else {
+          container.scrollBy({
+            left: -scrollAmount,
+            behavior: "smooth",
+          });
+        }
+      } else {
+        const maxScrollLeft = container.scrollWidth - container.clientWidth;
+        if (Math.ceil(container.scrollLeft) >= maxScrollLeft) {
+          // Scroll to start if at end
+          container.scrollTo({
+            left: 0,
+            behavior: "smooth",
+          });
+        } else {
+          container.scrollBy({
+            left: scrollAmount,
+            behavior: "smooth",
+          });
+        }
+      }
     }
   };
-
+  
   return (
-    <div className="flex w-full max-w-[1092px] items-center mx-6 gap-3 justify-center">
+    <div className="relative flex w-full max-w-[1092px] items-center mx-6 gap-3 justify-center">
       {/* Left Button */}
       <button
         onClick={() => scroll("left")}
-        className="flex items-center justify-center w-10 h-10 text-3xl text-green-400 border border-green-400 rounded-full"
+        className="absolute top-[30%] bg-white/10 left-0 z-50 flex items-center justify-center w-10 h-10 text-3xl text-fit-red border border-fit-red/50 rounded-full "
       >
-        ‹
+        <ChevronLeft/>
       </button>
 
       {/* Scrollable container */}
@@ -53,9 +90,9 @@ const Carousel = ({ items }: CarouselProps) => {
       {/* Right Button */}
       <button
         onClick={() => scroll("right")}
-        className="flex items-center justify-center w-10 h-10 text-3xl text-green-400 border border-green-400 rounded-full"
+        className="absolute top-[30%] bg-white/10 right-0 z-50 flex items-center justify-center w-10 h-10 text-3xl text-fit-red border border-fit-red/50 rounded-full"
       >
-        ›
+        <ChevronRight/>
       </button>
     </div>
   );

@@ -4,7 +4,7 @@ import React from "react";
 
 const HeroSection = () => {
   return (
-    <div className="w-full max-w-[1600px] mx-auto h-full min-h-[550px] bg-img-hero-section text-black flex flex-col gap-4 justify-center pl-5">
+    <div className="w-full max-w-[1600px] mx-auto h-full min-h-[550px] bg-img--hero-section text-black flex flex-col gap-4 justify-center pl-5">
       <div className="w-fit bg-fit-red text-white font-medium px-2 py-1 md:px-5 md:py-3 rounded-full text-sm">
         🔥 Get 10% Off on Your First Tiffin Order
       </div>

@@ -5,6 +5,9 @@ import { Outfit } from 'next/font/google'
 import Header from "@/components/header/Header";
 import AuthProvider from "@/context/AuthProvider";
 import Footer from "@/components/main/Footer";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,15 +35,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased ${outfit.className}    text-black`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased ${outfit.className}    text-black  bg-white`}
        >
         <AuthProvider>
           <Header />
           {children}
-          <Footer/>
+          <ToastContainer/>
+          {/* <Footer/> */}
         </AuthProvider>
       </body>
     </html>

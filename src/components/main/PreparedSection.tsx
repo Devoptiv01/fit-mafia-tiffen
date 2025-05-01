@@ -3,7 +3,7 @@ import React from 'react'
 const PreparedSection = () => {
     return (
         <div className='w-full max-w-[1600px] mx-auto h-full flex flex-col gap-20 justify-center bg-white py-20'>
-            <h3 className='font-bold text-3xl w-fit mx-auto px-5'>How Factor Prepared Meal Delivery Works</h3>
+            <h3 className='font-bold text-3xl w-fit mx-auto px-5'>How Fit Mafia Prepared Meal Delivery Works</h3>
 
             <div className="w-full flex justify-evenly gap-5 flex-wrap">
 

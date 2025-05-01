@@ -25,8 +25,20 @@ const page = () => {
     {
       title: "Veggie Delights",
       description:
-        "Pure veg Indian meals featuring seasonal veggies, lentils, and rich flavors.",
+      "Pure veg Indian meals featuring seasonal veggies, lentils, and rich flavors.",
       imageUrl: "/images/salad.avif",
+    },
+    {
+      title: "Indian Thali",
+      description:
+        "A wholesome platter featuring a variety of traditional Indian dishes, offering a balanced and flavorful meal.",
+      imageUrl: "images/indian-thali.avif",
+    },
+    {
+      title: "Light Indian Bites",
+      description:
+        "Balanced and wholesome Indian meals under 550 calories — guilt-free yet satisfying.",
+      imageUrl: "/images/pani-puri.avif",
     },
   ];
 
@@ -50,12 +62,22 @@ const page = () => {
       title: "Kesar Badam Milk",
       description: "Sweet, creamy milk infused with saffron and almonds, served warm or cold.",
       imageUrl: "/images/turmeric-golden-milk.avif"
-    }
+    },
+    {
+      title: "Aam Panna",
+      description: "A refreshing summer drink made from raw mangoes and spices to cool you down.",
+      imageUrl: "/images/fresh-mango-mango-juice-glass.avif"
+    },
+    {
+      title: "Thandai",
+      description: "A festive North Indian drink made with milk, saffron, almonds, and spices.",
+      imageUrl: "/images/glass-vanilla-milkshake.avif"
+    },
   ];
 
   return (
     <div className="flex flex-col w-full h-full gap-6 bg-white">
-      {/* how factor works */}
+      {/* how Fit Mafia works */}
       <div className="w-full flex flex-col gap-8 h-auto min-h-[450px] bg-[url('/temp/Homepage_footerTablet.avif')] bg-cover bg-center justify-center items-center px-12">
         <h1 className="text-5xl font-bold text-center text-black font-Arial">
           How Our Tiffin Service Works
@@ -72,7 +94,7 @@ const page = () => {
         </div>
       </div>
 
-      {/* factor meals in 3 steps */}
+      {/* Fit Mafia meals in 3 steps */}
       <div className="flex flex-col min-h-[632px] h-auto items-center gap-12">
         <h2 className="text-black font-Arial text-4xl font-bold text-center h-[100px] flex justify-center">
           Our Service in 3 Steps
@@ -143,7 +165,7 @@ const page = () => {
       </div>
 
       {/* clean eating made easy */}
-      <div className="flex flex-col min-h-[875px] h-auto bg-[#f1f1ea] gap-12 items-center">
+      <div className="flex flex-col min-h-full h-auto pt-10 pb-16 bg-[#f1f1ea] gap-12 items-center">
         <h2 className="text-black font-Arial text-4xl font-bold text-center h-[100px] flex justify-center items-center">
           Clean Eating, Made Easy
         </h2>
@@ -304,7 +326,7 @@ const page = () => {
       </div>
 
       {/* learn more */}
-      <div className="flex flex-col min-h-[1475px] h-auto items-center px-12">
+      <div className="flex flex-col min-h-fit pb-5 md:pb-10 h-auto items-center px-12">
         <h2 className="text-black font-Arial text-4xl font-bold text-center h-[100px] flex justify-center items-center">
           Learn More About us
         </h2>
@@ -375,7 +397,7 @@ const page = () => {
                 Can I customize my meal plan?
               </h4>
               <span className="font-normal text-black">
-                Absolutely! You can select your Factor meals each week to match
+                Absolutely! You can select your Fit Mafia meals each week to match
                 your preferences. Plus, our plans are flexible, allowing you to
                 change your meals based on your current lifestyle.
               </span>
@@ -433,10 +455,10 @@ const page = () => {
 
             <div className="flex flex-col max-h-[148px] gap-3">
               <h4 className="font-semibold text-black">
-                How does Factor handle allergies or dietary restrictions?
+                How does Fit Mafia handle allergies or dietary restrictions?
               </h4>
               <span className="font-normal text-black">
-                Food safety is a top priority for us. All Factor meals come with
+                Food safety is a top priority for us. All Fit Mafia meals come with
                 clear allergen declarations on their packaging. We advise
                 carefully reviewing the individual product packaging for the
                 most accurate and up-to-date information regarding ingredients

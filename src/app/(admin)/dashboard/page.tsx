@@ -1,5 +1,5 @@
 import React from "react";
-import { Truck, Users, AlertCircle, Calendar, DollarSign, UserPlus } from "lucide-react";
+import {  Users, AlertCircle, Calendar, DollarSign, UserPlus } from "lucide-react";
 
 const data = {
   todaysOrders: 128,
@@ -15,7 +15,7 @@ const data = {
   newUsersToday: 12,
 };
 
-const StatCard = ({Icon, title, value}: { Icon: React.ElementType, title:String, value: number | string }) => (
+const StatCard = ({Icon, title, value}: { Icon: React.ElementType, title: string, value: number | string }) => (
   <div className="flex flex-col justify-center h-44 items-center gap-4 p-4 bg-white rounded-xl shadow border">
     <Icon className="text-blue-500 w-6 h-6" />
     <div>

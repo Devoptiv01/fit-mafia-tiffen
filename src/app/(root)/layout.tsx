@@ -1,4 +1,4 @@
-import SideBar from '@/components/admin/SideBar'
+// import SideBar from '@/components/admin/SideBar'
 import Footer from '@/components/main/Footer'
 import React, { ReactNode } from 'react'
 

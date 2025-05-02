@@ -4,18 +4,18 @@ import axios from "axios";
 import {
   AlignJustify,
   // ChevronDown,
-  Search,
-  ShoppingCart,
+  // Search,
+  // ShoppingCart,
   User,
 } from "lucide-react";
-import { getSession, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const Header = () => {
   axios.defaults.validateStatus = (status: number) => status < 500;
-  const { data: user, status } = useSession();
+  const { data:  status } = useSession();
 
   return (
     <div className="sticky top-0 z-50 flex justify-between items-center px-5 w-full h-[56px] shadow-lg border-b border-[#0000001c] bg-[#fff] font-medium">
@@ -67,12 +67,12 @@ const Header = () => {
             <Search />{" "}
           </button> */}
             <div className="hover:text-red-700 duration-300">
-              {status === "authenticated" && <User />}
+              {status && <User />}
             </div>
             {/* <div className="max-lg:hidden h-9 w-24 bg-black text-white hover:scale-105 duration-300 cursor-pointer rounded-lg flex justify-center items-center">
               {"$0.00 "} <ShoppingCart />
             </div> */}
-            {status === "unauthenticated" ? (
+            {!status ? (
               <Link
                 href={"/sign-in"}
                 className="px-3 py-1 border border-fit-red rounded-md "

@@ -4,10 +4,10 @@ import "./globals.css";
 import { Outfit } from 'next/font/google'
 import Header from "@/components/header/Header";
 import AuthProvider from "@/context/AuthProvider";
-import Footer from "@/components/main/Footer";
+// import Footer from "@/components/main/Footer";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from "axios";
+// import axios from "axios";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -69,8 +69,8 @@ const ProfilePopover = () => {
               </span>
 
               <button
-{/*                 onMouseEnter={() => setPausePlan(true)}
-                onMouseLeave={() => setPausePlan(false)} */}
+// {/*                 onMouseEnter={() => setPausePlan(true)}
+//                 onMouseLeave={() => setPausePlan(false)} */}
                 className="hover:text-fit-red cursor-pointer px-3 py-2 group rounded-md flex flex-col gap-1 items-start"
               >
                 Pause Plan

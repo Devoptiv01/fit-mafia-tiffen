@@ -10,19 +10,20 @@ import User from "@/models/user.Model";
 declare module "next-auth" {
     interface User {
         _id?: string
-        username?: string
+        userName?: string
         email?: string
+        currentSubscribedPlan?: string
     }
     interface Session {
         user: {
             _id?: string
-            username?: string
+            userName?: string
             email?: string
         } & DefaultSession["user"]
     }
     interface JWT {
         id?: string
-        username?: string
+        userName?: string
         email?: string
     }
 }
@@ -73,15 +74,16 @@ export const authOptions: NextAuthOptions = {
         async jwt({ token, user }) {
             if (user) {
                 token.id = user._id?.toString()
-                token.username = user.username
+                token.userName = user.userName
                 token.email = user.email
+                token.currentSubscribedPlan = user.currentSubscribedPlan
             }
             return token
         },
         async session({ session, token }) {
             if (token) {
                 session.user._id = token.id as string
-                session.user.username = token.username as string
+                session.user.userName = token.userName as string
                 session.user.email = token.email as string
             }
             return session

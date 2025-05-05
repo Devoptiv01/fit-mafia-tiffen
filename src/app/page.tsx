@@ -12,7 +12,7 @@ import WhyFitMafia from "@/components/main/WhyFitMafia";
 
 export default function Home() {
   return (
-   <div className="w-full h-full min-h-screen bg-white text-black">
+   <div className="w-full h-full min-h-screen bg-white text-black  ">
     <HeroSection/>
     <ProcessSection/>
     <WhyFitMafia/>

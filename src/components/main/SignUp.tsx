@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 type FormData = {
-  username: string;
+  userName: string;
   email: string;
   password: string;
 };
@@ -78,11 +78,11 @@ const SignUp = () => {
               type="text"
               placeholder="Username"
               className="w-full p-2 border border-gray-300 rounded mt-1 text-black outline-none"
-              {...register("username", { required: "Username is required" })}
+              {...register("userName", { required: "Username is required" })}
             />
-            {errors.username && (
+            {errors.userName && (
               <p className="text-red-500 text-sm mb-2">
-                {errors.username.message}
+                {errors.userName.message}
               </p>
             )}
           </div>

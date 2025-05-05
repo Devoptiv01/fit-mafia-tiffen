@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 const ProfilePopover = () => {
   const { data: session } = useSession();
   const [open, setOpen] = useState(false);
-  const [pausePlan, setPausePlan] = useState(false);
+  // const [pausePlan, setPausePlan] = useState(false);
   const popoverRef = useRef<HTMLDivElement>(null);
 
   // Close popover when clicking outside

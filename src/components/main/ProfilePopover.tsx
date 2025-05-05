@@ -96,18 +96,6 @@ const ProfilePopover = () => {
           </div>
         )}
       </div>
-      {pausePlan && (
-        <div className="w-full flex justify-center py-4 absolute top-0 left-0">
-          <div className="flex gap-4">
-            <button className="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition-all duration-300 shadow-md hover:scale-105">
-              Today Pause
-            </button>
-            <button className="px-4 py-2 rounded-lg bg-yellow-500 text-black hover:bg-yellow-600 transition-all duration-300 shadow-md hover:scale-105">
-              Next Day Pause
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

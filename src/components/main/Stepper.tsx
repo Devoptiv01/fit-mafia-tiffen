@@ -16,8 +16,8 @@ type StepperProps = {
 const Stepper: React.FC<StepperProps> = ({ currentStep, onStepChange }) => {
   return (
     <div className="flex flex-col items-center">
-      <div className="flex justify-between w-full max-w-4xl relative">
-        {Array(3).fill(0).map((_, index) => {
+      <div className="flex justify-between w-full max-w-[350px] sm:max-w-4xl relative">
+        {Array(4).fill(0).map((_, index) => {
           const isCompleted = index + 1 < currentStep;
           const isActive = index + 1 === currentStep;
           const isClickable = index + 1 <= currentStep;
@@ -43,7 +43,7 @@ const Stepper: React.FC<StepperProps> = ({ currentStep, onStepChange }) => {
                 {/* <div className="font-semibold text-sm">{step.title}</div> */}
                 {/* <div className="text-gray-500 text-sm">{step.description}</div> */}
               </div>
-              {index !== 2 && (
+              {index !== 3 && (
                 <div
                   className={`
                     absolute top-4 left-0 z-10 w-full h-0.5

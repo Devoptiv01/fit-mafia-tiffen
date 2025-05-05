@@ -24,6 +24,7 @@ const Page = () => {
   } = useForm<Inputs>();
 
   const onSubmit = async (data: Inputs) => {
+    console.log('data---', data)
     try {
       const res = await axios.post("", data);
       console.log(res);
@@ -33,8 +34,8 @@ const Page = () => {
   };
 
   return (
-    <div className="w-full h-full bg-[#f1f1ea] p-12">
-      <div className="flex md:flex-row flex-col max-w-[1140px] w-full gap-6 h-full mx-auto">
+    // <div className="w-full h-full bg-[#f1f1ea] p-12">
+      <div className="flex md:flex-row flex-col justify-center max-w-[1140px] w-full gap-6 h-full mx-auto">
         {/* form section */}
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -48,7 +49,7 @@ const Page = () => {
             <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
               <div>
                 <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                  className="outline-none block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
                   id="first-name"
                   type="text"
                   placeholder=" First name *"
@@ -64,7 +65,7 @@ const Page = () => {
               </div>
               <div>
                 <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                  className="outline-none block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
                   id="last-name"
                   type="text"
                   placeholder="Last name *"
@@ -83,7 +84,7 @@ const Page = () => {
             <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
               <div>
                 <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                  className="outline-none block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
                   id="street"
                   type="text"
                   placeholder=" Street *"
@@ -99,7 +100,7 @@ const Page = () => {
               </div>
               <div>
                 <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                  className="outline-none block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
                   id="address-line-2"
                   type="text"
                   placeholder=" Address line 2"
@@ -111,7 +112,7 @@ const Page = () => {
             <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-3">
               <div>
                 <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                  className="outline-none block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
                   id="city"
                   type="text"
                   placeholder=" City *"
@@ -127,7 +128,7 @@ const Page = () => {
               </div>
               <div>
                 <select
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                  className="block outline-none w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
                   id="province"
                   {...register("province", {
                     required: "Province is required",
@@ -143,7 +144,7 @@ const Page = () => {
               </div>
               <div>
                 <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                  className="outline-none block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
                   id="postal-code"
                   type="text"
                   placeholder="Postal Code *"
@@ -161,7 +162,7 @@ const Page = () => {
             {/* phone number */}
             <div className="mb-4">
               <input
-                className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black "
+                className="outline-none block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black "
                 id="phone-number"
                 type="text"
                 placeholder="Phone Number *"
@@ -181,15 +182,17 @@ const Page = () => {
                 Enter Delivery Instruction
               </label>
               <select
-                className="w-full p-3 mt-1  border border-gray-300 rounded-md shadow-sm text-black"
+                className="w-full max-w-screen outline-none p-3 mt-1  border border-gray-300 rounded-md shadow-sm text-black"
                 id="province"
                 {...register("deliveryInstructions", {
                   required: "Delivery Instructions are required",
                 })}
               >
-                <option value="Leave at front door">Leave at front door</option>
-                <option value="Leave at back door">Leave at back door</option>
-                <option value="Others">Others</option>
+                <div className="w-32">
+                <option className="w-20" value="Leave at front door">Leave at front door</option>
+                <option className="w-20" value="Leave at back door">Leave at back door</option>
+                <option className="w-20" value="Others">Others</option>
+                </div>
               </select>
               {errors.deliveryInstructions && (
                 <p className="text-red-500 text-sm mb-2">
@@ -198,7 +201,7 @@ const Page = () => {
               )}
             </div>
             <button
-              className="w-full px-4 py-2 font-bold text-white rounded-md bg-[#206b1966]"
+              className="w-full px-4 py-2 font-bold text-white rounded-md bg-fit-red/80"
               type="submit"
             >
               Next
@@ -206,7 +209,7 @@ const Page = () => {
           </div>
         </form>
         {/* order summery section */}
-        <div className="flex flex-col w-full gap-3 lg:w-1/3">
+        {/* <div className="flex flex-col w-full gap-3 lg:w-1/3">
           <div className="flex flex-col gap-3 p-6 bg-white rounded-lg shadow-md">
             <h2 className="mb-4 text-2xl font-bold text-black">
               Order summary
@@ -261,9 +264,9 @@ const Page = () => {
               temperature-sensitive ingredients cool and fresh.
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
-    </div>
+    // </div>
   );
 };
 

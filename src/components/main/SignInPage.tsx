@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 type FormData = {
   email: string;
@@ -34,10 +35,14 @@ const SignInPage = () => {
     });
     
     if (res?.ok) {
+      toast.success("Welcome back to Fit Mafia!")
       router.push("/");
-    } else {
-      console.error("Login error:", res?.error);
+    } 
+
+    if(res?.status === 401) {
+      toast.error("Incorrect Id and password. Please try again.");
     }
+
     setLoading(false)
   };
 

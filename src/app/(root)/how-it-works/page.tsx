@@ -1,6 +1,7 @@
 import GetBtn from "@/components/buttons/GetBtn";
 import Image from "next/image";
 import Carousel from "@/components/main/Carousel";
+import Link from "next/link";
 
 const page = () => {
   const mealsData = [
@@ -25,7 +26,7 @@ const page = () => {
     {
       title: "Veggie Delights",
       description:
-      "Pure veg Indian meals featuring seasonal veggies, lentils, and rich flavors.",
+        "Pure veg Indian meals featuring seasonal veggies, lentils, and rich flavors.",
       imageUrl: "/images/salad.avif",
     },
     {
@@ -45,49 +46,61 @@ const page = () => {
   const addonItems = [
     {
       title: "Aam Panna",
-      description: "A refreshing summer drink made from raw mangoes and spices to cool you down.",
-      imageUrl: "/images/fresh-mango-mango-juice-glass.avif"
+      description:
+        "A refreshing summer drink made from raw mangoes and spices to cool you down.",
+      imageUrl: "/images/fresh-mango-mango-juice-glass.avif",
     },
     {
       title: "Masala Chaas",
-      description: "Traditional buttermilk spiced with cumin, ginger, and coriander for digestion.",
-      imageUrl: "/images/lassi.avif"
+      description:
+        "Traditional buttermilk spiced with cumin, ginger, and coriander for digestion.",
+      imageUrl: "/images/lassi.avif",
     },
     {
       title: "Thandai",
-      description: "A festive North Indian drink made with milk, saffron, almonds, and spices.",
-      imageUrl: "/images/glass-vanilla-milkshake.avif"
+      description:
+        "A festive North Indian drink made with milk, saffron, almonds, and spices.",
+      imageUrl: "/images/glass-vanilla-milkshake.avif",
     },
     {
       title: "Kesar Badam Milk",
-      description: "Sweet, creamy milk infused with saffron and almonds, served warm or cold.",
-      imageUrl: "/images/turmeric-golden-milk.avif"
+      description:
+        "Sweet, creamy milk infused with saffron and almonds, served warm or cold.",
+      imageUrl: "/images/turmeric-golden-milk.avif",
     },
     {
       title: "Aam Panna",
-      description: "A refreshing summer drink made from raw mangoes and spices to cool you down.",
-      imageUrl: "/images/fresh-mango-mango-juice-glass.avif"
+      description:
+        "A refreshing summer drink made from raw mangoes and spices to cool you down.",
+      imageUrl: "/images/fresh-mango-mango-juice-glass.avif",
     },
     {
       title: "Thandai",
-      description: "A festive North Indian drink made with milk, saffron, almonds, and spices.",
-      imageUrl: "/images/glass-vanilla-milkshake.avif"
+      description:
+        "A festive North Indian drink made with milk, saffron, almonds, and spices.",
+      imageUrl: "/images/glass-vanilla-milkshake.avif",
     },
   ];
 
   return (
     <div className="flex flex-col w-full h-full gap-6 bg-white">
       {/* how Fit Mafia works */}
-      <div className="w-full flex flex-col gap-8 h-auto min-h-[450px] bg-[url('/temp/Homepage_footerTablet.avif')] bg-cover bg-center justify-center items-center px-12">
-        <h1 className="text-5xl font-bold text-center text-black font-Arial">
+      <div className="w-full flex flex-col gap-8 h-auto min-h-[450px] bg-[url('/temp/Homepage_footerTablet.avif')] bg-cover bg-center justify-center items-center px-6 md:px-12">
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-black font-Arial">
           How Our Tiffin Service Works
         </h1>
-        <span className="font-normal text-black text-[20px] leading-[32px] font-Helvetica lg:w-[40%] text-center">
+        <span className="font-normal text-black text-base md:text-[20px] md:leading-[32px] font-Helvetica lg:w-[40%] text-center">
           Say goodbye to daily cooking stress! Enjoy freshly prepared, homely
           Indian meals delivered right to your doorstep—no prep needed.
         </span>
         <div className="flex flex-col items-center gap-6">
-          <GetBtn content="Get $75 Off Your Next 4 Boxes" />
+          {/* <GetBtn content="" /> */}
+          <Link
+            href={''}
+            className="bg-fit-red px-3 py-2 md:px-6 md:py-3 rounded-lg font-semibold text-white cursor-pointer "
+          >
+            Get $75 Off Your Next 4 Boxes
+          </Link>
           <span className="font-normal text-black text-[16px] leading-[20px] font-Helvetica text-center">
             Pause or cancel anytime
           </span>
@@ -108,7 +121,7 @@ const page = () => {
               height={342}
             />
           </div>
-          <div className="flex-[0.5] flex flex-col gap-3 px-12">
+          <div className="flex-[0.5] flex flex-col gap-3 px-6 md:px-12">
             {/* step 1 */}
             <div className="flex gap-4">
               <img
@@ -169,7 +182,7 @@ const page = () => {
         <h2 className="text-black font-Arial text-4xl font-bold text-center h-[100px] flex justify-center items-center">
           Clean Eating, Made Easy
         </h2>
-        <div className="grid grid-cols-1 gap-12 px-12 sm:grid-cols-2 md:grid-cols-3 xl:gap-16">
+        <div className="grid grid-cols-1 gap-12 px-6 md:px-12 sm:grid-cols-2 md:grid-cols-3 xl:gap-16">
           {/* card 1 */}
           <div className="max-w-[348px] w-auto flex flex-col items-center gap-6">
             <div className="">
@@ -184,8 +197,8 @@ const page = () => {
                 Customised to Your Needs
               </h4>
               <span className="text-center text-black">
-                Whether you&quot;re a student, working professional, or on a fitness
-                journey, our meals suit your lifestyle.
+                Whether you&quot;re a student, working professional, or on a
+                fitness journey, our meals suit your lifestyle.
               </span>
             </div>
           </div>
@@ -294,7 +307,7 @@ const page = () => {
       </div>
 
       {/* check out our meals */}
-      <div className="flex flex-col min-h-[520px] h-auto gap-6 items-center px-12">
+      <div className="flex flex-col min-h-[520px] w-full h-auto gap-6 items-center px-6 md:px-12">
         <div className="flex flex-col items-center w-full">
           <h2 className="text-black font-Arial text-4xl font-bold text-center h-[100px] flex justify-center items-center">
             Explore Our Tiffin Options
@@ -397,9 +410,9 @@ const page = () => {
                 Can I customize my meal plan?
               </h4>
               <span className="font-normal text-black">
-                Absolutely! You can select your Fit Mafia meals each week to match
-                your preferences. Plus, our plans are flexible, allowing you to
-                change your meals based on your current lifestyle.
+                Absolutely! You can select your Fit Mafia meals each week to
+                match your preferences. Plus, our plans are flexible, allowing
+                you to change your meals based on your current lifestyle.
               </span>
             </div>
           </div>
@@ -458,8 +471,8 @@ const page = () => {
                 How does Fit Mafia handle allergies or dietary restrictions?
               </h4>
               <span className="font-normal text-black">
-                Food safety is a top priority for us. All Fit Mafia meals come with
-                clear allergen declarations on their packaging. We advise
+                Food safety is a top priority for us. All Fit Mafia meals come
+                with clear allergen declarations on their packaging. We advise
                 carefully reviewing the individual product packaging for the
                 most accurate and up-to-date information regarding ingredients
                 and allergens. Additionally, please check the ingredient list on

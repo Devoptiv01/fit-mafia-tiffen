@@ -13,6 +13,17 @@ type Inputs = {
   mealsPerWeek: string;
   promoCode?: string;
   totalPrice: number;
+  address: {
+    firstName: string;
+    lastName: string;
+    street: string;
+    addressLine2: string;
+    city: string;
+    province: string;
+    postalCode: string;
+    phoneNumber: number;
+    deliveryInstructions: string;
+  };
 };
 
 const Page = () => {
@@ -25,7 +36,7 @@ const Page = () => {
     handleSubmit,
     watch,
     setValue,
-    // formState: { errors },
+    formState: { errors },
   } = useForm<Inputs>({
     defaultValues: {
       preference: "Veg",
@@ -83,31 +94,30 @@ const Page = () => {
 
   const preferences = [
     {
-      "label": "Alpha",
-      "price": 350
+      label: "Alpha",
+      price: 350,
     },
     {
-      "label": "Avengers",
-      "price": 320
+      label: "Avengers",
+      price: 320,
     },
     {
-      "label": "Gladiator",
-      "price": 320
+      label: "Gladiator",
+      price: 320,
     },
     {
-      "label": "Hustler",
-      "price": 250
+      label: "Hustler",
+      price: 250,
     },
     {
-      "label": "Spartans",
-      "price": 375
+      label: "Spartans",
+      price: 375,
     },
     {
-      "label": "Warrior",
-      "price": 300
-    }
-  ]
-  
+      label: "Warrior",
+      price: 300,
+    },
+  ];
 
   const pricingData: Record<
     string,
@@ -469,9 +479,180 @@ const Page = () => {
                 </div>
               </div>
             )}
+
+            {/* // step 4 */}
+            {currentStep === 4 && ( <div  className="w-full max-w-[682px] p-6 mb-6 h-auto bg-white rounded-lg shadow-md lg:w-2/3 lg:mb-0"
+        >
+          <h2 className="mb-4 text-2xl font-bold text-black">
+            Delivery Address
+          </h2>
+          <div className="flex flex-col gap-6">
+            {/* name section */}
+            <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
+              <div>
+                <input
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                  id="first-name"
+                  type="text"
+                  placeholder=" First name *"
+                  {...register("address.firstName", {
+                    required: "First Name is required",
+                  })}
+                />
+                {errors.address?.firstName && (
+                  <p className="text-red-500 text-sm mb-2">
+                    {errors.address.firstName.message}
+                  </p>
+                )}
+              </div>
+              <div>
+                <input
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                  id="last-name"
+                  type="text"
+                  placeholder="Last name *"
+                  {...register("address.lastName", {
+                    required: "Last Name is required",
+                  })}
+                />
+                {errors.address?.lastName && (
+                  <p className="text-red-500 text-sm mb-2">
+                    {errors.address.lastName.message}
+                  </p>
+                )}
+              </div>
+            </div>
+            {/* address section 1 */}
+            <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
+              <div>
+                <input
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                  id="street"
+                  type="text"
+                  placeholder=" Street *"
+                  {...register("address.street", {
+                    required: "Street is required",
+                  })}
+                />
+                {errors.address?.street && (
+                  <p className="text-red-500 text-sm mb-2">
+                    {errors.address.street.message}
+                  </p>
+                )}
+              </div>
+              <div>
+                <input
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                  id="address-line-2"
+                  type="text"
+                  placeholder=" Address line 2"
+                  {...register("address.addressLine2")}
+                />
+              </div>
+            </div>
+            {/* address section 2 */}
+            <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-3">
+              <div>
+                <input
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                  id="city"
+                  type="text"
+                  placeholder=" City *"
+                  {...register("address.city", {
+                    required: "City is required",
+                  })}
+                />
+                {errors.address?.city && (
+                  <p className="text-red-500 text-sm mb-2">
+                    {errors.address.city.message}
+                  </p>
+                )}
+              </div>
+              <div>
+                <select
+                  className="block outline-none w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                  id="province"
+                  {...register("address.province", {
+                    required: "Province is required",
+                  })}
+                >
+                  <option value="province">Province *</option>
+                </select>
+                {errors.address?.province && (
+                  <p className="text-red-500 text-sm mb-2">
+                    {errors.address.province.message}
+                  </p>
+                )}
+              </div>
+              <div>
+                <input
+                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                  id="postal-code"
+                  type="text"
+                  placeholder="Postal Code *"
+                  {...register("address.postalCode", {
+                    required: "Postal code is required",
+                  })}
+                />
+                {errors.address?.postalCode && (
+                  <p className="text-red-500 text-sm mb-2">
+                    {errors.address.postalCode.message}
+                  </p>
+                )}
+              </div>
+            </div>
+            {/* phone number */}
+            <div className="mb-4">
+              <input
+                className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black "
+                id="phone-number"
+                type="text"
+                placeholder="Phone Number *"
+                {...register("address.phoneNumber", {
+                  required: "Phone Number is required",
+                })}
+              />
+              {errors.address?.phoneNumber && (
+                <p className="text-red-500 text-sm mb-2">
+                  {errors.address.phoneNumber.message}
+                </p>
+              )}
+            </div>
+            {/* delivery instructions */}
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">
+                Enter Delivery Instruction
+              </label>
+              <select
+                className="w-full max-w-screen outline-none p-3 mt-1  border border-gray-300 rounded-md shadow-sm text-black"
+                id="province"
+                {...register("address.deliveryInstructions", {
+                  required: "Delivery Instructions are required",
+                })}
+              >
+                <div className="w-32">
+                <option className="w-20" value="Leave at front door">Leave at front door</option>
+                <option className="w-20" value="Leave at back door">Leave at back door</option>
+                <option className="w-20" value="Others">Others</option>
+                </div>
+              </select>
+              {errors.address?.deliveryInstructions && (
+                <p className="text-red-500 text-sm mb-2">
+                  {errors.address.deliveryInstructions.message}
+                </p>
+              )}
+            </div>
+            {/* <button
+              className="w-full px-4 py-2 font-bold text-white rounded-md bg-fit-red/50"
+              type="submit"
+            >
+              Next
+            </button> */}
+          </div>
+        </div>)}
           </div>
 
-          {currentStep >= 3 && (
+          {currentStep >= 4 && (
             <button
               type="submit"
               className={`bg-[#BF1C15] font-medium text-[19px] leading-[24px] w-full max-w-[307px] p-3 text-white rounded-md ${
@@ -483,7 +664,7 @@ const Page = () => {
               Place Order
             </button>
           )}
-          {currentStep < 3 && (
+          {currentStep < 4 && (
             <button
               type="button"
               onClick={() => setCurrentStep(() => currentStep + 1)}
@@ -497,7 +678,7 @@ const Page = () => {
       </div>
 
       {/* flexible menu */}
-      <div className="flex flex-col gap-12 w-full p-12 min-h-[563px] bg-[#f1f1ea] items-center">
+      <div className="flex flex-col gap-12 w-full p-5 sm:p-12 min-h-[563px] bg-[#f1f1ea] items-center">
         {/* heading */}
         <div className="flex flex-col gap-3">
           <h2 className="flex justify-center text-4xl font-bold text-center text-black font-Arial">
@@ -518,16 +699,16 @@ const Page = () => {
         <Carousel items={menuData} />
 
         {/* promo code */}
-        <form className="flex gap-3 max-w-[582px] w-full bg-white py-6 px-10 items-center justify-center rounded-md">
+        <form className="flex  flex-wrap gap-3 max-w-[582px] w-full bg-white py-6 px-10 items-center justify-center rounded-md">
           <input
             type="text"
-            className="w-full max-w-[337px] border border-gray-300 p-3"
+            className="w-full max-w-[337px] outline-none rounded-md border border-gray-300 p-3"
             placeholder="Enter Promo Code"
             required
           />
           <button
             type="submit"
-            className="bg-[#1A5614] font-bold text-[16px] leading-[24px] w-full max-w-[150px] p-3 text-white rounded-md"
+            className="bg-fit-red/80 font-bold text-[16px] leading-[24px] w-full max-w-[150px] p-3 text-white rounded-md"
           >
             Apply
           </button>
@@ -535,7 +716,7 @@ const Page = () => {
       </div>
 
       {/* common questions */}
-      <div className="flex flex-col items-center w-full gap-6 p-12 bg-white">
+      <div className="flex flex-col items-center w-full gap-6 p-5 sm:p-12 bg-white">
         <h2 className="flex justify-center text-4xl font-bold text-center text-black font-Arial">
           Common Questions
         </h2>

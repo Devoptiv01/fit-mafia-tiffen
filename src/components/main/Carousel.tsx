@@ -76,8 +76,8 @@ const Carousel = ({ items }: CarouselProps) => {
               className={`relative w-[262px] h-[315px] rounded-md bg-cover bg-center flex items-end justify-start p-4 shrink-0`}
             >
               <div className="z-10 flex flex-col text-white">
-                <h2 className="text-4xl font-bold font-Arial">{item.title}</h2>
-                <span className="text-xl font-bold font-Arial">
+                <h2 className="text-3xl md:text-4xl font-bold font-Arial">{item.title}</h2>
+                <span className="text-base md:text-xl font-semibold md:font-bold font-Arial">
                   {item.description}
                 </span>
               </div>

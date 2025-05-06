@@ -7,10 +7,11 @@ const ProcessSection = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900  sm:text-4xl xl:text-5xl">
-                How does our Tiffin Service work?
+              How does our Tiffin Service work?
             </h2>
             <p className="max-w-md mx-auto mt-5 text-base font-normal text-gray-600 ">
-            We make healthy home-style meals simple and stress-free—delivered fresh to your doorstep in just a few clicks.
+              We make healthy home-style meals simple and stress-free—delivered
+              fresh to your doorstep in just a few clicks.
             </p>
           </div>
 
@@ -18,14 +19,24 @@ const ProcessSection = () => {
             {/* <!-- First card --> */}
             <div className="relative flex-1 w-full overflow-hidden bg-white  border border-gray-200 rounded-2xl shadow-lg">
               <div className="py-8 px-9">
-                <div className="inline-flex items-center justify-center w-10 h-10 text-base font-bold text-white bg-gray-900 rounded-xl">
-                  1
+                <div className="w-full flex gap-3">
+                  {/* <div className="inline-flex items-center justify-center w-10 h-10 text-base font-bold text-white bg-gray-900 rounded-xl">
+                    1
+                  </div> */}
+                  <div className="">
+                    <img
+                      src="/images/plan.png"
+                      alt="images"
+                      className="h-10 w-10"
+                    />
+                  </div>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-600 mt-2 ">
-                    Choose Your Plan
+                  Choose Your Plan
                 </h3>
                 <p className="mt-4 text-xl font-medium text-gray-900 ">
-                Pick a weekly or monthly meal plan based on your appetite and preferences. Vegetarian, non-vegetarian.
+                  Pick a weekly or monthly meal plan based on your appetite and
+                  preferences. Vegetarian, non-vegetarian.
                 </p>
               </div>
             </div>
@@ -66,14 +77,22 @@ const ProcessSection = () => {
               </div>
               <div className="relative overflow-hidden bg-white border border-gray-200 rounded-2xl shadow-lg">
                 <div className="py-8 px-9">
-                  <div className="inline-flex items-center justify-center w-10 h-10 text-base font-bold text-white bg-gray-900  rounded-xl">
-                    2
+                  <div className="w-full flex gap-3">
+                    {/* <div className="inline-flex items-center justify-center w-10 h-10 text-base font-bold text-white bg-gray-900  rounded-xl">
+                      2
+                    </div> */}
+                    <img
+                      src="/images/meals.png"
+                      alt="images"
+                      className="h-10 w-10"
+                    />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-600 mt-2 ">
                     Fresh Meals Cooked Daily
                   </h3>
                   <p className="mt-4 text-xl font-medium text-gray-900 ">
-                  Our chefs prepare your meals fresh every day using quality ingredients, packed with flavor and nutrition.
+                    Our chefs prepare your meals fresh every day using quality
+                    ingredients, packed with flavor and nutrition.
                   </p>
                 </div>
               </div>
@@ -107,14 +126,22 @@ const ProcessSection = () => {
             <div className="relative flex-1 w-full mt-8 lg:mt-0">
               <div className="relative overflow-hidden bg-white  border border-gray-200 rounded-2xl shadow-lg">
                 <div className="py-8 px-9">
-                  <div className="inline-flex items-center justify-center w-10 h-10 text-base font-bold text-white bg-gray-900  rounded-xl">
-                    3
+                  <div className="w-full flex gap-3">
+                    {/* <div className="inline-flex items-center justify-center w-10 h-10 text-base font-bold text-white bg-gray-900  rounded-xl">
+                      3
+                    </div> */}
+                    <img
+                      src="/images/delivery.png"
+                      alt="images"
+                      className="h-10 w-10"
+                    />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-600 mt-2 ">
                     Delivered to Your Door
                   </h3>
                   <p className="mt-4 text-xl font-medium text-gray-900 ">
-                  Get your tiffins delivered hot and on time—at home, the office, or wherever you are. Just heat and eat!
+                    Get your tiffins delivered hot and on time—at home, the
+                    office, or wherever you are. Just heat and eat!
                   </p>
                 </div>
               </div>

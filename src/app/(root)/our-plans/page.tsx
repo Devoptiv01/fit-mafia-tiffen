@@ -1,16 +1,19 @@
 "use client";
 import Carousel from "@/components/main/Carousel";
 import { useForm } from "react-hook-form";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-// import axios from "axios";
 import Stepper from "@/components/main/Stepper";
 import { ChevronDownIcon } from "lucide-react";
+import axios from "axios";
+import { useSession } from "next-auth/react";
+import { toast } from "react-toastify";
 
 type Inputs = {
+  email: string;
   preference: string;
-  yourPreference: string;
-  mealsPerWeek: string;
+  plan: string;
+  duration: string;
   promoCode?: string;
   totalPrice: number;
   address: {
@@ -30,6 +33,8 @@ const Page = () => {
   // const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
   const [currentFaq, setCurrentFaq] = useState(0);
+  const {data: session} = useSession()
+  const router = useRouter()
 
   const {
     register,
@@ -40,12 +45,12 @@ const Page = () => {
   } = useForm<Inputs>({
     defaultValues: {
       preference: "Veg",
-      yourPreference: "Alpha",
-      mealsPerWeek: "10",
+      plan: "Alpha",
+      duration: "10",
     },
   });
 
-  const selectedMeals = watch("mealsPerWeek");
+  const selectedMeals = watch("duration");
   const selectedPreference = watch("preference");
 
   useEffect(() => {
@@ -55,14 +60,33 @@ const Page = () => {
   }, [selectedMeals, setValue]);
 
   const onSubmit = async (data: Inputs) => {
-    console.log(data);
-    // try {
-    //   const res = await axios.post("/api/v1/subscribe-plan", data);
-    //   console.log(res);
-    //   router.push("/register");
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    if (!session?.user?.email) {
+      toast.error("User email not found. Please log in again.");
+      return;
+    }
+    const requestData = { ...data, email: session?.user?.email as string}
+    console.log("Submitting subscription:", requestData);
+    try {
+      const res = await axios.post("/api/v1/subscribe-plan", requestData);
+      console.log(res);
+
+      if (res.status === 200) {
+        toast.success("Subscription successful!");
+        router.push("/");
+        return
+      }
+      if(res.status === 400 ) {
+        toast.warn(res.data.message);
+        return
+      }
+    } catch (error: unknown) {
+      console.log(error);
+      if (axios.isAxiosError(error)) {
+        toast.error(error.response?.data?.message || "An unexpected error occurred.");
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
+    }
   };
 
   const handleFaq = (e: number) => {
@@ -275,7 +299,7 @@ const Page = () => {
                       <input
                         type="radio"
                         id={pref.label}
-                        {...register("yourPreference")}
+                        {...register("plan")}
                         value={pref.label}
                         className="hidden peer cursor-pointer"
                       />
@@ -329,7 +353,7 @@ const Page = () => {
                     <div className="relative">
                       <input
                         type="radio"
-                        {...register("mealsPerWeek")}
+                        {...register("duration")}
                         id="option-1"
                         value="6"
                         className="hidden peer"
@@ -344,7 +368,7 @@ const Page = () => {
                     <div className="relative">
                       <input
                         type="radio"
-                        {...register("mealsPerWeek")}
+                        {...register("duration")}
                         id="option-2"
                         value="8"
                         className="hidden peer"
@@ -359,7 +383,7 @@ const Page = () => {
                     <div className="relative">
                       <input
                         type="radio"
-                        {...register("mealsPerWeek")}
+                        {...register("duration")}
                         id="option-3"
                         value="10"
                         className="hidden peer"
@@ -374,7 +398,7 @@ const Page = () => {
                     <div className="relative">
                       <input
                         type="radio"
-                        {...register("mealsPerWeek")}
+                        {...register("duration")}
                         id="option-4"
                         value="12"
                         className="hidden peer"
@@ -389,7 +413,7 @@ const Page = () => {
                     <div className="relative">
                       <input
                         type="radio"
-                        {...register("mealsPerWeek")}
+                        {...register("duration")}
                         id="option-5"
                         value="14"
                         className="hidden peer"
@@ -404,7 +428,7 @@ const Page = () => {
                     <div className="relative">
                       <input
                         type="radio"
-                        {...register("mealsPerWeek")}
+                        {...register("duration")}
                         id="option-6"
                         value="18"
                         className="hidden peer"

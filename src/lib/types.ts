@@ -30,8 +30,42 @@ export interface CredentialsProps {
   username: string;
   password: string;
 }
+
 export interface AuthorizedUserProps extends User {
   _id: string;
   username: string;
   // add other fields you return
 }
+
+export interface SubscribePlanType {
+  duration: string; // or number if parsed earlier
+  preference: string;
+  plan: string;
+}
+
+export interface DeliveryAddressType {
+  firstName: string;
+  lastName: string;
+  street: string;
+  addressLine2?: string | null;
+  city: string;
+  province: string;
+  postalCode: string;
+  phoneNumber: string;
+  enterDeliveryInstruction: string;
+}
+
+export interface UserType {
+  email: string;
+  isSubscribed: boolean;
+  isBanned: boolean;
+  isPaymentVerified: boolean;
+  offDays: Date[]
+  subscribedAt: Date | null;
+  subscriptionEndDate: Date | null;
+  currentSubscribedPlan?: SubscribePlanType;
+  deliveryAddress?: DeliveryAddressType;
+  subscribePlans?: SubscribePlanType[];
+}
+
+export interface UserDocument extends Document, UserType {}

@@ -1,4 +1,4 @@
-import { EnterDeliveryInstructionEnum } from "@/lib/types";
+// import { EnterDeliveryInstructionEnum } from "@/lib/types";
 import { model, models, Schema } from "mongoose";
 
 
@@ -46,10 +46,7 @@ const UserSchema = new Schema({
         province: String,
         postalCode: String,
         phoneNumber: String,
-        enterDeliveryInstruction: {
-            type: String,
-            enum: Object.values(EnterDeliveryInstructionEnum)
-        },
+        deliveryInstructions: String,
         customDeliveryInstruction: String
     },
     isBanned: {
@@ -60,17 +57,35 @@ const UserSchema = new Schema({
         type: Boolean,
         default: false
     },
+    isSubscriptionPaused: {
+        type: Boolean,
+        default: false
+    },
+    subscriptionPausedAt: {
+        type: Date,
+        default: null
+    },
     subscribedAt: {
         type: Date,
         default: null
     },
+    subscriptionEndDate: {
+        type: Date,
+        default: null
+    },
+    offDays: {
+        type: [Date],
+        default: []
+    },
     currentSubscribedPlan: {
-        mealsPerWeek: String,
-        preferences: [String],
+        duration: String,
+        preference: String,
+        plan: String
     },
     subscribePlans: [{
-        type: Schema.Types.ObjectId,
-        ref: "MealsPlan"
+        duration: String,
+        preference: String,
+        plan: String
     }],
 },
     {

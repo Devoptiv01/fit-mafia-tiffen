@@ -7,18 +7,25 @@ import 'next-auth'
 import { AuthorizedUserProps } from "@/lib/types";
 import User from "@/models/user.Model";
 
+type currentSubscribedPlanProps = {
+    duration: string,
+    preference: string,
+    plan: string
+}
+
 declare module "next-auth" {
     interface User {
         _id?: string
         userName?: string
         email?: string
-        currentSubscribedPlan?: string
+        currentSubscribedPlan?: currentSubscribedPlanProps
     }
     interface Session {
         user: {
             _id?: string
             userName?: string
             email?: string
+            currentSubscribedPlan?:currentSubscribedPlanProps
         } & DefaultSession["user"]
     }
     interface JWT {
@@ -44,12 +51,12 @@ export const authOptions: NextAuthOptions = {
                 if (!credentials) return null;
                 await db()
                 try {
-                    console.log('---------',credentials)
+                    console.log('---------', credentials)
                     const user = await User.findOne({
                         email: credentials?.email,
                     }).select("+password")
-                    if (!user) { 
-                        throw new Error("User not found. Please create an account.") 
+                    if (!user) {
+                        throw new Error("User not found. Please create an account.")
                     }
 
                     // if (!user.isVerified) {
@@ -85,6 +92,7 @@ export const authOptions: NextAuthOptions = {
                 session.user._id = token.id as string
                 session.user.userName = token.userName as string
                 session.user.email = token.email as string
+                session.user.currentSubscribedPlan = token.currentSubscribedPlan as currentSubscribedPlanProps
             }
             return session
         },

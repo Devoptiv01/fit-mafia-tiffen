@@ -9,19 +9,19 @@ export async function POST(req: NextRequest) {
     try {
         await db()
         const body = await req.json()
-        const { username, email, password } = body
+        const { userName, email, password } = body
 
         const existUser = await User.findOne({ email })
         if (existUser) {
             return NextResponse.json(new ApiResponse(409, 'User already exist'), { status: 409 })
         };
-        if (!username || !password) {
+        if (!userName || !password) {
             return NextResponse.json(new ApiResponse(400, 'All fields are required'), { status: 400 })
         }
         const hashPW = await bcrypt.hash(password, 10)
 
         const newUser = await User.create({
-            userName: username,
+            userName,
             email,
             password: hashPW
         });

@@ -42,14 +42,26 @@ const SignUp = () => {
         // Example redirect:
         setLoading(false);
         router.push("/sign-in");
+        return
       }
 
 
+      if (res.data.statusCode == 400) {
+        console.error("Unexpected response:", res.data);
+        toast.error("All fields are required");
+        setLoading(false);
+        return
+      }
       if (res.data.statusCode == 409) {
         console.error("Unexpected response:", res.data);
         toast.error("User already exist");
         setLoading(false);
+        return
       }
+      console.error("Unexpected response:", res.data);
+      setLoading(false);
+      return
+
     } catch (error) {
       console.error("An error occurred during registration:", error);
       // toast.error(error?.response?.data?.message

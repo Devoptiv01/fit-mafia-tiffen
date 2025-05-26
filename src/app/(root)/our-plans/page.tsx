@@ -273,7 +273,7 @@ const Page = () => {
                       id="eggetarian"
                       {...register("preference")}
                       value="eggetarian"
-                      className="hidden peer"
+                      className="hidden peer" 
                     />
                     <label
                       htmlFor="eggetarian"

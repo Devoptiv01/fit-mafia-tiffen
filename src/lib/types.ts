@@ -41,6 +41,9 @@ export interface SubscribePlanType {
   duration: string; // or number if parsed earlier
   preference: string;
   plan: string;
+  meals: string;
+  portion: string;
+  goal: string;
 }
 
 export interface DeliveryAddressType {

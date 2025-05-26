@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
         console.log('body----', body)
         const { preference, duration, plan, address, email } = body
 
-        const { firstName, lastName, street, addressLine2, city, province, postalCode, phoneNumber, deliveryInstructions } = address
+        const { firstName, lastName, meals, portion, goal, street, addressLine2, city, province, postalCode, phoneNumber, deliveryInstructions } = address
         
         if(!email) return NextResponse.json(new ApiResponse(400, "Email is required"), { status: 400 });
 
@@ -39,7 +39,10 @@ export async function POST(req: NextRequest) {
         const subscribePlan: SubscribePlanType = {
             duration: duration,
             preference: preference,
-            plan
+            plan,
+            meals, 
+            portion,
+            goal
         };
 
         const weeks = parseInt(duration)

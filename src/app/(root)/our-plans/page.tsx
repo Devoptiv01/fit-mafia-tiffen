@@ -12,6 +12,9 @@ import { toast } from "react-toastify";
 type Inputs = {
   email: string;
   preference: string;
+  meals: string;
+  portion: string;
+  goal: string;
   plan: string;
   duration: string;
   promoCode?: string;
@@ -28,6 +31,67 @@ type Inputs = {
     deliveryInstructions: string;
   };
 };
+
+
+  const menuData = [
+    {
+      title: "Chef's Choice",
+      description: "Widest variety of clean and chef created meals",
+      imageUrl: "/temp/Calorie-Smart.avif",
+    },
+    {
+      title: "Protein Plus",
+      description: "30 grams of protein or more per serving",
+      imageUrl: "/temp/Calorie-Smart.avif",
+    },
+    {
+      title: "Calorie Smart",
+      description: "Meals containing ~550 calories or less",
+      imageUrl: "/temp/Calorie-Smart.avif",
+    },
+    {
+      title: "GLP-1 Balance",
+      description: "Protein-forward, calorie-friendly meals",
+      imageUrl: "/temp/Calorie-Smart.avif",
+    },
+  ];
+
+  const portion = [
+     {
+      label: "regular",
+    },
+    {
+      label: "large",
+    },
+  ]
+
+  const preferences = [
+    {
+      label: "Alpha",
+      price: 350,
+    },
+    {
+      label: "Avengers",
+      price: 320,
+    },
+    {
+      label: "Gladiator",
+      price: 320,
+    },
+    {
+      label: "Hustler",
+      price: 250,
+    },
+    {
+      label: "Spartans",
+      price: 375,
+    },
+    {
+      label: "Warrior",
+      price: 300,
+    },
+  ];
+
 
 const Page = () => {
   // const router = useRouter();
@@ -47,6 +111,10 @@ const Page = () => {
       preference: "Veg",
       plan: "Alpha",
       duration: "10",
+      meals: '3',
+      portion: 'large',
+      goal: 'health',
+
     },
   });
 
@@ -93,55 +161,6 @@ const Page = () => {
     setCurrentFaq((prev) => (prev === e ? 0 : e));
   };
 
-  const menuData = [
-    {
-      title: "Chef's Choice",
-      description: "Widest variety of clean and chef created meals",
-      imageUrl: "/temp/Calorie-Smart.avif",
-    },
-    {
-      title: "Protein Plus",
-      description: "30 grams of protein or more per serving",
-      imageUrl: "/temp/Calorie-Smart.avif",
-    },
-    {
-      title: "Calorie Smart",
-      description: "Meals containing ~550 calories or less",
-      imageUrl: "/temp/Calorie-Smart.avif",
-    },
-    {
-      title: "GLP-1 Balance",
-      description: "Protein-forward, calorie-friendly meals",
-      imageUrl: "/temp/Calorie-Smart.avif",
-    },
-  ];
-
-  const preferences = [
-    {
-      label: "Alpha",
-      price: 350,
-    },
-    {
-      label: "Avengers",
-      price: 320,
-    },
-    {
-      label: "Gladiator",
-      price: 320,
-    },
-    {
-      label: "Hustler",
-      price: 250,
-    },
-    {
-      label: "Spartans",
-      price: 375,
-    },
-    {
-      label: "Warrior",
-      price: 300,
-    },
-  ];
 
   const pricingData: Record<
     string,
@@ -199,7 +218,7 @@ const Page = () => {
               </span> */}
 
                 {/* Updated select buttons */}
-                <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-3">
+                <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-4">
                   {/* Veg */}
                   <div className="relative">
                     <input
@@ -211,8 +230,7 @@ const Page = () => {
                     />
                     <label
                       htmlFor="veg"
-                      className="w-full h-[104px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
-        peer-checked:border-[#BF1C15] peer-checked:border-2"
+                      className="w-full h-[104px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all peer-checked:border-[#BF1C15] peer-checked:border-2  box-border"
                     >
                       <img
                         src="/images/brocolli.svg"
@@ -235,7 +253,7 @@ const Page = () => {
                     <label
                       htmlFor="non-veg"
                       className="w-full h-[104px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
-        peer-checked:border-[#BF1C15] peer-checked:border-2"
+        peer-checked:border-[#BF1C15] peer-checked:border-2  box-border"
                     >
                       <img
                         src="/images/chicken.svg"
@@ -244,6 +262,31 @@ const Page = () => {
                       />
                       <span className="px-2 text-center text-black">
                         Non-Veg
+                      </span>
+                    </label>
+                  </div>
+
+                  {/* Eggetarian */}
+                  <div className="relative">
+                    <input
+                      type="radio"
+                      id="eggetarian"
+                      {...register("preference")}
+                      value="eggetarian"
+                      className="hidden peer"
+                    />
+                    <label
+                      htmlFor="eggetarian"
+                      className="w-full h-[104px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+        peer-checked:border-[#BF1C15] peer-checked:border-2  box-border"
+                    >
+                      <img
+                        src="/icons/main/eggetiran.png"
+                        alt="eggetiran"
+                        className="w-10 h-10"
+                      />
+                      <span className="px-2 text-center text-black">
+                        Eggetarian
                       </span>
                     </label>
                   </div>
@@ -259,8 +302,8 @@ const Page = () => {
                     />
                     <label
                       htmlFor="mix"
-                      className="w-full h-[104px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
-        peer-checked:border-[#BF1C15] peer-checked:border-2"
+                      className="w-full max-w-[184px] h-[104px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+        peer-checked:border-[#BF1C15] peer-checked:border-2 box-border"
                     >
                       <img
                         src="/images/mix.svg"
@@ -274,6 +317,44 @@ const Page = () => {
                   </div>
                 </div>
 
+                  {/* // meals */}
+                <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+                    {/* 2 meals */}
+                  <div className="relative">
+                    <input
+                      type="radio"
+                      id="2meals"
+                      {...register("meals")}
+                      value="2"
+                      className="hidden peer"
+                    />
+                    <label
+                      htmlFor="2meals"
+                      className="w-full h-[104px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+        peer-checked:border-[#BF1C15] peer-checked:border-2"
+                    >
+                      <span className="px-2 text-center text-black">2 Meals</span>
+                    </label>
+                  </div>
+                  {/* // 3 meals */}
+                  <div className="relative">
+                    <input
+                      type="radio"
+                      id="3meals"
+                      {...register("meals")}
+                      value="3"
+                      className="hidden peer"
+                    />
+                    <label
+                      htmlFor="3meals"
+                      className="w-full h-[104px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+        peer-checked:border-[#BF1C15] peer-checked:border-2"
+                    >
+                      <span className="px-2 text-center text-black">3 Meals</span>
+                    </label>
+                  </div>
+                </div>
+
                 <span className="text-center text-[#656565]">
                   A variety of balanced, chef-prepared meals with clean
                   ingredients to fit any lifestyle.
@@ -283,14 +364,79 @@ const Page = () => {
 
             {/* // step 2 */}
             {currentStep === 2 && (
+              <div className="flex flex-col gap-3">
+
+                {/* // portion */}
+              <div className="flex flex-col gap-6 items-center p-6">
+                <h3 className="flex justify-center text-2xl font-bold text-center text-black font-Arial">
+                  Choose your Portion
+                </h3>
+
+                {/* Updated select buttons */}
+                <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+                  {portion.map((pref) => (
+                    <div key={pref.label} className="relative">
+                      <input
+                        type="radio"
+                        id={pref.label}
+                        {...register("portion")}
+                        value={pref.label}
+                        className="hidden peer cursor-pointer"
+                      />
+                      <label
+                        htmlFor={pref.label}
+                        className="w-full h-[100px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                  peer-checked:border-[#BF1C15] peer-checked:border-2"
+                      >
+                        <div className="">
+                          <h4 className="px- 2 text-center text-black font-medium tracking-wider text-2xl capitalize">
+                            {pref.label}
+                          </h4>
+                        </div>
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+                {/* // goal */}
+              <div className="flex flex-col gap-6 items-center p-6">
+                <h3 className="flex justify-center text-2xl font-bold text-center text-black font-Arial">
+                  Choose your Goal
+                </h3>
+
+                {/* Updated select buttons */}
+                <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-4">
+                  {['mussle','fat','active','health'].map((goal, i) => (
+                    <div key={i} className="relative">
+                      <input
+                        type="radio"
+                        id={goal + i}
+                        {...register("goal")}
+                        value={goal}
+                        className="hidden peer cursor-pointer"
+                      />
+                      <label
+                        htmlFor={goal}
+                        className="w-full h-[100px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                  peer-checked:border-[#BF1C15] peer-checked:border-2"
+                      >
+                        <div className="">
+                          <h4 className="px- 2 text-center text-black font-medium tracking-wider text-2xl capitalize">
+                            {goal}
+                          </h4>
+                        </div>
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* // preferences */}
               <div className="flex flex-col gap-6 items-center p-6">
                 <h3 className="flex justify-center text-2xl font-bold text-center text-black font-Arial">
                   Choose your preferences
                 </h3>
-                {/* <span className="text-[#656565] text-center">
-                Your preferences help us show you the most relevant recipes
-                first. You&apos;ll still have access to all recipes each week!
-              </span> */}
 
                 {/* Updated select buttons */}
                 <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-3">
@@ -305,7 +451,7 @@ const Page = () => {
                       />
                       <label
                         htmlFor={pref.label}
-                        className="w-full h-[154px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                        className="w-full h-[124px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
                   peer-checked:border-[#BF1C15] peer-checked:border-2"
                       >
                         {/* <div
@@ -335,6 +481,7 @@ const Page = () => {
                   A variety of balanced, chef-prepared meals with clean
                   ingredients to fit any lifestyle.
                 </span>
+              </div>
               </div>
             )}
 

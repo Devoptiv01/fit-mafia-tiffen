@@ -26,13 +26,13 @@ const HeroSection = () => {
         nutrition—perfect for students, professionals, and families.
         {/* <br/> Elevate your everyday meals with our curated menu that changes daily. From North Indian classics to light and healthy options, we’ve got something for everyone. */}
       </p>
-      <div className="w-fit max-w-1/2 flex flex-wrap gap-3 text-sm">
-        <div className="w-fit bg-black h-10 px-4 flex gap-2 items-center rounded-lg text-white cursor-pionter">
+      <div className="w-fit max-w-1/2 flex flex-wrap gap-3 text-sm cursor-pionter">
+        <Link href={'/weekly-menu'} className="w-fit bg-black h-10 px-4 flex gap-2 items-center rounded-lg text-white cursor-pionter">
           {/* <MapPin className='w-4 h-4' /> */}
           <img src="/images/food.png" alt="food" className="h-5 w-fit" />
           View Weekly Menu
           <MoveRight className="w-4 h-4" />
-        </div>
+        </Link>
         <Link href={'/our-plans'} className="w-fit h-10 px-4 flex gap-2 items-center rounded-lg border border-black text-grey-300 cursor-pionter">
           {/* <Star className='w-4 h-4' /> */}Create Order Now
         </Link >

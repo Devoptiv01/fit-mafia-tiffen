@@ -431,7 +431,13 @@ const Page = () => {
                   ))}
                 </div>
               </div>
+              
+              </div>
+            )}
 
+            {/* Step 3*/}
+            {currentStep === 3 && (
+              <div className="flex flex-col gap-5">
               {/* // preferences */}
               <div className="flex flex-col gap-6 items-center p-6">
                 <h3 className="flex justify-center text-2xl font-bold text-center text-black font-Arial">
@@ -482,20 +488,16 @@ const Page = () => {
                   ingredients to fit any lifestyle.
                 </span>
               </div>
-              </div>
-            )}
-
-            {/* Step 3*/}
-            {currentStep === 3 && (
-              <div className="flex w-full flex-col gap-6 items-center p-6">
-                {/* select meals */}
+              
+              {/* <div className="flex w-full flex-col gap-6 items-center p-6">
+                
                 <h3 className="flex justify-center text-2xl font-bold text-center text-black font-Arial">
                   Select meals per week
                 </h3>
-                {/* select option container */}
+                
                 <div className="flex flex-col items-center w-full max-w-xl">
                   <span className="text-black">Meals per week</span>
-                  {/* option buttons */}
+                  
                   <div className="grid w-full grid-cols-1 grid-rows-2 gap-3 p-6 sm:grid-cols-2 md:grid-cols-3">
                     <div className="relative">
                       <input
@@ -589,7 +591,7 @@ const Page = () => {
                     </div>
                   </div>
                 </div>
-                {/* chef's choice container */}
+                 
                 <div className="flex flex-col w-full gap-4 px-3 bg-white border border-gray-300 rounded-md">
                   <div className="flex justify-between w-full px-3 py-6">
                     <div className="flex flex-col gap-3">
@@ -611,7 +613,7 @@ const Page = () => {
                       </div>
                     )}
                   </div>
-                  {/* border */}
+                  
                   <div className="px-3 border border-gray-300"></div>
 
                   <div className="flex flex-col items-center w-full ">
@@ -648,6 +650,7 @@ const Page = () => {
                     </div>
                   </div>
                 </div>
+              </div> */}
               </div>
             )}
 

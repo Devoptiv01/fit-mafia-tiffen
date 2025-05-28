@@ -96,7 +96,7 @@ const page = () => {
         <div className="flex flex-col items-center gap-6">
           {/* <GetBtn content="" /> */}
           <Link
-            href={''}
+            href={'/our-plans'}
             className="bg-fit-red px-3 py-2 md:px-6 md:py-3 rounded-lg font-semibold text-white cursor-pointer "
           >
             Get $75 Off Your Next 4 Boxes

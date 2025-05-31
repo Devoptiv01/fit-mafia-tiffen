@@ -1,21 +1,57 @@
+"use client"
+
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { SubmitHandler, useForm } from "react-hook-form";
+import RefreshIcon from '@mui/icons-material/Refresh';
+import axios from "axios";
+import { toast } from "react-toastify";
 
-const Footer = () => {
+
+
   const linkAccount = [
-    { url: "", text: "Weekly menu" },
-    { url: "", text: "Our Plans" },
-    { url: "", text: "How It Works" },
-    { url: "", text: "Terms & Conditions" },
-    { url: "", text: "Privacy Policy" },
-    { url: "", text: "FAQs" },
+    { url: "/weekly-menu", text: "Weekly menu" },
+    { url: "/our-plans", text: "Our Plans" },
+    { url: "/how-it-works", text: "How It Works" },
+    { url: "/privacy-policy", text: "Terms & Conditions" },
+    { url: "/privacy-policy", text: "Privacy Policy" },
+    { url: "/faqs", text: "FAQs" },
   ];
 
   const linkShop = [
-    { url: "", text: "Search" },
-    { url: "", text: "Meal Plans" },
-    { url: "", text: "All Tiffins" },
+    { url: "/our-plans", text: "Search" },
+    { url: "/our-plans", text: "Meal Plans" },
+    { url: "/our-plans", text: "All Tiffins" },
   ];
+
+  interface FormValues {
+  email: string;
+  };
+
+const Footer = () => {
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormValues>();
+
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    console.log('Submitted Email:', data?.email);
+    try {      
+      const res = await axios.post('/api/v1/newsletter', data);
+      console.log('res-----:', res);
+      if(res.status === 200) {
+        console.log('res 1-----:', res);
+        toast.success(res?.data?.message || 'Email sent successfully')
+        reset();
+      }
+      if(res.status === 400) {
+        console.log('res 2-----:', res);
+        toast.success(res?.data?.message || 'Email sent successfully')
+        reset();
+      }
+    } catch (error) {
+      console.log('Submission error:', error);
+      toast.error('Something went wrong')
+    }
+  };
+
   return (
     <div className="w-full flex flex-col bg-white px-4 md:px-12 pt-12 items-center">
       <div className=" w-full flex flex-col lg:flex-row max-lg:items-center justify-center gap-4">
@@ -70,14 +106,27 @@ const Footer = () => {
             ingredients and traditional recipes to deliver comforting flavors
             and satisfying daily tiffins.
           </p>
-          <div className="w-full h-10 border border-black rounded-lg overflow-hidden shadow-none flex text-white">
+          <form onSubmit={handleSubmit(onSubmit)} className="w-full h-10 border border-black rounded-lg overflow-hidden shadow-none flex text-white">
             <input
               type="text"
               placeholder="Enter email address..."
+              {...register('email', {
+                required: 'Email is required',
+                pattern: {
+                  value: /^\S+@\S+\.\S+$/,
+                  message: 'Invalid email address',
+                },
+              })}
               className="outline-none w-full sm:w-2/3 px-2 py-1 m-1 shadow-none text-black"
             />
-            <button className="bg-black text-sm sm:text-base flex justify-center items-center gap-1 max-h-10 rounded-r-lg h-full w-1/3 px-1">Subscription<ArrowUpRight/></button>
-          </div>
+            <button 
+             type="submit" 
+             disabled={isSubmitting}
+             className="bg-black text-sm sm:text-base flex justify-center items-center gap-1 max-h-10 rounded-r-lg h-full w-1/3 px-1">
+              {isSubmitting? <RefreshIcon className="animate-spin" /> : <>Subscription<ArrowUpRight/> </>}
+              </button>
+          </form>
+
         </div>
       </div>
 

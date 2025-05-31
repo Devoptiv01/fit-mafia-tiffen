@@ -55,10 +55,11 @@ export interface DeliveryAddressType {
   province: string;
   postalCode: string;
   phoneNumber: string;
-  enterDeliveryInstruction: string;
+  deliveryInstructions: string;
 }
 
 export interface UserType {
+  userName?: string;
   email: string;
   isSubscribed: boolean;
   isBanned: boolean;

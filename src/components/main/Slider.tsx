@@ -26,11 +26,11 @@ const Slider = () => {
                             <h2 className='font-bold text-xl'>
                             Veg Pulao + Raita
                             </h2>
-                            <h3 className='font-medium text-xl -mt-1'>$196.00</h3>
+                            {/* <h3 className='font-medium text-xl -mt-1'>$196.00</h3>
                             <button className='flex justify-center items-center text-white gap-1 w-full bg-fit-red py-2 mx-auto rounded-lg text-sm font-semibold hover:bg-black hover:text-fit-red duration-300 ease-in-out transition-all cursor-pointer '>
                                 Add to Cart
                                 <ShoppingBasket className='h-4 w-4' />
-                            </button>
+                            </button> */}
                         </div>
                     </div>
                 })}

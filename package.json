@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.1.0",
+    "@mui/material": "^7.1.0",
     "aos": "^2.3.4",
     "axios": "^1.8.4",
     "bcryptjs": "^3.0.2",
@@ -21,7 +25,7 @@
     "nodemailer": "^6.10.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.55.0",
+    "react-hook-form": "^7.56.4",
     "react-timer-hook": "^4.0.5",
     "react-toastify": "^11.0.5",
     "stripe": "^18.0.0",

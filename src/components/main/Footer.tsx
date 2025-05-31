@@ -29,7 +29,7 @@ import { toast } from "react-toastify";
   };
 
 const Footer = () => {
-  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormValues>();
+  const { register, handleSubmit, formState: { isSubmitting }, reset } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     console.log('Submitted Email:', data?.email);

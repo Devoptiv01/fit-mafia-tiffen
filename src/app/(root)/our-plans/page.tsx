@@ -174,9 +174,9 @@ const Page = () => {
     "18": { boxPrice: 215.82, perServing: 11.99, total: 225.81 },
   };
 
-  const price =
-    pricingData[selectedMeals as keyof typeof pricingData] || pricingData["10"];
+  const price = pricingData[selectedMeals as keyof typeof pricingData] || pricingData["10"];
 
+  console.log(price)
   // const steps = [
   //   { title: 'Food Preference', description: 'Desc for step one' },
   //   { title: 'Step Two', description: 'Desc for step two' },

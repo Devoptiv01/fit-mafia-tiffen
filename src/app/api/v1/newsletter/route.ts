@@ -10,19 +10,19 @@ export async function POST(req: NextRequest,) {
             await db()
             const body = await req.json();
             console.log('body----', body)
-            const { email } = body
+            const { phoneNumber } = body
 
-            if (!email) {
-                return NextResponse.json(new ApiResponse(400, "Email is required."), { status: 400 });
+            if (!phoneNumber) {
+                return NextResponse.json(new ApiResponse(400, "Phone Number is required."), { status: 400 });
             };
-            const existEmail = await Subscriber.findOne({email: email})
+            const existPhoneNumber = await Subscriber.findOne({phoneNumber: phoneNumber})
             
-            if (existEmail || (existEmail as [])?.length === 0 ) {
-                console.log('-=-=-=-==-=--==',existEmail)
+            if (existPhoneNumber || (existPhoneNumber as [])?.length === 0 ) {
+                console.log('-=-=-=-==-=--==',existPhoneNumber)
                 return NextResponse.json(new ApiResponse(400, "Email already subscribed."), { status: 400 }); 
             };
             const newSubscriber = await Subscriber.create({
-                email: email
+                phoneNumber: phoneNumber
             });
             
             if (!newSubscriber) {

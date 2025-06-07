@@ -1,5 +1,6 @@
 import GetBtn from "@/components/buttons/GetBtn";
 import MealCard from "@/components/main/MealCard";
+import WeekSelector from "@/components/main/WeekSlector";
 // import Image from 'next/image'
 import React from "react";
 
@@ -68,7 +69,7 @@ const addOnes = [
 const Page = () => {
   return (
     <div>
-      <div className="flex items-center justify-center w-full gap-2">
+      {/* <div className="flex items-center justify-center w-full gap-2">
         <button className="p-2 rounded-lg cursor-pointer w-fit hover:bg-fit-red hover:text-white">
           <h5 className="capitalize">apr</h5>
           <h5>19-25</h5>
@@ -83,7 +84,8 @@ const Page = () => {
           <h5 className="capitalize">apr</h5>
           <h5>19-25</h5>
         </button>
-      </div>
+      </div> */}
+      <WeekSelector/>
 
       <div className="w-full h-full pb-10 bg-[#F1F1EA] flex flex-col gap-4">
         <div className="flex flex-col w-full gap-4">
@@ -153,7 +155,7 @@ const Page = () => {
         </div>
 
         <div className="w-full h-full flex justify-center py-4 pt-5 sticky bottom-0 bg-[#F1F1EA]">
-          <GetBtn link="/our-plans" content="Get started" />
+          <GetBtn link="/our-plans" content="Order Now" className="" />
         </div>
 
         <h4 className="px-4 text-base text-center ">

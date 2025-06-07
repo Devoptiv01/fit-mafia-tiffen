@@ -22,9 +22,9 @@ import Image from "next/image";
 const MenuPreview = () => {
   const servicesList = [
     {
-      serviceName: "web app development",
+      serviceName: "This Week’s Menu",
       serviceDescription:
-        " Build impactful web, app, and desktop solutions that captivate users and fuel your growth with DevOptiv. Designed for performance, crafted to elevate your brand.",
+        " Explore our weekly lineup of chef-crafted, nutritionist-approved meals — thoughtfully made to power your day with flavor, freshness, and fuel. No guesswork, just clean eating that tastes like home.",
       slides: [
         {
         //   url: "/services/android-app-development",
@@ -70,9 +70,12 @@ const MenuPreview = () => {
             id={item.serviceName.replace(/\s+/g, "-")}
           >
             <div className="text-[40px] font-semibold capitalize px-5 md:px-10 flex flex-col gap-4">
-              <h2 data-aos="fade-up" data-aos-delay="100">
-                {/* {index + 1}. {item.serviceName} */}
-                This Week’s Menu
+              <h2 data-aos="fade-up" data-aos-delay="100" className="capitalize">
+                {/* {index + 1}. */}
+                 {item.serviceName}
+              </h2>
+              <h2 data-aos="fade-up" data-aos-delay="100" className="capitalize text-3xl">
+                Real Meals. Real Ingredients. Real Results.
               </h2>
               <p data-aos="fade-up" data-aos-delay="200" className="text-base md:text-2xl ">
                 {/* {item.serviceDescription} */}

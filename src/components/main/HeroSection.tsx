@@ -11,20 +11,17 @@ const HeroSection = () => {
       </div>
       <div className="w-fit flex flex-col gap-1 md:gap-">
         <h2 className="text-3xl md:text-[51px] max-lg:pb-2 text-fit-red font-bold">
-          Fuel Your Hustle.{" "}
+          Fuel Your Grind with Flavour!
         </h2>
-        <h2 className="text-3xl md:text-[51px] text-fit-red font-bold md:mt-3">
+        {/* <h2 className="text-3xl md:text-[51px] text-fit-red font-bold md:mt-3">
           Eat Clean with Fit Mafia.
-        </h2>
+        </h2> */}
         <h5 className="text-2xl md:text-[35px] text-black font-semibold mt-2">
-          Delivered Daily To Your Doorstep
+          Fit Mafia: Fresh Healthy Meals, Delivered Daily.
         </h5>
       </div>
       <p className="w-full sm:w-1/2 text-[16px]">
-        Indulge in the taste of home with our wholesome and hygienic tiffin
-        service. Every meal is prepared with love and packed with
-        nutrition—perfect for students, professionals, and families.
-        {/* <br/> Elevate your everyday meals with our curated menu that changes daily. From North Indian classics to light and healthy options, we’ve got something for everyone. */}
+        Wholesome meals that taste like home — packed with protein, veggies, fruits, and whole grains. Designed for students, professionals, and anyone who wants to stay fit without cooking.
       </p>
       <div className="w-fit max-w-1/2 flex flex-wrap gap-3 text-sm cursor-pionter">
         <Link href={'/weekly-menu'} className="w-fit bg-black h-10 px-4 flex gap-2 items-center rounded-lg text-white cursor-pionter">
@@ -40,8 +37,8 @@ const HeroSection = () => {
       <div className="w-fit flex gap-4">
         <div className="w-fit text-3xl font-bold">+145</div>
         <div className="w-fit text-base -space-y-2 flex flex-col justify-center text-fit-red">
-          <h4>Happy Customers Enjoying Fresh</h4>
-          <h4>Meals Every Day</h4>
+          <h4>Fresh. Nutritious. Delivered to your door</h4>
+          <h4> — every single day.</h4>
         </div>
       </div>
       {/* <Slider/> */}

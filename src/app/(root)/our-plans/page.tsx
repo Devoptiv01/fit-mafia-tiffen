@@ -4,10 +4,11 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Stepper from "@/components/main/Stepper";
-import { ChevronDownIcon } from "lucide-react";
+// import { ChevronDownIcon } from "lucide-react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
+import FaqAccordion from "@/components/main/FaqAccordion";
 
 type Inputs = {
   email: string;
@@ -32,73 +33,101 @@ type Inputs = {
   };
 };
 
+const menuData = [
+  {
+    title: "Chef's Choice",
+    description: "Widest variety of clean and chef created meals",
+    imageUrl: "/temp/Calorie-Smart.avif",
+  },
+  {
+    title: "Protein Plus",
+    description: "30 grams of protein or more per serving",
+    imageUrl: "/temp/Calorie-Smart.avif",
+  },
+  {
+    title: "Calorie Smart",
+    description: "Meals containing ~550 calories or less",
+    imageUrl: "/temp/Calorie-Smart.avif",
+  },
+  {
+    title: "GLP-1 Balance",
+    description: "Protein-forward, calorie-friendly meals",
+    imageUrl: "/temp/Calorie-Smart.avif",
+  },
+];
 
-  const menuData = [
-    {
-      title: "Chef's Choice",
-      description: "Widest variety of clean and chef created meals",
-      imageUrl: "/temp/Calorie-Smart.avif",
-    },
-    {
-      title: "Protein Plus",
-      description: "30 grams of protein or more per serving",
-      imageUrl: "/temp/Calorie-Smart.avif",
-    },
-    {
-      title: "Calorie Smart",
-      description: "Meals containing ~550 calories or less",
-      imageUrl: "/temp/Calorie-Smart.avif",
-    },
-    {
-      title: "GLP-1 Balance",
-      description: "Protein-forward, calorie-friendly meals",
-      imageUrl: "/temp/Calorie-Smart.avif",
-    },
-  ];
+const portion = [
+  {
+    label: "regular", img: '/icons/main/regular.png'
+  },
+  {
+    label: "large", img: '/icons/main/large.png'
+  },
+];
 
-  const portion = [
-     {
-      label: "regular",
-    },
-    {
-      label: "large",
-    },
-  ]
+const preferences = [
+  {
+    label: "Alpha",
+    price: 350,
+  },
+  {
+    label: "Avengers",
+    price: 320,
+  },
+  {
+    label: "Gladiator",
+    price: 320,
+  },
+  {
+    label: "Hustler",
+    price: 250,
+  },
+  {
+    label: "Spartans",
+    price: 375,
+  },
+  {
+    label: "Warrior",
+    price: 300,
+  },
+];
 
-  const preferences = [
-    {
-      label: "Alpha",
-      price: 350,
-    },
-    {
-      label: "Avengers",
-      price: 320,
-    },
-    {
-      label: "Gladiator",
-      price: 320,
-    },
-    {
-      label: "Hustler",
-      price: 250,
-    },
-    {
-      label: "Spartans",
-      price: 375,
-    },
-    {
-      label: "Warrior",
-      price: 300,
-    },
-  ];
+const goals = [
+  { title: 'mussle', img: '/icons/main/mussle.png'},
+  { title: 'fat', img: '/icons/main/fat.png'},
+  { title: 'active', img: '/icons/main/active.png'},
+  { title: 'health', img: '/icons/main/health.png'},
+];
 
+const faqData = [
+  {
+    question: "What are the benefits of Fit Mafia meals?",
+    answer:
+      "Our meals are healthy, chef-curated, and approved by nutritionists. Each box is designed to save you time, support your health goals, and keep you energized — perfect for busy professionals and fitness-conscious individuals.",
+  },
+  {
+    question: "How does delivery work?",
+    answer:
+      "Your meals are delivered fresh to your door daily. You’ll receive a delivery schedule after you sign up, and you can easily change the address from your account.",
+  },
+  {
+    question: "What if I want to skip a week or cancel?",
+    answer:
+      "No problem — you’re in control. You can pause, skip, or cancel your plan anytime through your dashboard. No long-term commitments.",
+  },
+  {
+    question: "Are your meals good for weight loss or muscle gain?",
+    answer:
+      "Absolutely. Our meals are portioned with the right macros to support fat loss, lean muscle building, or just clean eating. You’ll always know what you're eating — no guesswork.",
+  },
+];
 
 const Page = () => {
   // const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
-  const [currentFaq, setCurrentFaq] = useState(0);
-  const {data: session} = useSession()
-  const router = useRouter()
+  // const [currentFaq, setCurrentFaq] = useState(0);
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const {
     register,
@@ -111,10 +140,9 @@ const Page = () => {
       preference: "Veg",
       plan: "Alpha",
       duration: "10",
-      meals: '3',
-      portion: 'large',
-      goal: 'health',
-
+      meals: "3",
+      portion: "large",
+      goal: "health",
     },
   });
 
@@ -132,7 +160,7 @@ const Page = () => {
       toast.error("User email not found. Please log in again.");
       return;
     }
-    const requestData = { ...data, email: session?.user?.email as string}
+    const requestData = { ...data, email: session?.user?.email as string };
     console.log("Submitting subscription:", requestData);
     try {
       const res = await axios.post("/api/v1/subscribe-plan", requestData);
@@ -141,26 +169,27 @@ const Page = () => {
       if (res.status === 200) {
         toast.success("Subscription successful!");
         router.push("/");
-        return
+        return;
       }
-      if(res.status === 400 ) {
+      if (res.status === 400) {
         toast.warn(res.data.message);
-        return
+        return;
       }
     } catch (error: unknown) {
       console.log(error);
       if (axios.isAxiosError(error)) {
-        toast.error(error.response?.data?.message || "An unexpected error occurred.");
+        toast.error(
+          error.response?.data?.message || "An unexpected error occurred."
+        );
       } else {
         toast.error("An unexpected error occurred.");
       }
     }
   };
 
-  const handleFaq = (e: number) => {
-    setCurrentFaq((prev) => (prev === e ? 0 : e));
-  };
-
+  // const handleFaq = (e: number) => {
+  //   setCurrentFaq((prev) => (prev === e ? 0 : e));
+  // };
 
   const pricingData: Record<
     string,
@@ -174,9 +203,9 @@ const Page = () => {
     "18": { boxPrice: 215.82, perServing: 11.99, total: 225.81 },
   };
 
-  const price = pricingData[selectedMeals as keyof typeof pricingData] || pricingData["10"];
+  // const price =
+    // pricingData[selectedMeals as keyof typeof pricingData] || pricingData["10"];
 
-  console.log(price)
   // const steps = [
   //   { title: 'Food Preference', description: 'Desc for step one' },
   //   { title: 'Step Two', description: 'Desc for step two' },
@@ -210,15 +239,11 @@ const Page = () => {
             {currentStep === 1 && (
               <div className="flex flex-col gap-6 items-center p-6">
                 <h3 className="flex justify-center text-2xl font-bold text-center text-black font-Arial">
-                  Choose Food Preference
+                  Choose Your First Plan
                 </h3>
-                {/* <span className="text-[#656565] text-center">
-                Your preferences help us show you the most relevant recipes
-                first. You&apos;ll still have access to all recipes each week!
-              </span> */}
-
+                No commitments — just a promise to yourself.
                 {/* Updated select buttons */}
-                <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-4">
+                <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-3 justify-center">
                   {/* Veg */}
                   <div className="relative">
                     <input
@@ -302,7 +327,7 @@ const Page = () => {
                     />
                     <label
                       htmlFor="mix"
-                      className="w-full max-w-[184px] h-[104px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                      className="w-full max-w-[184px] h-[104px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-1 cursor-pointer transition-all 
         peer-checked:border-[#BF1C15] peer-checked:border-2 box-border"
                     >
                       <img
@@ -315,11 +340,34 @@ const Page = () => {
                       </span>
                     </label>
                   </div>
+                  {/* Trucker plan */}
+                  <div className="relative">
+                    <input
+                      type="radio"
+                      id="trucker"
+                      {...register("preference")}
+                      value="trucker"
+                      className="hidden peer"
+                    />
+                    <label
+                      htmlFor="trucker"
+                      className="w-full max-w-[184px] h-[104px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-1 cursor-pointer transition-all 
+        peer-checked:border-[#BF1C15] peer-checked:border-2 box-border"
+                    >
+                      <img
+                        src="/icons/main/truck.png"
+                        alt="trucker"
+                        className="w-10 h-10"
+                      />
+                      <span className="px-2 text-center text-black">
+                        Trucker Plan
+                      </span>
+                    </label>
+                  </div>
                 </div>
-
-                  {/* // meals */}
+                {/* // meals */}
                 <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
-                    {/* 2 meals */}
+                  {/* 2 meals */}
                   <div className="relative">
                     <input
                       type="radio"
@@ -330,10 +378,13 @@ const Page = () => {
                     />
                     <label
                       htmlFor="2meals"
-                      className="w-full h-[104px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                      className="w-full h-[104px] bg-white border border-gray-300 rounded-md flex items-center justify-center px-3 gap-1 cursor-pointer transition-all 
         peer-checked:border-[#BF1C15] peer-checked:border-2"
                     >
-                      <span className="px-2 text-center text-black">2 Meals</span>
+                      <img src="/icons/main/two-tiffin-box.png" alt="meals" className="h-10 w-10 mt-2" />
+                      <span className="px-2 text-center text-black">
+                        2 Meals
+                      </span>
                     </label>
                   </div>
                   {/* // 3 meals */}
@@ -347,14 +398,16 @@ const Page = () => {
                     />
                     <label
                       htmlFor="3meals"
-                      className="w-full h-[104px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                      className="w-full h-[104px] bg-white border border-gray-300 rounded-md flex items-center justify-center px-3 gap-1 cursor-pointer transition-all 
         peer-checked:border-[#BF1C15] peer-checked:border-2"
                     >
-                      <span className="px-2 text-center text-black">3 Meals</span>
+                      <img src="/icons/main/three-tiffin-box.png" alt="meals" className="h-10 w-10 " />
+                      <span className="px-2 text-center text-black">
+                        3 Meals
+                      </span>
                     </label>
                   </div>
                 </div>
-
                 <span className="text-center text-[#656565]">
                   A variety of balanced, chef-prepared meals with clean
                   ingredients to fit any lifestyle.
@@ -365,102 +418,102 @@ const Page = () => {
             {/* // step 2 */}
             {currentStep === 2 && (
               <div className="flex flex-col gap-3">
-
                 {/* // portion */}
-              <div className="flex flex-col gap-6 items-center p-6">
-                <h3 className="flex justify-center text-2xl font-bold text-center text-black font-Arial">
-                  Choose your Portion
-                </h3>
+                <div className="flex flex-col gap-6 items-center p-6">
+                  <h3 className="flex justify-center text-2xl font-bold text-center text-black font-Arial">
+                    Choose your Portion
+                  </h3>
 
-                {/* Updated select buttons */}
-                <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
-                  {portion.map((pref) => (
-                    <div key={pref.label} className="relative">
-                      <input
-                        type="radio"
-                        id={pref.label}
-                        {...register("portion")}
-                        value={pref.label}
-                        className="hidden peer cursor-pointer"
-                      />
-                      <label
-                        htmlFor={pref.label}
-                        className="w-full h-[100px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                  {/* Updated select buttons */}
+                  <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+                    {portion.map((pref) => (
+                      <div key={pref.label} className="relative">
+                        <input
+                          type="radio"
+                          id={pref.label}
+                          {...register("portion")}
+                          value={pref.label}
+                          className="hidden peer cursor-pointer"
+                        />
+                        <label
+                          htmlFor={pref.label}
+                          className="w-full h-[100px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
                   peer-checked:border-[#BF1C15] peer-checked:border-2"
-                      >
-                        <div className="">
-                          <h4 className="px- 2 text-center text-black font-medium tracking-wider text-2xl capitalize">
-                            {pref.label}
-                          </h4>
-                        </div>
-                      </label>
-                    </div>
-                  ))}
+                        >
+                          <div className="flex gap-1">
+                             <img src={pref.img} alt="icon" className="h-7 w-7" />
+                            <h4 className="px- 2 text-center text-black font-medium tracking-wider text-2xl capitalize">
+                              {pref.label}
+                            </h4>
+                          </div>
+                        </label>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
                 {/* // goal */}
-              <div className="flex flex-col gap-6 items-center p-6">
-                <h3 className="flex justify-center text-2xl font-bold text-center text-black font-Arial">
-                  Choose your Goal
-                </h3>
+                <div className="flex flex-col gap-6 items-center p-6">
+                  <h3 className="flex justify-center text-2xl font-bold text-center text-black font-Arial">
+                    Choose your Goal
+                  </h3>
 
-                {/* Updated select buttons */}
-                <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-4">
-                  {['mussle','fat','active','health'].map((goal, i) => (
-                    <div key={i} className="relative">
-                      <input
-                        type="radio"
-                        id={goal + i}
-                        {...register("goal")}
-                        value={goal}
-                        className="hidden peer cursor-pointer"
-                      />
-                      <label
-                        htmlFor={goal}
-                        className="w-full h-[100px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                  {/* Updated select buttons */}
+                  <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-4">
+                    {goals.map((goal, i) => (
+                      <div key={i} className="relative">
+                        <input
+                          type="radio"
+                          id={goal.title}
+                          {...register("goal")}
+                          value={goal.title}
+                          className="hidden peer cursor-pointer"
+                        />
+                        <label
+                          htmlFor={goal.title}
+                          className="w-full h-[100px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
                   peer-checked:border-[#BF1C15] peer-checked:border-2"
-                      >
-                        <div className="">
-                          <h4 className="px- 2 text-center text-black font-medium tracking-wider text-2xl capitalize">
-                            {goal}
-                          </h4>
-                        </div>
-                      </label>
-                    </div>
-                  ))}
+                        >
+                          <div className="flex gap-1">
+                            <img src={goal.img} alt="icon" className="h-7 w-7" />
+                            <h4 className="px- 2 text-center text-black font-medium tracking-wider text-2xl capitalize">
+                              {goal.title}
+                            </h4>
+                          </div>
+                        </label>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              
               </div>
             )}
 
             {/* Step 3*/}
             {currentStep === 3 && (
               <div className="flex flex-col gap-5">
-              {/* // preferences */}
-              <div className="flex flex-col gap-6 items-center p-6">
-                <h3 className="flex justify-center text-2xl font-bold text-center text-black font-Arial">
-                  Choose your preferences
-                </h3>
+                {/* // preferences */}
+                <div className="flex flex-col gap-6 items-center p-6">
+                  <h3 className="flex justify-center text-2xl font-bold text-center text-black font-Arial">
+                    Choose your preferences
+                  </h3>
 
-                {/* Updated select buttons */}
-                <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-3">
-                  {preferences.map((pref) => (
-                    <div key={pref.label} className="relative">
-                      <input
-                        type="radio"
-                        id={pref.label}
-                        {...register("plan")}
-                        value={pref.label}
-                        className="hidden peer cursor-pointer"
-                      />
-                      <label
-                        htmlFor={pref.label}
-                        className="w-full h-[124px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
+                  {/* Updated select buttons */}
+                  <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-3">
+                    {preferences.map((pref) => (
+                      <div key={pref.label} className="relative">
+                        <input
+                          type="radio"
+                          id={pref.label}
+                          {...register("plan")}
+                          value={pref.label}
+                          className="hidden peer cursor-pointer"
+                        />
+                        <label
+                          htmlFor={pref.label}
+                          className="w-full h-[124px] bg-white border border-gray-300 rounded-md flex flex-col items-center justify-center px-3 gap-3 cursor-pointer transition-all 
                   peer-checked:border-[#BF1C15] peer-checked:border-2"
-                      >
-                        {/* <div
+                        >
+                          {/* <div
                           className="p-[6px] rounded-full"
                           style={{ backgroundColor: pref.bgColor }}
                         >
@@ -470,26 +523,26 @@ const Page = () => {
                             className="w-10 h-10"
                           />
                         </div> */}
-                        <div className="">
-                          <h4 className="px- 2 text-center text-black font-medium tracking-wider text-2xl">
-                            {pref.label}
-                          </h4>
-                          <h4 className="px-2 text-center text-black font-semibold">
-                            ${pref.price || 350}
-                          </h4>
-                        </div>
-                      </label>
-                    </div>
-                  ))}
+                          <div className="">
+                            <h4 className="px- 2 text-center text-black font-medium tracking-wider text-2xl">
+                              {pref.label}
+                            </h4>
+                            <h4 className="px-2 text-center text-black font-semibold">
+                              ${pref.price || 350}
+                            </h4>
+                          </div>
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+
+                  <span className="text-center text-[#656565]">
+                    A variety of balanced, chef-prepared meals with clean
+                    ingredients to fit any lifestyle.
+                  </span>
                 </div>
 
-                <span className="text-center text-[#656565]">
-                  A variety of balanced, chef-prepared meals with clean
-                  ingredients to fit any lifestyle.
-                </span>
-              </div>
-              
-              {/* <div className="flex w-full flex-col gap-6 items-center p-6">
+                {/* <div className="flex w-full flex-col gap-6 items-center p-6">
                 
                 <h3 className="flex justify-center text-2xl font-bold text-center text-black font-Arial">
                   Select meals per week
@@ -655,175 +708,197 @@ const Page = () => {
             )}
 
             {/* // step 4 */}
-            {currentStep === 4 && ( <div  className="w-full max-w-[682px] p-6 mb-6 h-auto bg-white rounded-lg shadow-md lg:w-2/3 lg:mb-0"
-        >
-          <h2 className="mb-4 text-2xl font-bold text-black">
-            Delivery Address
-          </h2>
-          <div className="flex flex-col gap-6">
-            {/* name section */}
-            <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
-              <div>
-                <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
-                  id="first-name"
-                  type="text"
-                  placeholder=" First name *"
-                  {...register("address.firstName", {
-                    required: "First Name is required",
-                  })}
-                />
-                {errors.address?.firstName && (
-                  <p className="text-red-500 text-sm mb-2">
-                    {errors.address.firstName.message}
-                  </p>
-                )}
-              </div>
-              <div>
-                <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
-                  id="last-name"
-                  type="text"
-                  placeholder="Last name *"
-                  {...register("address.lastName", {
-                    required: "Last Name is required",
-                  })}
-                />
-                {errors.address?.lastName && (
-                  <p className="text-red-500 text-sm mb-2">
-                    {errors.address.lastName.message}
-                  </p>
-                )}
-              </div>
-            </div>
-            {/* address section 1 */}
-            <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
-              <div>
-                <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
-                  id="street"
-                  type="text"
-                  placeholder=" Street *"
-                  {...register("address.street", {
-                    required: "Street is required",
-                  })}
-                />
-                {errors.address?.street && (
-                  <p className="text-red-500 text-sm mb-2">
-                    {errors.address.street.message}
-                  </p>
-                )}
-              </div>
-              <div>
-                <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
-                  id="address-line-2"
-                  type="text"
-                  placeholder=" Address line 2"
-                  {...register("address.addressLine2")}
-                />
-              </div>
-            </div>
-            {/* address section 2 */}
-            <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-3">
-              <div>
-                <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
-                  id="city"
-                  type="text"
-                  placeholder=" City *"
-                  {...register("address.city", {
-                    required: "City is required",
-                  })}
-                />
-                {errors.address?.city && (
-                  <p className="text-red-500 text-sm mb-2">
-                    {errors.address.city.message}
-                  </p>
-                )}
-              </div>
-              <div>
-                <select
-                  className="block outline-none w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
-                  id="province"
-                  {...register("address.province", {
-                    required: "Province is required",
-                  })}
-                >
-                  <option value="province">Province *</option>
-                </select>
-                {errors.address?.province && (
-                  <p className="text-red-500 text-sm mb-2">
-                    {errors.address.province.message}
-                  </p>
-                )}
-              </div>
-              <div>
-                <input
-                  className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
-                  id="postal-code"
-                  type="text"
-                  placeholder="Postal Code *"
-                  {...register("address.postalCode", {
-                    required: "Postal code is required",
-                  })}
-                />
-                {errors.address?.postalCode && (
-                  <p className="text-red-500 text-sm mb-2">
-                    {errors.address.postalCode.message}
-                  </p>
-                )}
-              </div>
-            </div>
-            {/* phone number */}
-            <div className="mb-4">
-              <input
-                className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black "
-                id="phone-number"
-                type="text"
-                placeholder="Phone Number *"
-                {...register("address.phoneNumber", {
-                  required: "Phone Number is required",
-                })}
-              />
-              {errors.address?.phoneNumber && (
-                <p className="text-red-500 text-sm mb-2">
-                  {errors.address.phoneNumber.message}
-                </p>
-              )}
-            </div>
-            {/* delivery instructions */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Enter Delivery Instruction
-              </label>
-              <select
-                className="w-full max-w-screen outline-none p-3 mt-1  border border-gray-300 rounded-md shadow-sm text-black"
-                id="province"
-                {...register("address.deliveryInstructions", {
-                  required: "Delivery Instructions are required",
-                })}
-              >
-                <div className="w-32">
-                <option className="w-20" value="Leave at front door">Leave at front door</option>
-                <option className="w-20" value="Leave at back door">Leave at back door</option>
-                <option className="w-20" value="Others">Others</option>
-                </div>
-              </select>
-              {errors.address?.deliveryInstructions && (
-                <p className="text-red-500 text-sm mb-2">
-                  {errors.address.deliveryInstructions.message}
-                </p>
-              )}
-            </div>
-            {/* <button
+            {currentStep === 4 && (
+              <div className="w-full max-w-[682px] p-6 mb-6 h-auto bg-white rounded-lg shadow-md lg:w-2/3 lg:mb-0">
+                <h2 className="mb-4 text-2xl font-bold text-black">
+                  Delivery Details
+                </h2>
+                <div className="flex flex-col gap-6">
+                  {/* name section */}
+                  <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
+                    <div>
+                      <input
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                        id="first-name"
+                        type="text"
+                        placeholder=" First name *"
+                        {...register("address.firstName", {
+                          required: "First Name is required",
+                        })}
+                      />
+                      {errors.address?.firstName && (
+                        <p className="text-red-500 text-sm mb-2">
+                          {errors.address.firstName.message}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <input
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                        id="last-name"
+                        type="text"
+                        placeholder="Last name *"
+                        {...register("address.lastName", {
+                          required: "Last Name is required",
+                        })}
+                      />
+                      {errors.address?.lastName && (
+                        <p className="text-red-500 text-sm mb-2">
+                          {errors.address.lastName.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  {/* address section 1 */}
+                  <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
+                    <div>
+                      <input
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                        id="street"
+                        type="text"
+                        placeholder=" Street *"
+                        {...register("address.street", {
+                          required: "Street is required",
+                        })}
+                      />
+                      {errors.address?.street && (
+                        <p className="text-red-500 text-sm mb-2">
+                          {errors.address.street.message}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <input
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                        id="address-line-2"
+                        type="text"
+                        placeholder=" Address line 2"
+                        {...register("address.addressLine2")}
+                      />
+                    </div>
+                  </div>
+                  {/* address section 2 */}
+                  <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-3">
+                    <div>
+                      <input
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                        id="city"
+                        type="text"
+                        placeholder=" City *"
+                        {...register("address.city", {
+                          required: "City is required",
+                        })}
+                      />
+                      {errors.address?.city && (
+                        <p className="text-red-500 text-sm mb-2">
+                          {errors.address.city.message}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <select
+                        className="block outline-none w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                        id="province"
+                        {...register("address.province", {
+                          required: "Province is required",
+                        })}
+                      >
+                        <option value="province">Province *</option>
+                      </select>
+                      {errors.address?.province && (
+                        <p className="text-red-500 text-sm mb-2">
+                          {errors.address.province.message}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <input
+                        className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black"
+                        id="postal-code"
+                        type="text"
+                        placeholder="Postal Code *"
+                        {...register("address.postalCode", {
+                          required: "Postal code is required",
+                        })}
+                      />
+                      {errors.address?.postalCode && (
+                        <p className="text-red-500 text-sm mb-2">
+                          {errors.address.postalCode.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  {/* phone number */}
+                  <div className="mb-4">
+                    <input
+                      className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black "
+                      id="phone-number"
+                      type="text"
+                      placeholder="Phone Number *"
+                      {...register("address.phoneNumber", {
+                        required: "Phone Number is required",
+                      })}
+                    />
+                    {errors.address?.phoneNumber && (
+                      <p className="text-red-500 text-sm mb-2">
+                        {errors.address.phoneNumber.message}
+                      </p>
+                    )}
+                  </div>
+                  {/* delivery instructions */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Enter Delivery Instruction
+                    </label>
+                     <input
+                      className="block w-full p-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black "
+                      id="phone-number"
+                      type="text"
+                      placeholder="Delivery Instructions*"
+                      {...register("address.deliveryInstructions", {
+                        required: "Delivery Instructions are required",
+                      })}
+                    />
+                    {errors.address?.deliveryInstructions && (
+                      <p className="text-red-500 text-sm mb-2">
+                        {errors.address.deliveryInstructions.message}
+                      </p>
+                    )}
+
+                    {/* <select
+                      className="w-full max-w-screen outline-none p-3 mt-1  border border-gray-300 rounded-md shadow-sm text-black"
+                      id="province"
+                      {...register("address.deliveryInstructions", {
+                        required: "Delivery Instructions are required",
+                      })}
+                    >
+                      <div className="w-32">
+                        <option className="w-20" value="Leave at front door">
+                          Leave at front door
+                        </option>
+                        <option className="w-20" value="Leave at back door">
+                          Leave at back door
+                        </option>
+                        <option className="w-20" value="Others">
+                          Others
+                        </option>
+                      </div>
+                    </select> */}
+                    {errors.address?.deliveryInstructions && (
+                      <p className="text-red-500 text-sm mb-2">
+                        {errors.address.deliveryInstructions.message}
+                      </p>
+                    )}
+                  </div>
+                  {/* <button
               className="w-full px-4 py-2 font-bold text-white rounded-md bg-fit-red/50"
               type="submit"
             >
               Next
             </button> */}
-          </div>
-        </div>)}
+                </div>
+              </div>
+            )}
           </div>
 
           {currentStep >= 4 && (
@@ -873,7 +948,7 @@ const Page = () => {
         <Carousel items={menuData} />
 
         {/* promo code */}
-        <form className="flex  flex-wrap gap-3 max-w-[582px] w-full bg-white py-6 px-10 items-center justify-center rounded-md">
+        {/* <form className="flex  flex-wrap gap-3 max-w-[582px] w-full bg-white py-6 px-10 items-center justify-center rounded-md">
           <input
             type="text"
             className="w-full max-w-[337px] outline-none rounded-md border border-gray-300 p-3"
@@ -886,107 +961,15 @@ const Page = () => {
           >
             Apply
           </button>
-        </form>
+        </form> */}
       </div>
 
       {/* common questions */}
-      <div className="flex flex-col items-center w-full gap-6 p-5 sm:p-12 bg-white">
-        <h2 className="flex justify-center text-4xl font-bold text-center text-black font-Arial">
-          Common Questions
-        </h2>
-        <div className="flex flex-col max-w-[1144px] gap-6 w-full font-medium text-black text-base tracking-wide">
-          <button
-            onClick={() => handleFaq(1)}
-            className={`flex justify-between w-full rounded-lg duration-300 hover:text-white hover:bg-red-700/90 group p-3     ${
-              currentFaq === 1 && " bg-red-700/90 text-white"
-            }`}
-          >
-            <span className="group-hover:text-white">
-              What are the benefits of Fit Mafia?
-            </span>
-            {/* <img
-              src="https://cdn-icons-png.flaticon.com/128/14035/14035521.png"
-              alt="downArrow"
-              className="w-6 h-6"
-            /> */}
-            <ChevronDownIcon />
-          </button>
-          {currentFaq === 1 && (
-            <div className="w-full h-fit p-3 border-red-700 border rounded-lg text-sm">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-              facere odit natus doloribus. Nostrum qui optio architecto? Ipsa
-              est natus molestiae pariatur reprehenderit soluta porro vel. Optio
-              consequuntur enim ipsum, maiores repudiandae commodi. Neque fugit
-              molestiae modi aspernatur similique?
-            </div>
-          )}
-
-          <button
-            onClick={() => handleFaq(2)}
-            className={`flex justify-between w-full rounded-lg duration-300 hover:text-white hover:bg-red-700/90 group p-3    ${
-              currentFaq === 2 && " bg-red-700/90 text-white"
-            }`}
-          >
-            <span className="group-hover:text-white">
-              How long do meals last?
-            </span>
-            <ChevronDownIcon />
-          </button>
-          {currentFaq === 2 && (
-            <div className="w-full h-fit p-3 border-red-700 border rounded-lg text-sm">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-              facere odit natus doloribus. Nostrum qui optio architecto? Ipsa
-              est natus molestiae pariatur reprehenderit soluta porro vel. Optio
-              consequuntur enim ipsum, maiores repudiandae commodi. Neque fugit
-              molestiae modi aspernatur similique?
-            </div>
-          )}
-
-          <button
-            onClick={() => handleFaq(3)}
-            className={`flex justify-between w-full rounded-lg duration-300 hover:text-white hover:bg-red-700/90 group p-3    ${
-              currentFaq === 3 && " bg-red-700/90 text-white"
-            }`}
-          >
-            <span className="group-hover:text-white">
-              Which delivery carriers do you use?
-            </span>
-            <ChevronDownIcon />
-          </button>
-          {currentFaq === 3 && (
-            <div className="w-full h-fit p-3 border-red-700 border rounded-lg text-sm">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-              facere odit natus doloribus. Nostrum qui optio architecto? Ipsa
-              est natus molestiae pariatur reprehenderit soluta porro vel. Optio
-              consequuntur enim ipsum, maiores repudiandae commodi. Neque fugit
-              molestiae modi aspernatur similique?
-            </div>
-          )}
-
-          <button
-            onClick={() => handleFaq(4)}
-            className={`flex justify-between w-full rounded-lg duration-300 hover:text-white hover:bg-red-700/90 group p-3    ${
-              currentFaq === 4 && " bg-red-700/90 text-white"
-            }`}
-          >
-            <span className="group-hover:text-white ">
-              Do you offer ketogenic meals?
-            </span>
-            <ChevronDownIcon />
-          </button>
-          {currentFaq === 4 && (
-            <div className="w-full h-fit p-3 border-red-700 border rounded-lg text-sm">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-              facere odit natus doloribus. Nostrum qui optio architecto? Ipsa
-              est natus molestiae pariatur reprehenderit soluta porro vel. Optio
-              consequuntur enim ipsum, maiores repudiandae commodi. Neque fugit
-              molestiae modi aspernatur similique?
-            </div>
-          )}
-        </div>
-      </div>
+      <FaqAccordion faqs={faqData}  />
     </div>
   );
 };
 
 export default Page;
+
+

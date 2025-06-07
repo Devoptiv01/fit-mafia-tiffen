@@ -7,11 +7,10 @@ const ProcessSection = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900  sm:text-4xl xl:text-5xl">
-              How does our Tiffin Service work?
+              How Fit Mafia Works
             </h2>
             <p className="max-w-md mx-auto mt-5 text-base font-normal text-gray-600 ">
-              We make healthy home-style meals simple and stress-free—delivered
-              fresh to your doorstep in just a few clicks.
+              Healthy meals made effortless. No prep. No stress. Just fresh, flavorful food delivered daily.
             </p>
           </div>
 
@@ -35,8 +34,7 @@ const ProcessSection = () => {
                   Choose Your Plan
                 </h3>
                 <p className="mt-4 text-xl font-medium text-gray-900 ">
-                  Pick a weekly or monthly meal plan based on your appetite and
-                  preferences. Vegetarian, non-vegetarian.
+                  Whether you&apos;re vegetarian, non-vegetarian, or somewhere in between — pick a weekly or monthly plan that fits your lifestyle and appetite.
                 </p>
               </div>
             </div>
@@ -91,8 +89,7 @@ const ProcessSection = () => {
                     Fresh Meals Cooked Daily
                   </h3>
                   <p className="mt-4 text-xl font-medium text-gray-900 ">
-                    Our chefs prepare your meals fresh every day using quality
-                    ingredients, packed with flavor and nutrition.
+                    Every dish is crafted by our chefs using premium ingredients, whole grains, fresh veggies, lean proteins, and good fats — all cooked daily with zero shortcuts
                   </p>
                 </div>
               </div>
@@ -140,8 +137,7 @@ const ProcessSection = () => {
                     Delivered to Your Door
                   </h3>
                   <p className="mt-4 text-xl font-medium text-gray-900 ">
-                    Get your tiffins delivered hot and on time—at home, the
-                    office, or wherever you are. Just heat and eat!
+                    We bring your meals straight to your home, office, or wherever you are. Fresh, hot, and ready to fuel your day — just heat (if needed) and enjoy.
                   </p>
                 </div>
               </div>

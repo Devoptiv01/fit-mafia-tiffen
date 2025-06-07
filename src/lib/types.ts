@@ -55,8 +55,7 @@ export interface DeliveryAddressType {
   province: string;
   postalCode: string;
   phoneNumber: string;
-  deliveryInstructions?: string;
-  enterDeliveryInstruction?: string;
+  enterDeliveryInstruction: string;
 }
 
 export interface UserType {

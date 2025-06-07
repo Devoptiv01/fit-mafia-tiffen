@@ -114,7 +114,7 @@ export default function AccountPage() {
                 <p>{user?.deliveryAddress?.street}</p>
                 <p>{user?.deliveryAddress?.city}, {user.deliveryAddress.province} {user.deliveryAddress.postalCode}</p>
                 <p>Phone: {user.deliveryAddress.phoneNumber}</p>
-                <p>Instructions: {user?.deliveryAddress?.deliveryInstructions || "None"}</p>
+                <p>Instructions: {user?.deliveryAddress?.enterDeliveryInstruction || "None"}</p>
             </>
             ) : (
             <p className="text-sm text-gray-500">No delivery address saved.</p>

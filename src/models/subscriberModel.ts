@@ -2,7 +2,7 @@ import { model, models, Schema } from "mongoose";
 
 
 const SubscriberSchema = new Schema({
-    email: String
+    phoneNumber: String
 },
     {
         timestamps: true

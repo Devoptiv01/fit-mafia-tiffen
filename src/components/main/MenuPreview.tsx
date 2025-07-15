@@ -159,7 +159,7 @@ const MenuPreview = () => {
                         style={{objectFit: 'cover'}}
                       />
                     </div>
-                      <p className="text-xl md:text-3xl text-center font-semibold w-fit max-w-[320px] mx-auto">{slide.title}</p>
+                      {/* <p className="text-xl md:text-3xl text-center font-semibold w-fit max-w-[320px] mx-auto">{slide.title}</p> */}
                     </div>
                   {/* </Link> */}
                 </SwiperSlide>

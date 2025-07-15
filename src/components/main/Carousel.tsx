@@ -85,12 +85,12 @@ const Carousel = ({ items }: CarouselProps) => {
               className={`relative w-[262px] h-[325px] rounded-md bg-cover bg-center flex items-end justify-start p-4 shrink-0`}
             >
               <div className="z-10 flex flex-col text-white">
-                <h2 className="text-3xl md:text-4xl font-bold font-Arial">{item.title}</h2>
+                {/* <h2 className="text-3xl md:text-4xl font-bold font-Arial">{item.title}</h2>
                 <span className="text-base md:text-xl font-semibold md:font-bold font-Arial">
                   {item.description}
-                </span>
+                </span> */}
               </div>
-              <div className="absolute bottom-0 left-0 right-0 h-full bg-gradient-to-t from-black to-transparent"></div>
+              {/* <div className="absolute bottom-0 left-0 right-0 h-full bg-gradient-to-t from-black to-transparent"></div> */}
             </div>
           );
         })}

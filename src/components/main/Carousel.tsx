@@ -62,11 +62,11 @@ const Carousel = ({ items }: CarouselProps) => {
 
   
   return (
-    <div className="relative flex w-full max-w-[1092px] items-center mx-6 gap-3 justify-center">
+    <div className="relative flex w-full max-w-[1600px] items-center mx-auto gap-3 justify-center">
       {/* Left Button */}
       <button
         onClick={() => scroll("left")}
-        className="absolute top-[30%] bg-white/10 left-0 z-50 flex items-center justify-center w-10 h-10 text-3xl text-fit-red border border-fit-red/50 rounded-full "
+        className="absolute top-[30%] bg-white/50 left-0 z-50 flex items-center justify-center w-10 h-10 text-3xl text-fit-red border border-fit-red/50 rounded-full "
       >
         <ChevronLeft/>
       </button>
@@ -74,7 +74,7 @@ const Carousel = ({ items }: CarouselProps) => {
       {/* Scrollable container */}
       <div
         ref={carouselRef}
-        className="flex overflow-x-auto scrollbar-hide scroll-smooth max-w-[980px] w-auto gap-6"
+        className="flex overflow-x-auto scrollbar-hide scroll-smooth max-w-[1440px] w-auto gap-6 mx-2 md:mx-10"
       >
         {items.map((item, index) => {
 
@@ -99,7 +99,7 @@ const Carousel = ({ items }: CarouselProps) => {
       {/* Right Button */}
       <button
         onClick={() => scroll("right")}
-        className="absolute top-[30%] bg-white/10 right-0 z-50 flex items-center justify-center w-10 h-10 text-3xl text-fit-red border border-fit-red/50 rounded-full"
+        className="absolute top-[30%] bg-white/50 right-0 z-50 flex items-center justify-center w-10 h-10 text-3xl text-fit-red border border-fit-red/50 rounded-full"
       >
         <ChevronRight/>
       </button>

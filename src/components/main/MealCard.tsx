@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 
 const MealCard = ({image, title, desc, veg = false, calSmart = false, tags, cover = true}: {image:string, title: string, desc: string, veg?: boolean, calSmart?: boolean, tags?:string[], cover?: boolean} ) => {
-    console.log(tags)
+    console.log(tags, title, desc)
     return (
         <>
             <div className="w-[364px] h-full bg-white rounded-lg shadow-md flex flex-col justify-center items-center gap-2">

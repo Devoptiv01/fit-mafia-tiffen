@@ -65,9 +65,9 @@ export default function Testimonials() {
       <section className="bg-slate-100 px-4 py-5 md:py-8 flex items-center max-w-[1600px] mx-auto">
         <div className="w-1/3  hidden sm:block max-h-[280px]">
           <img
-            src="/temp/Calorie-Smart.avif"
+            src="/plan-images/spartans/6.jpg"
             alt="image"
-            className="my-auto max-h-[280px] mx-auto "
+            className="my-auto max-h-[280px] mx-auto rounded-xl "
           />
         </div>
         <div className="sm:w-2/3 max-w-full sm:max-w-screen-xl mx-auto">

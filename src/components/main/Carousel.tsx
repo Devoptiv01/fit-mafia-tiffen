@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { CarouselProps } from "@/lib/types";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -51,6 +51,15 @@ const Carousel = ({ items }: CarouselProps) => {
       }
     }
   };
+
+  useEffect(() => {
+  const interval = setInterval(() => {
+    scroll("right");
+  }, 4000); // Scroll every 4 seconds
+
+  return () => clearInterval(interval); // Clean up on unmount
+}, []);
+
   
   return (
     <div className="relative flex w-full max-w-[1092px] items-center mx-6 gap-3 justify-center">
@@ -73,7 +82,7 @@ const Carousel = ({ items }: CarouselProps) => {
             <div
               key={index}
               style={{ backgroundImage: `url(${item.imageUrl})` }}
-              className={`relative w-[262px] h-[315px] rounded-md bg-cover bg-center flex items-end justify-start p-4 shrink-0`}
+              className={`relative w-[262px] h-[325px] rounded-md bg-cover bg-center flex items-end justify-start p-4 shrink-0`}
             >
               <div className="z-10 flex flex-col text-white">
                 <h2 className="text-3xl md:text-4xl font-bold font-Arial">{item.title}</h2>

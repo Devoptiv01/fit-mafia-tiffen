@@ -37,22 +37,27 @@ const menuData = [
   {
     title: "Chef's Choice",
     description: "Widest variety of clean and chef created meals",
-    imageUrl: "/temp/Calorie-Smart.avif",
+    imageUrl: "/plan-images/avengers/1.jpg",
   },
   {
     title: "Protein Plus",
     description: "30 grams of protein or more per serving",
-    imageUrl: "/temp/Calorie-Smart.avif",
+    imageUrl: "/plan-images/avengers/2.jpg",
   },
   {
     title: "Calorie Smart",
     description: "Meals containing ~550 calories or less",
-    imageUrl: "/temp/Calorie-Smart.avif",
+    imageUrl: "/plan-images/avengers/3.jpg",
   },
   {
     title: "GLP-1 Balance",
     description: "Protein-forward, calorie-friendly meals",
-    imageUrl: "/temp/Calorie-Smart.avif",
+    imageUrl: "/plan-images/avengers/4.jpg",
+  },
+  {
+    title: "GLP-1 Balance",
+    description: "Protein-forward, calorie-friendly meals",
+    imageUrl: "/plan-images/avengers/5.jpg",
   },
 ];
 

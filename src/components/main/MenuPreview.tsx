@@ -28,33 +28,45 @@ const MenuPreview = () => {
       slides: [
         {
         //   url: "/services/android-app-development",
-          image: "/images/17.png",
+          image: "/plan-images/alpha/1.jpg",
           title: "PB Sandwich",
         },
         {
-          image: "",
+          image: "/plan-images/alpha/2.jpg",
           title: "Chickpea Salad",
         },
         {
-          image: "",
+          image: "/plan-images/alpha/3.jpg",
           title: "Oats/Sweet Potato",
         },
         {
-          image: "",
+          image: "/plan-images/alpha/4.jpg",
           title: "Cheese Salad",
         },
         {
-          image: "",
+          image: "/plan-images/alpha/5.jpg",
           title: "Fruits Salad",
         },
         {
-          image: "",
+          image: "/plan-images/avengers/1.jpg",
           title: "PB Sandwich, Chicken",
         },
-        // {
-        //   image: "",
-        //   title: "Sandwich",
-        // },
+        {
+          image: "/plan-images/avengers/2.jpg",
+          title: "Sandwich",
+        },
+        {
+          image: "/plan-images/avengers/3.jpg",
+          title: "Sandwich",
+        },
+        {
+          image: "/plan-images/avengers/4.jpg",
+          title: "Sandwich",
+        },
+        {
+          image: "/plan-images/avengers/5.jpg",
+          title: "Sandwich",
+        },
         
         
       ],
@@ -138,8 +150,9 @@ const MenuPreview = () => {
                     <div className=" h-full w-full flex items-center justify-center lg:max-w-[320px] mx-auto flex-col gap-2">
                     <div className="relative h-[320px] w-full max-w-[320px] rounded-lg overflow-hidden">
                       <Image
-                        src={ "/images/17.png"}
-                        // src={ slide.image}
+                        // src={ "/images/17.png"}
+                        // src={ "/plan-images/alpha/1.jpg"}
+                        src={ slide.image}
                         alt={slide.title}
                         className=""
                         fill

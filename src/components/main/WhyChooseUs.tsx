@@ -11,7 +11,7 @@ const WhyChooseUs = () => {
             <div className="md:w-1/3  max-md:pt-5 w-full flex justify-center items-center">
               <div className="relative rounded-lg overflow-hidden h-[200px] sm:h-[250px] md:h- [300px] w-full my-auto">
                 <Image
-                  src={'https://img.freepik.com/free-photo/stewed-white-beans-sliced-pumpkin-tomato-sauce_2829-19775.jpg?t=st=1745599617~exp=1745603217~hmac=f3b717b957bbe1edbbf2a24df6737ea630247cdbcb9762f4eb3ed7730f29696e&w=1380'}
+                  src={"/plan-images/single/2.jpg"}
                   alt="image"
                 //   className="img1 w-[460px] object-contain"
                   data-aos="zoom-in"

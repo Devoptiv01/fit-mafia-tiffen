@@ -6,32 +6,32 @@ import React from "react";
 
 const meals = [
   {
-    image: "/images/indian-thali.avif",
+    image: "/plan-images/avengers/1.jpg",
     title: "🍛 Indian Thali",
     desc: "with Dal, Rice, Roti & Mixed Veggies",
   },
   {
-    image: "/images/chicken-skewers.avif",
+    image: "/plan-images/avengers/2.jpg",
     title: "🍗 Chicken Skewers",
     desc: "with Mint Chutney & Salad",
   },
   {
-    image: "/images/rajma-rice.avif",
+    image: "/plan-images/avengers/3.jpg",
     title: "🍲 Rajma Chawal",
     desc: "Kidney Beans Curry with Steamed Rice",
   },
   {
-    image: "/images/paneer-masala.avif",
+    image: "/plan-images/avengers/4.jpg",
     title: "🧀 Paneer Butter Masala",
     desc: "with Jeera Rice & Naan",
   },
   {
-    image: "/images/biryani.avif",
+    image: "/plan-images/avengers/5.jpg",
     title: "🥘Chicken Biryani",
     desc: "Served with Raita",
   },
   {
-    image: "/images/aloo-paratha.avif",
+    image: "/plan-images/alpha/1.jpg",
     title: "🌯 Aloo Paratha",
     desc: "with Pickle & Curd",
   },
@@ -39,32 +39,82 @@ const meals = [
 
 const addOnes = [
   {
-    image: "/images/mango-lassi.avif",
-    title: "🥭 Mango Lassi",
-    desc: "A refreshing yogurt-based drink",
+    image: "/plan-images/single/1.jpg",
+    title: "Item 1",
+    desc: "Description for item 1",
   },
   {
-    image: "/images/cup-chai.avif",
-    title: "🍵 Masala Chai",
-    desc: "Traditional spiced Indian tea",
+    image: "/plan-images/single/2.jpg",
+    title: "Item 2",
+    desc: "Description for item 2",
   },
   {
-    image: "/images/samosa.avif",
-    title: "🥟 Samosa",
-    desc: "Crispy pastry filled with spiced potatoes",
+    image: "/plan-images/single/3.jpg",
+    title: "Item 3",
+    desc: "Description for item 3",
   },
   {
-    image: "/images/gulab-jamun.avif",
-    title: "🍬 Gulab Jamun",
-    desc: "Soft milk-solid sweet soaked in rose syrup",
+    image: "/plan-images/single/4.jpg",
+    title: "Item 4",
+    desc: "Description for item 4",
   },
   {
-    image: "/images/coconut-barfi.avif",
-    title: "🥥 Coconut Barfi",
-    desc: "A sweet treat made with coconut & milk",
+    image: "/plan-images/single/5.jpg",
+    title: "Item 5",
+    desc: "Description for item 5",
   },
-  
+  {
+    image: "/plan-images/single/6.jpg",
+    title: "Item 6",
+    desc: "Description for item 6",
+  },
+  {
+    image: "/plan-images/single/7.jpg",
+    title: "Item 7",
+    desc: "Description for item 7",
+  },
+  {
+    image: "/plan-images/single/8.jpg",
+    title: "Item 8",
+    desc: "Description for item 8",
+  },
+  {
+    image: "/plan-images/single/9.jpg",
+    title: "Item 9",
+    desc: "Description for item 9",
+  },
+  {
+    image: "/plan-images/single/10.jpg",
+    title: "Item 10",
+    desc: "Description for item 10",
+  },
+  {
+    image: "/plan-images/single/11.jpg",
+    title: "Item 11",
+    desc: "Description for item 11",
+  },
+  {
+    image: "/plan-images/single/12.jpg",
+    title: "Item 12",
+    desc: "Description for item 12",
+  },
+  {
+    image: "/plan-images/single/13.jpg",
+    title: "Item 13",
+    desc: "Description for item 13",
+  },
+  {
+    image: "/plan-images/single/14.jpg",
+    title: "Item 14",
+    desc: "Description for item 14",
+  },
+  {
+    image: "/plan-images/single/15.jpg",
+    title: "Item 15",
+    desc: "Description for item 15",
+  },
 ];
+
 
 const Page = () => {
   return (
@@ -112,6 +162,7 @@ const Page = () => {
               {meals.map((meal, i) => (
                 <MealCard
                   key={i}
+                  cover={false}
                   image={meal.image}
                   title={meal.title}
                   desc={meal.desc}
@@ -141,6 +192,7 @@ const Page = () => {
               {addOnes.map((item, i) => (
                 <MealCard
                   key={i}
+                  cover={true}
                   image={item.image}
                   title={item.title}
                   desc={item.desc}

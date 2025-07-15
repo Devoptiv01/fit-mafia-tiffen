@@ -12,37 +12,43 @@ const page = () => {
       title: "Indian Thali",
       description:
         "A wholesome platter featuring a variety of traditional Indian dishes, offering a balanced and flavorful meal.",
-      imageUrl: "images/indian-thali.avif",
+      imageUrl: "/plan-images/warrior/2.1.jpg",
     },
     {
       title: "Chicken Skewers",
       description:
         "Succulent pieces of chicken marinated in spices and grilled to perfection, served on skewers.",
-      imageUrl: "/images/chicken-skewers.avif",
+      imageUrl: "/plan-images/warrior/3.1.jpg",
     },
     {
       title: "Light Indian Bites",
       description:
         "Balanced and wholesome Indian meals under 550 calories — guilt-free yet satisfying.",
-      imageUrl: "/images/pani-puri.avif",
+      imageUrl: "/plan-images/warrior/4.1.jpg",
     },
     {
       title: "Veggie Delights",
       description:
         "Pure veg Indian meals featuring seasonal veggies, lentils, and rich flavors.",
-      imageUrl: "/images/salad.avif",
+      imageUrl: "/plan-images/warrior/5.1.jpg",
     },
     {
       title: "Indian Thali",
       description:
         "A wholesome platter featuring a variety of traditional Indian dishes, offering a balanced and flavorful meal.",
-      imageUrl: "images/indian-thali.avif",
+      imageUrl: "/plan-images/avengers/1.jpg",
     },
     {
       title: "Light Indian Bites",
       description:
         "Balanced and wholesome Indian meals under 550 calories — guilt-free yet satisfying.",
-      imageUrl: "/images/pani-puri.avif",
+      imageUrl: "/plan-images/avengers/2.jpg",
+    },
+    {
+      title: "Indian Bites",
+      description:
+        "Balanced and wholesome Indian meals under 550 calories — guilt-free yet satisfying.",
+      imageUrl: "/plan-images/avengers/3.jpg",
     },
   ];
 
@@ -51,37 +57,43 @@ const page = () => {
       title: "Aam Panna",
       description:
         "A refreshing summer drink made from raw mangoes and spices to cool you down.",
-      imageUrl: "/images/fresh-mango-mango-juice-glass.avif",
+      imageUrl: "/plan-images/single/1.jpg",
     },
     {
       title: "Masala Chaas",
       description:
         "Traditional buttermilk spiced with cumin, ginger, and coriander for digestion.",
-      imageUrl: "/images/lassi.avif",
+      imageUrl: "/plan-images/single/2.jpg",
     },
     {
       title: "Thandai",
       description:
         "A festive North Indian drink made with milk, saffron, almonds, and spices.",
-      imageUrl: "/images/glass-vanilla-milkshake.avif",
+      imageUrl: "/plan-images/single/3.jpg",
     },
     {
       title: "Kesar Badam Milk",
       description:
         "Sweet, creamy milk infused with saffron and almonds, served warm or cold.",
-      imageUrl: "/images/turmeric-golden-milk.avif",
+      imageUrl: "/plan-images/single/4.jpg",
     },
     {
       title: "Aam Panna",
       description:
         "A refreshing summer drink made from raw mangoes and spices to cool you down.",
-      imageUrl: "/images/fresh-mango-mango-juice-glass.avif",
+      imageUrl: "/plan-images/single/5.jpg",
     },
     {
       title: "Thandai",
       description:
-        "A festive North Indian drink made with milk, saffron, almonds, and spices.",
-      imageUrl: "/images/glass-vanilla-milkshake.avif",
+      "A festive North Indian drink made with milk, saffron, almonds, and spices.",
+      imageUrl: "/plan-images/single/6.jpg",
+    },
+    {
+      title: "Aam Panna",
+      description:
+        "A refreshing summer drink made from raw mangoes and spices to cool you down.",
+      imageUrl: "/plan-images/single/7.jpg",
     },
   ];
 
@@ -121,12 +133,13 @@ const page = () => {
           Our Service in 3 Steps
         </h2>
         <div className="relative flex md:flex-row flex-col max-w-[1140px] w-full gap-6">
-          <div className="md:sticky md:top-24 flex flex-[0.5] justify-center h-fit items-center">
+          <div className="md:sticky md:top-24 flex flex-[0.5] justify-center h-fit items-center  rounded-xl">
             <Image
-              src="/temp/NutritionIngredient.avif"
+              src="/plan-images/warrior/1.jpg"
               alt="foodImage"
               width={342}
               height={342}
+              className="rounded-xl"
             />
           </div>
           <div className="flex-[0.5] flex flex-col gap-3 px-6 md:px-12">

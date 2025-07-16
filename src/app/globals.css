@@ -36,6 +36,11 @@ button {
   cursor: pointer;
 }
 
+input, textarea {
+  /* border: none; */
+  outline: none
+}
+
 .bg-img-hero-section{
   background-image: url('/icons/main/hero-section.png');
   background-size: contain;

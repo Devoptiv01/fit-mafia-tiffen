@@ -73,3 +73,16 @@ export interface UserType {
 }
 
 export interface UserDocument extends Document, UserType {}
+
+export interface EmailRequestBody {
+    email?: string;
+    subject?: string;
+    [key: string]: any;
+}
+
+export interface MailOptions {
+    from: string;
+    to: string;
+    subject: string;
+    text: string;
+}

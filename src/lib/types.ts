@@ -75,9 +75,9 @@ export interface UserType {
 export interface UserDocument extends Document, UserType {}
 
 export interface EmailRequestBody {
-    email?: string;
-    subject?: string;
-    [key: string]: any;
+    // email?: string;
+    // subject?: string;
+    [key: string]: string;
 }
 
 export interface MailOptions {

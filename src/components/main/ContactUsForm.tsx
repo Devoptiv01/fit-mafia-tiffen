@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import { Loader } from "lucide-react";
-import { sendEmail } from "@/lib/sendEmail";
+// import { sendEmail } from "@/lib/sendEmail";
 import axios from "axios";
 
 type FormData = {
@@ -19,7 +19,6 @@ const ContactUsForm = ({fc}:{fc: ()=> void}) => {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors, isSubmitting },
     reset,
   } = useForm<FormData>();
@@ -39,6 +38,7 @@ const ContactUsForm = ({fc}:{fc: ()=> void}) => {
          fc();
        }
     } catch (error) {
+      console.log('error',error)
       toast.error('Something went wrong' )
     }
   };

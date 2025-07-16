@@ -50,16 +50,16 @@ export async function POST(req: Request): Promise<Response> {
             JSON.stringify({ message: 'Successfully Submitted' }),
             { status: 200 }
         );
-    } catch (error: any) {
+    } catch (error) {
         console.error('Failed to send email:', error);
 
-        const errorMessage: string =
-            error?.responseCode === 535
-                ? 'Authentication failed. Check your email credentials.'
-                : 'Something went wrong while sending the email.';
+        // const errorMessage: string =
+        //     (typeof error === 'object' && error !== null && 'responseCode' in error && (error as any).responseCode === 535)
+        //         ? 'Authentication failed. Check your email credentials.'
+        //         : 'Something went wrong while sending the email.';
 
         return new Response(
-            JSON.stringify({ message: 'Failed to send email', error: errorMessage }),
+            JSON.stringify({ message: 'Failed to send email' }),
             { status: 500 }
         );
     }
